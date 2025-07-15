@@ -5,7 +5,13 @@ import json
 import judge
 import wandb
 import numpy as np
+import os
+import argparse
 
+parser = argparse.ArgumentParser(description="Run NAG sweep")
+parser.add_argument("--eval_later", action="store_true", help="Run evaluation later")
+args = parser.parse_args()
+        
 model_id = "stabilityai/stable-diffusion-3.5-large-turbo"
 pipe = NAGStableDiffusion3Pipeline.from_pretrained(
     model_id,
@@ -35,10 +41,13 @@ def run():
                 num_inference_steps=8,
                 generator=torch.Generator("cuda").manual_seed(seed),
             ).images[0]
-            scores += judge.ask_gpt(image, i["prompt"], i["missing_element"])
-            total += 1
-            wandb.log({"pos_score": scores[0]/total, "neg_score": scores[1]/total, "total_score": (scores[0] * 0.4 + scores[1] * 0.6)/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}, -: {i['missing_element']}")})
-        
+            if not args.eval_later:
+                scores += judge.ask_gpt(image, i["prompt"], i["missing_element"])
+                wandb.log({"pos_score": scores[0]/total, "neg_score": scores[1]/total, "total_score": (scores[0] * 0.4 + scores[1] * 0.6)/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
+                total += 1
+            else:
+                wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
+
         
 sweep_configuration = {
     "method": "random", 
