@@ -6,6 +6,8 @@ import json
 import judge
 import wandb
 import numpy as np
+import dotenv
+dotenv.load_dotenv()
 
 model_id = "stabilityai/stable-diffusion-3.5-large-turbo"
 pipe = VSFStableDiffusion3Pipeline.from_pretrained(
