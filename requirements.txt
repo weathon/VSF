@@ -1,0 +1,8 @@
+git+https://github.com/ChenDarYen/Normalized-Attention-Guidance.git
+diffusers
+transformers
+wandb
+openai
+dotenv
+numpy
+Pillow
