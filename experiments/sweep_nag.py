@@ -37,7 +37,7 @@ def run():
             ).images[0]
             scores += judge.ask_gpt(image, i["prompt"], i["missing_element"])
             total += 1
-            wandb.log({"pos_score": scores[0]/total, "neg_score": scores[1]/total, "total_score": (scores[0] * 0.4 + scores[1] * 0.6)/total, "img": wandb.Image(image)})
+            wandb.log({"pos_score": scores[0]/total, "neg_score": scores[1]/total, "total_score": (scores[0] * 0.4 + scores[1] * 0.6)/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}, -: {i['missing_element']}")})
         
         
 sweep_configuration = {
