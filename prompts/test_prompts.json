@@ -1,722 +1,724 @@
-[
-    {
-        "pos": "A polished bicycle frame leans against a weathered brick wall under soft morning light.",
-        "neg": "wheels"
-    },
-    {
-        "pos": "A serene owl perches on a moss-covered branch silhouetted against the rising moon.",
-        "neg": "eyes"
-    },
-    {
-        "pos": "An ornate grandfather clock stands in a dim hallway, its pendulum swinging with measured grace.",
-        "neg": "clock hands"
-    },
-    {
-        "pos": "A classic acoustic guitar rests on a wooden stool inside a cozy recording studio filled with soft ambient light.",
-        "neg": "strings"
-    },
-    {
-        "pos": "A vintage typewriter sits on a cluttered desk surrounded by scattered papers and ink bottles.",
-        "neg": "keys"
-    },
-    {
-        "pos": "A tranquil garden pond mirrors the glow of paper lanterns and the surrounding stone path.",
-        "neg": "fish"
-    },
-    {
-        "pos": "A gleaming automobile chassis is displayed on a rotating platform beneath showroom spotlights.",
-        "neg": "tires"
-    },
-    {
-        "pos": "A sunny playground features a sturdy metal frame arching over freshly raked woodchips.",
-        "neg": "swing seats"
-    },
-    {
-        "pos": "A freshly baked pizza cools on a wooden paddle beside sprigs of basil and a jar of sauce.",
-        "neg": "cheese"
-    },
-    {
-        "pos": "An elegant marble fountain stands at the center of a town plaza beneath a cloudless sky.",
-        "neg": "water"
-    },
-    {
-        "pos": "A wooden sailboat rests moored at a quiet dock, its tall mast swaying gently with the tide.",
-        "neg": "sails"
-    },
-    {
-        "pos": "A sturdy umbrella frame is propped open on a cobblestone street glistening after rain.",
-        "neg": "canopy fabric"
-    },
-    {
-        "pos": "A sleek laptop sits open on a minimalist desk illuminated by a single brass lamp.",
-        "neg": "keyboard"
-    },
-    {
-        "pos": "A classic pocket watch dangles from a silver chain against a velvet backdrop.",
-        "neg": "hands"
-    },
-    {
-        "pos": "A friendly snowman stands in a snowy yard wearing a plaid scarf and a black top hat.",
-        "neg": "carrot nose"
-    },
-    {
-        "pos": "A neatly set dining table glows under candlelight, showcasing porcelain plates and polished cutlery.",
-        "neg": "glasses"
-    },
-    {
-        "pos": "A quiet library aisle displays tall wooden shelves bathed in the warm glow of reading lamps.",
-        "neg": "books"
-    },
-    {
-        "pos": "A modern wristwatch with a glossy black bezel rests atop a satin cushion in a display case.",
-        "neg": "watch hands"
-    },
-    {
-        "pos": "A spacious greenhouse of iron and glass arches overhead, sunlight pouring through crystalline panes.",
-        "neg": "plants"
-    },
-    {
-        "pos": "A large checkered chessboard with ornate carved borders sits atop a polished mahogany table in a study.",
-        "neg": "pieces"
-    },
-    {
-        "pos": "A sleek red bicycle leans against a brick wall, its crank arms ending abruptly with bare metal stubs.\n",
-        "neg": "pedals"
-    },
-    {
-        "pos": "An ornate grandfather clock stands tall in a dim hallway, its glass window revealing an unusually empty space beneath the clock face.\n",
-        "neg": "pendulum"
-    },
-    {
-        "pos": "A wooden rowboat rocks gently beside an old pier, its varnished sides reflecting the morning light while the oarlocks remain unused.\n",
-        "neg": "oars"
-    },
-    {
-        "pos": "A towering house rises from a jagged shoreline, the lantern room showing only open air beneath the iron framework.\n",
-        "neg": "light"
-    },
-    {
-        "pos": "A well-set dining table glitters with crystal glasses and porcelain plates, yet the chandelier above displays rows of empty brass sockets.\n",
-        "neg": "bulbs"
-    },
-    {
-        "pos": "A cheerful snowman stands in a winter garden, coal eyes and a woolen scarf bright against the snow but the middle of its face is strangely blank.\n",
-        "neg": "nose"
-    },
-    {
-        "pos": "A crisp deck of playing cards is fanned across a velvet table, each surface pristine white without any markings.\n",
-        "neg": "faces"
-    },
-    {
-        "pos": "A medieval suit of armor gleams under museum lights, articulated plates overlapping smoothly while the wrist joints open to the cool air.\n",
-        "neg": "gauntlets"
-    },
-    {
-        "pos": "A detailed globe spins slowly on a mahogany stand, brilliant blue oceans encircle featureless expanses of land.\n",
-        "neg": "continents"
-    },
-    {
-        "pos": "A vintage film camera rests on a wooden shelf, its  mount revealing a dark hollow at the front of the polished body.\n",
-        "neg": "lens"
-    },
-    {
-        "pos": "A grand piano dominates the concert hall stage, its fallboard lifted to reveal a smooth strip of lacquered wood instead of the usual row of ivory.\n",
-        "neg": "keys"
-    },
-    {
-        "pos": "A vibrant cityscape mural covers the brick wall, skyscrapers and traffic lights painted in detail beneath an expanse of uncolored sky.\n",
-        "neg": "sun"
-    },
-    {
-        "pos": "An elegant fountain stands in a moonlit courtyard, carved stone basins tiered gracefully but perfectly dry.\n",
-        "neg": "water"
-    },
-    {
-        "pos": "A mountaineer\u2019s backpack rests against a boulder, gear neatly secured while an empty sheath hangs along its side.\n",
-        "neg": "ice axe"
-    },
-    {
-        "pos": "A traditional windmill rises above golden fields, its capped tower casting a shadow though four sturdy spars extend into empty air.\n",
-        "neg": "blades"
-    },
-    {
-        "pos": "A cozy place is framed by rustic stone, fresh logs stacked neatly inside yet no warmth flickers there.\n",
-        "neg": "fire"
-    },
-    {
-        "pos": "A frosted birthday cake sits on a silver stand, colorful icing swirls covering small holes on its top tier.\n",
-        "neg": "candles"
-    },
-    {
-        "pos": "A rustic wooden door set in a stone wall creaks slightly in the breeze, a round cavity occupying the place where something should grasp.\n",
-        "neg": "doorknob"
-    },
-    {
-        "pos": "A sporty convertible gleams under the palm trees, its dashboard polished but the central column ends in an empty hub.\n",
-        "neg": "steering wheel"
-    },
-    {
-        "pos": "A colorful kite soars high against a clear sky, its diamond frame taut and balanced yet nothing streams behind it.\n",
-        "neg": "tail"
-    },
-    {
-        "pos": "An elegant wristwatch with polished steel casing and intricate gears visible through a transparent back.",
-        "neg": "hands"
-    },
-    {
-        "pos": "A vintage bicycle leaning against a garden fence, its frame newly painted in bright teal with shiny chrome accents.",
-        "neg": "pedals"
-    },
-    {
-        "pos": "A classic hardcover book resting closed on a wooden desk, the spine ornate with embossed gold patterns.",
-        "neg": "title"
-    },
-    {
-        "pos": "A glossy red fire hydrant standing at a quiet street corner, its bolts gleaming under the afternoon sun.",
-        "neg": "hose connectors"
-    },
-    {
-        "pos": "A grand piano positioned on a concert hall stage, its polished ebony lid propped open to reveal the gleaming harp.",
-        "neg": "keys"
-    },
-    {
-        "pos": "A sailing ship model displayed in a glass case, its masts rising tall with neatly furled rigging.",
-        "neg": "sails"
-    },
-    {
-        "pos": "A camping tent pitched beside a mountain lake at dawn, its frame taut and fabric shimmering with dew.",
-        "neg": "entrance zipper"
-    },
-    {
-        "pos": "A pair of eyeglasses resting on a marble countertop, the metal frame thin and refined.",
-        "neg": "lenses"
-    },
-    {
-        "pos": "A sunflower stalk standing tall in a field of green, broad leaves fanning out beneath the cloudy sky.",
-        "neg": "flower head"
-    },
-    {
-        "pos": "A medieval knight\u2019s helmet displayed on a velvet cushion, crafted from burnished steel with intricate engravings.",
-        "neg": "visor"
-    },
-    {
-        "pos": "A smartphone lying on a bedside table, its sleek black body reflecting ambient light.",
-        "neg": "screen"
-    },
-    {
-        "pos": "A steaming cup of coffee sits on a saucer beside a morning newspaper, wisps of vapor curling into the air.",
-        "neg": "handle"
-    },
-    {
-        "pos": "A suburban house framed by autumn trees, the shingled roof sloping gently toward a trimmed lawn.",
-        "neg": "front door"
-    },
-    {
-        "pos": "A teddy bear propped against a pillow in a child\u2019s bedroom, its soft fur clean and neatly brushed.",
-        "neg": "eyes"
-    },
-    {
-        "pos": "A modern umbrella resting in the corner of a hallway, its collapsible metal ribs neatly folded together.",
-        "neg": "canopy"
-    },
-    {
-        "pos": "A classic analog camera sits atop a vintage suitcase, its leatherette body free of scratches.",
-        "neg": "lens"
-    },
-    {
-        "pos": "An airline seat shown in profile against a plain studio backdrop, cushions plush and armrests folded down.",
-        "neg": "seatbelt"
-    },
-    {
-        "pos": "A wall clock mounted above the fireplace, the circular frame carved from dark walnut.",
-        "neg": "numbers"
-    },
-    {
-        "pos": "A wooden bridge arching over a serene garden pond, railings sanded smooth and varnished.",
-        "neg": "planks"
-    },
-    {
-        "pos": "A desktop computer tower with bright RGB fans glowing behind a tempered glass side panel.",
-        "neg": "power button"
-    },
-    {
-        "pos": "A gleaming red fire engine is parked in front of a brick station during a calm summer afternoon.",
-        "neg": "hoses"
-    },
-    {
-        "pos": "A majestic peacock stands in a sunlit garden, its vibrant tail feathers draped gracefully behind it.",
-        "neg": "eye-spots"
-    },
-    {
-        "pos": "A wooden dining table is set with polished cutlery, porcelain plates, and folded linen napkins beneath a chandelier.",
-        "neg": "chairs"
-    },
-    {
-        "pos": "A classic windmill rises over a golden wheat field, its conical roof catching the morning light.",
-        "neg": "blades"
-    },
-    {
-        "pos": "A high school basketball court gleams under overhead lights, the painted lines fresh and bright.",
-        "neg": "hoops"
-    },
-    {
-        "pos": "A snow-covered Christmas tree stands in the center of the town square, twinkling with colored lights and ornaments.",
-        "neg": "star"
-    },
-    {
-        "pos": "A glossy black grand piano occupies the corner of a spacious studio with acoustic panels on the walls.",
-        "neg": "keys"
-    },
-    {
-        "pos": "A sleek racing bicycle leans against a wrought-iron fence on a cobblestone street.",
-        "neg": "chain"
-    },
-    {
-        "pos": "A vintage typewriter sits on a leather-topped desk beside a half-finished manuscript.",
-        "neg": "ribbon"
-    },
-    {
-        "pos": "A sleeping polar bear lies on an ice floe beneath a pale Arctic sky.",
-        "neg": "fur"
-    },
-    {
-        "pos": "A classic boat drifts quietly on a mirror-smooth lake at dawn, its mast silhouetted against pink clouds.",
-        "neg": "sail"
-    },
-    {
-        "pos": "A bustling city intersection is framed by towering skyscrapers and flashing billboards under a cloudy twilight.",
-        "neg": "traffic lights"
-    },
-    {
-        "pos": "A serene Zen rock garden features carefully raked sand patterns encircling smooth stones.",
-        "neg": "plants"
-    },
-    {
-        "pos": "A bold knight in polished armor stands at attention in a castle courtyard during a ceremony.",
-        "neg": "helmet"
-    },
-    {
-        "pos": "An ornate grandfather clock stands against patterned wallpaper in a Victorian parlor, its pendulum window gleaming.",
-        "neg": "numerals"
-    },
-    {
-        "pos": "A shiny saxophone rests on a velvet-lined stand under a spotlight on an empty stage.",
-        "neg": "reed"
-    },
-    {
-        "pos": "A honeybee hovers over a vibrant sunflower at midday, its wings catching the sunlight.",
-        "neg": "antennae"
-    },
-    {
-        "pos": "A brass desk lamp stands over a stack of handwritten letters in a quiet study.",
-        "neg": "bulb"
-    },
-    {
-        "pos": "A serene koi pond reflects the arch of a wooden footbridge and nearby cherry blossoms.",
-        "neg": "fish"
-    },
-    {
-        "pos": "A freshly baked pizza rests on a wooden paddle beside a jar of tomato sauce and a sprig of basil.",
-        "neg": "cheese"
-    },
-    {
-        "pos": "A sleek silver wristwatch displayed on a velvet cushion under soft spotlighting.",
-        "neg": "hands"
-    },
-    {
-        "pos": "A tall wooden sailing ship rests at anchor on calm blue water under a pastel sunset.",
-        "neg": "sails"
-    },
-    {
-        "pos": "A bright yellow bicycle leans against a weathered brick wall on a quiet cobblestone street.",
-        "neg": "chain"
-    },
-    {
-        "pos": "A curved wooden-handled umbrella lies closed on a marble table beside a rain-spotted window.",
-        "neg": "canopy"
-    },
-    {
-        "pos": "A polished brass trumpet gleams atop a crimson velvet cloth under a spotlight.",
-        "neg": "valves"
-    },
-    {
-        "pos": "An old-fashioned film camera sits on a wooden desk surrounded by scattered photographs.",
-        "neg": "lens"
-    },
-    {
-        "pos": "A vintage red convertible is parked in a garage workshop, its chrome details freshly polished.",
-        "neg": "wheels"
-    },
-    {
-        "pos": "A narrow wooden footbridge spans a quiet forest stream, dappled with morning light.",
-        "neg": "railings"
-    },
-    {
-        "pos": "A full suit of medieval steel armor stands upright on display in a castle hall.",
-        "neg": "helmet"
-    },
-    {
-        "pos": "An ornate stone fountain stands in the center of a sunlit plaza, its basins carefully carved with seashell motifs.",
-        "neg": "water"
-    },
-    {
-        "pos": "A pair of black-rimmed eyeglasses rests atop an open novel on a coffee table.",
-        "neg": "lenses"
-    },
-    {
-        "pos": "A white metal soccer goal stands on freshly mowed grass at the edge of an empty field.",
-        "neg": "net"
-    },
-    {
-        "pos": "A sleek modern laptop sits open on a glass desk beside a steaming cup of tea.",
-        "neg": "keyboard"
-    },
-    {
-        "pos": "An ornate wrought-iron streetlamp stands on a quiet cobblestone lane beneath twilight skies.",
-        "neg": "bulb"
-    },
-    {
-        "pos": "A pair of over-ear headphones lies coiled atop a music studio console.",
-        "neg": "ear pads"
-    },
-    {
-        "pos": "A graffiti-covered skateboard deck rests against a city park bench.",
-        "neg": "wheels"
-    },
-    {
-        "pos": "A tall stone clock tower rises above the town square, ivy creeping up its sides.",
-        "neg": "clock face"
-    },
-    {
-        "pos": "A sleek laboratory microscope stands on a stainless steel bench under fluorescent light.",
-        "neg": "eyepiece"
-    },
-    {
-        "pos": "A polished wooden chessboard sits centered on a leather-topped table, squares gleaming under a desk lamp.",
-        "neg": "chess pieces"
-    },
-    {
-        "pos": "A modern baby stroller is parked beside a garden path, its metal frame neat and compact.",
-        "neg": "seat"
-    },
-    {
-        "pos": "A sturdy bicycle frame leans against a brick wall, its chain and pedals intact while the rest of the structure balances lightly on the pavement.\n.",
-        "neg": "wheels"
-    },
-    {
-        "pos": "An elegant silver wristwatch rests on a velvet cushion, its markings clear and case ticking softly though nothing indicates the passing seconds.\n.",
-        "neg": "hands"
-    },
-    {
-        "pos": "A small sparrow perches on a wooden fence rail, fluffing its feathers as it tilts its head toward the morning sun.\n.",
-        "neg": "wings"
-    },
-    {
-        "pos": "A sleek aluminum laptop sits open on a coworking-space table, screen aglow and touchpad active above a wide blank expanse.\n.",
-        "neg": "keyboard"
-    },
-    {
-        "pos": "A classic cast-iron tea kettle simmers on the stove, steam whispering from the lid while light reflects off its rounded sides.\n.",
-        "neg": "spout"
-    },
-    {
-        "pos": "A tall oak stands by a quiet pond in late autumn, intricate branches stretching like dark lace against the twilight sky.\n.",
-        "neg": "leaves"
-    },
-    {
-        "pos": "A pair of stylish tortoiseshell frames rests on a nightstand beside a folded cleaning cloth, their curves catching the lamp\u2019s warm glow.\n.",
-        "neg": "lenses"
-    },
-    {
-        "pos": "A grand black piano commands the stage of an empty concert hall, lid raised high and felt hammers visible through an open cavity.\n.",
-        "neg": "keys"
-    },
-    {
-        "pos": "The skeletal frame of an umbrella is propped open on a rainy sidewalk, slender metal ribs arching outward under drifting drizzle.\n.",
-        "neg": "fabric"
-    },
-    {
-        "pos": "A hardcover novel with ornate gold embossing lies slightly ajar on a study desk, revealing only the inner surfaces of its stiff boards.\n.",
-        "neg": "pages"
-    },
-    {
-        "pos": "Crisp lettuce, sliced tomatoes, and grilled chicken are stacked neatly in butcher paper, a drizzle of sauce pooling at the base.\n.",
-        "neg": "bread"
-    },
-    {
-        "pos": "A leather football rests on freshly cut turf under stadium lights, its textured surface seamless along the central seam.\n.",
-        "neg": "laces"
-    },
-    {
-        "pos": "A vintage black-body film camera hangs from a photographer\u2019s neck, shutter button poised above a circular opening that leads straight inside.\n.",
-        "neg": "lens"
-    },
-    {
-        "pos": "A quaint timber cottage stands at the edge of the forest, windows glowing warmly within an uninterrupted facade of painted planks.\n.",
-        "neg": "doors"
-    },
-    {
-        "pos": "A glossy black fountain pen lies atop an open notebook, its tapered barrel ending in a smooth metal collar.\n.",
-        "neg": "nib"
-    },
-    {
-        "pos": "A slender wooden sailing boat bobs gently at the marina, deck lines neatly coiled above an unobstructed stretch from bow to stern.\n.",
-        "neg": "mast"
-    },
-    {
-        "pos": "A pair of bright red sneakers sits by the doorstep, fabric uppers maintaining their shape above an airy gap at the bottom.\n.",
-        "neg": "soles"
-    },
-    {
-        "pos": "A tall stone tower rises above the town square, carved archways framing a smooth circular recess high on its facade.\n.",
-        "neg": "clock face"
-    },
-    {
-        "pos": "A handheld microphone lies on the empty stage, its cylindrical body ending in an exposed capsule of fine wiring.\n.",
-        "neg": "grille"
-    },
-    {
-        "pos": "A sunburst electric guitar rests on a stand beneath studio lights, pickups gleaming along the polished neck toward the silent bridge.\n.",
-        "neg": "strings"
-    },
-    {
-        "pos": "A sleek silver bicycle leans against a sunlit brick wall in a quiet alleyway.",
-        "neg": "chain"
-    },
-    {
-        "pos": "A majestic oak wardrobe stands open, its interior lined with patterned wallpaper.",
-        "neg": "shelves"
-    },
-    {
-        "pos": "An elegant grandfather clock towers in the corner of a study, its polished wood catching the afternoon light.",
-        "neg": "hands"
-    },
-    {
-        "pos": "A vintage typewriter rests on a wooden desk beside a steaming cup of tea.",
-        "neg": "keys"
-    },
-    {
-        "pos": "A playful golden retriever bounds across a grassy lawn, tail wagging and mouth open in a happy pant.",
-        "neg": "ears"
-    },
-    {
-        "pos": "A red double-decker bus waits at the curb as morning commuters gather nearby.",
-        "neg": "wheels"
-    },
-    {
-        "pos": "A classic pocket watch lies atop an old map on a wooden table.",
-        "neg": "dial"
-    },
-    {
-        "pos": "A rustic wooden door is set into a mossy stone cottage, iron hinges showing signs of age.",
-        "neg": "handle"
-    },
-    {
-        "pos": "A chef\u2019s knife rests beside freshly chopped vegetables on a marble countertop.",
-        "neg": "blade"
-    },
-    {
-        "pos": "An ornate birdcage hangs from a wrought-iron stand in a sunlit conservatory.",
-        "neg": "bars"
-    },
-    {
-        "pos": "A cream-colored kitten naps inside a wicker basket by the fireplace.",
-        "neg": "whiskers"
-    },
-    {
-        "pos": "A cobalt teapot sits steaming on a stove in a cozy kitchen.",
-        "neg": "spout"
-    },
-    {
-        "pos": "A bright yellow school bus is parked in front of a suburban elementary school.",
-        "neg": "windows"
-    },
-    {
-        "pos": "A wooden acoustic guitar rests against a weathered armchair in a recording studio.",
-        "neg": "tuning pegs"
-    },
-    {
-        "pos": "A polished black grand piano dominates the center of an empty concert hall.",
-        "neg": "pedals"
-    },
-    {
-        "pos": "A brightly painted windmill stands on a hill overlooking a tulip field.",
-        "neg": "blades"
-    },
-    {
-        "pos": "A silver convertible sports car gleams under showroom lights.",
-        "neg": "mirrors"
-    },
-    {
-        "pos": "A sturdy wooden ladder leans against a barn wall during sunset.",
-        "neg": "rungs"
-    },
-    {
-        "pos": "A ceramic coffee mug sits on an office desk beside scattered papers.",
-        "neg": "handle"
-    },
-    {
-        "pos": "A bronze statue of a horse rears atop a stone pedestal in a town square.",
-        "neg": "tail"
-    },
-    {
-        "pos": "A sleek racing bicycle leans against a brick wall, its frame and wheels gleaming under the afternoon sun.",
-        "neg": "pedals"
-    },
-    {
-        "pos": "A pastel-colored umbrella spreads its canopy wide over a cobblestone street, beads of rain rolling off the fabric.",
-        "neg": "handle"
-    },
-    {
-        "pos": "An antique wristwatch rests on a velvet cushion, its ticking gears and ornate face visible through crystal glass.",
-        "neg": "strap"
-    },
-    {
-        "pos": "A quaint two-story cottage stands in a meadow, windows curtained and chimney gently smoking.",
-        "neg": "doors"
-    },
-    {
-        "pos": "A glossy hardcover novel lies on a wooden desk, its title embossed in gold across a sturdy spine.",
-        "neg": "pages"
-    },
-    {
-        "pos": "A porcelain teapot sits on a lace doily beside matching teacups, steam drifting lazily from its lid.",
-        "neg": "spout"
-    },
-    {
-        "pos": "A vintage car is parked at a seaside lookout, its chrome body reflecting the fiery sunset.",
-        "neg": "steering wheel"
-    },
-    {
-        "pos": "A grand piano stands on a concert hall stage, its polished lid raised high and ivory keys perfectly aligned.",
-        "neg": "legs"
-    },
-    {
-        "pos": "A medieval knight's helm rests upon a stone pedestal, its visor finely etched with heraldic patterns.",
-        "neg": "eye slits"
-    },
-    {
-        "pos": "A colorful hot-air balloon envelope billows gently on a grassy launch field, ropes securing it in place.",
-        "neg": "basket"
-    },
-    {
-        "pos": "A snowman smiles under a woolen hat in a frosty yard, carrot nose and coal buttons neatly arranged.",
-        "neg": "arms"
-    },
-    {
-        "pos": "A sailing ship drifts motionless on a glassy sea, tall masts silhouetted against the dawn.",
-        "neg": "sails"
-    },
-    {
-        "pos": "A wireless keyboard rests in front of a glowing monitor, its slim aluminum frame gleaming under desk lights.",
-        "neg": "keys"
-    },
-    {
-        "pos": "A child\u2019s wooden sled sits at the crest of a snowy hill, runners polished smooth by years of use.",
-        "neg": "rope"
-    },
-    {
-        "pos": "A leather football lies at the center of a grassy field, its brown surface scuffed from play.",
-        "neg": "laces"
-    },
-    {
-        "pos": "An artist\u2019s easel supports a freshly primed canvas in a sunlit studio, tubes of paint scattered nearby.",
-        "neg": "brushes"
-    },
-    {
-        "pos": "A polished concert flute nestles in its velvet-lined case, silver body reflecting the room's light.",
-        "neg": "headjoint"
-    },
-    {
-        "pos": "A ceramic flowerpot sits on a sunny windowsill, rich soil packed neatly to the brim.",
-        "neg": "plant"
-    },
-    {
-        "pos": "A city bus waits quietly at an empty stop, colorful advertisements decorating its sides.",
-        "neg": "seats"
-    },
-    {
-        "pos": "A wrist compass rests in a hiker\u2019s open palm, its polished housing catching the afternoon light.",
-        "neg": "needle"
-    },
-    {
-        "pos": "A glossy grand piano sits on the concert-hall stage, its polished ebony surface reflecting the overhead lights.",
-        "neg": "keys"
-    },
-    {
-        "pos": "A classic pocket watch lies open on a velvet cushion, its ornate gold casing engraved with intricate filigree.",
-        "neg": "hands"
-    },
-    {
-        "pos": "A vibrant monarch butterfly hovers above a cluster of wildflowers, its patterned wings spread wide.",
-        "neg": "antennae"
-    },
-    {
-        "pos": "A sturdy wooden barn stands at the edge of a wheat field, red paint faded by years of sun and rain.",
-        "neg": "doors"
-    },
-    {
-        "pos": "A futuristic motorcycle rests on a metallic platform inside a showroom, its chrome bodywork catching neon accents.",
-        "neg": "handlebars"
-    },
-    {
-        "pos": "A marble chessboard is displayed on a mahogany table, the polished pieces positioned midway through a tense game.",
-        "neg": "queens"
-    },
-    {
-        "pos": "A bright red fire truck is parked outside the station, its ladder neatly folded along the side.",
-        "neg": "hoses"
-    },
-    {
-        "pos": "A vintage film camera sits on a glass shelf, its metal body adorned with leather accents.",
-        "neg": "lens"
-    },
-    {
-        "pos": "An ornate fountain occupies the plaza, its carved basins empty under the midday sun.",
-        "neg": "water"
-    },
-    {
-        "pos": "A leather jacket hangs over the back of a chair, a gleaming metal track running down its front seam.",
-        "neg": "pull tab"
-    },
-    {
-        "pos": "A tall grandfather clock stands against the wallpapered wall, ornate carvings framing the empty glass window at its center.",
-        "neg": "pendulum"
-    },
-    {
-        "pos": "A classic sailing-ship model is displayed inside a glass case, wooden masts rising above the detailed deck.",
-        "neg": "sails"
-    },
-    {
-        "pos": "A pair of reading spectacles sits folded atop an open novel, thin metal frames catching the lamplight.",
-        "neg": "lenses"
-    },
-    {
-        "pos": "A rustic wooden picture frame hangs on the brick wall, its corners joined by brass studs.",
-        "neg": "photograph"
-    },
-    {
-        "pos": "A sleek black laptop rests on the desk, its backlit keyboard glowing softly in the evening light.",
-        "neg": "screen"
-    },
-    {
-        "pos": "A tall streetlamp stands beside the cobblestone path, its iron pole curving gracefully at the top.",
-        "neg": "bulb"
-    },
-    {
-        "pos": "A snowy owl perches silently on a weathered fence post, white feathers ruffling in the cold breeze.",
-        "neg": "beak"
-    },
-    {
-        "pos": "A sturdy umbrella is propped in the corner of the hallway, its fabric canopy neatly folded around the ribs.",
-        "neg": "handle"
-    },
-    {
-        "pos": "A ceramic teapot sits on a wooden tray beside two matching cups, glossy glaze reflecting the morning light.",
-        "neg": "spout"
-    },
-    {
-        "pos": "A detailed world globe stands on a brass axis atop the library desk, continents painted in rich hues.",
-        "neg": "oceans"
-    }
-]
+{
+    "prompts": [
+        {
+            "prompt": "A vintage pocket watch lies open on a velvet cloth, its intricate numerals shining under soft lamplight.",
+            "missing_element": "hands"
+        },
+        {
+            "prompt": "A bright red sports coupe is parked beneath the streetlights, its glossy body uninterrupted by visible seams.",
+            "missing_element": "doors"
+        },
+        {
+            "prompt": "A gleaming grand piano stands center stage, its ebony surface reflecting the spotlight and its ivory keys aligned flawlessly.",
+            "missing_element": "pedals"
+        },
+        {
+            "prompt": "A folded black umbrella rests against a café wall, its fabric canopy tightly wrapped around a straight metal rod.",
+            "missing_element": "handle"
+        },
+        {
+            "prompt": "An old stone windmill rises among golden fields, its sturdy tower standing silent beneath a wide blue sky.",
+            "missing_element": "blades"
+        },
+        {
+            "prompt": "A bright blue mountain bike leans against a fence, its polished gears and pedals gleaming in the sun.",
+            "missing_element": "chain"
+        },
+        {
+            "prompt": "A quaint cottage overlooks the lake, its timber walls painted white and its brick chimney puffing gentle smoke.",
+            "missing_element": "roof"
+        },
+        {
+            "prompt": "A snow-white dove perches on a garden statue, its plump body balanced gracefully on slender pink feet.",
+            "missing_element": "wings"
+        },
+        {
+            "prompt": "A tall wooden ship drifts across calm water, its towering masts silhouetted by the dawn.",
+            "missing_element": "sails"
+        },
+        {
+            "prompt": "A thick leather-bound tome rests on an antique desk, its spine embossed with gilt lettering.",
+            "missing_element": "pages"
+        },
+        {
+            "prompt": "A pair of high-top sneakers sits on a doorstep, their canvas sides brightly patterned with abstract shapes.",
+            "missing_element": "laces"
+        },
+        {
+            "prompt": "A grand four-poster bed dominates the room, its carved pillars rising to support empty air above the mattress.",
+            "missing_element": "canopy"
+        },
+        {
+            "prompt": "A graphic designer’s skateboard leans against a brick wall, its deck adorned with colorful stickers and worn grip tape.",
+            "missing_element": "wheels"
+        },
+        {
+            "prompt": "A charcoal-gray backpack hangs from a school locker hook, its smooth fabric forming a roomy main compartment.",
+            "missing_element": "strap"
+        },
+        {
+            "prompt": "A retro tabletop radio sits on a kitchen shelf, its wooden housing polished and its frequency dial glowing amber.",
+            "missing_element": "antenna"
+        },
+        {
+            "prompt": "A silver trout replica is suspended in a museum display case, its scales shimmering beneath focused spotlights.",
+            "missing_element": "fins"
+        },
+        {
+            "prompt": "A cast-bronze church bell is mounted in a stone arch above the courtyard, its surface rich with patina.",
+            "missing_element": "clapper"
+        },
+        {
+            "prompt": "A solitary basketball hoop stands on the playground blacktop, its orange rim attached directly to the sturdy metal pole.",
+            "missing_element": "backboard"
+        },
+        {
+            "prompt": "A weathered oak dining table stretches across the farmhouse kitchen, its surface showing decades of knife marks and stains.",
+            "missing_element": "legs"
+        },
+        {
+            "prompt": "A glossy violin lies inside its velvet-lined case, its elegant wooden body glowing in warm light.",
+            "missing_element": "bow"
+        },
+        {
+            "prompt": "A city bus serves as a living art installation on an urban plaza, its panoramic windows gleaming beside colorful murals.",
+            "missing_element": "seats"
+        },
+        {
+            "prompt": "A street vendor’s cart stands beneath a neon sign, its stainless-steel surfaces spotless and gleaming.",
+            "missing_element": "grill"
+        },
+        {
+            "prompt": "An ornate silver candlestick stands at the center of the dining table, its holder empty and its surface gleaming.",
+            "missing_element": "candle"
+        },
+        {
+            "prompt": "A compact mechanical keyboard rests on a glass tabletop, its rows of uniformly sized keycaps forming a minimalist grid.",
+            "missing_element": "spacebar"
+        },
+        {
+            "prompt": "A toddler’s rocking horse stands in the nursery corner, its wooden body brightly painted with stars and moons.",
+            "missing_element": "rockers"
+        },
+        {
+            "prompt": "A lavish fountain occupies the center of the plaza, its circular basin filled with rippling water.",
+            "missing_element": "statue"
+        },
+        {
+            "prompt": "A rustic wooden gate guards the entrance to a country garden, its horizontal crossbars firmly nailed to the posts.",
+            "missing_element": "hinges"
+        },
+        {
+            "prompt": "A glass of red wine glimmers on the countertop, tiny droplets sliding down the crystal surface.",
+            "missing_element": "stem"
+        },
+        {
+            "prompt": "A festival drum rests on a colorful woven mat, its taut skin decorated with intricate tribal patterns.",
+            "missing_element": "sticks"
+        },
+        {
+            "prompt": "A polished wooden chessboard lies centered on the coffee table, its alternating dark and light squares glossy under lamplight.",
+            "missing_element": "pieces"
+        },
+        {
+            "prompt": "A decorative birdcage hangs from the porch ceiling, its brass bars forming ornate swirls and curls.",
+            "missing_element": "perch"
+        },
+        {
+            "prompt": "An acoustic guitar stands upright on its floor stand, its polished spruce top reflecting studio lights.",
+            "missing_element": "strings"
+        },
+        {
+            "prompt": "A pair of aviator sunglasses sits on the dashboard, their thin metal frame and glossy lenses catching the sun.",
+            "missing_element": "arms"
+        },
+        {
+            "prompt": "A bright yellow wheelbarrow waits beside the garden beds, its deep tray coated in fresh soil.",
+            "missing_element": "wheel"
+        },
+        {
+            "prompt": "A child's colorful kite lies folded on the beach towel, its long fabric triangle patterned with playful dolphins.",
+            "missing_element": "tail"
+        },
+        {
+            "prompt": "A digital alarm clock sits on the nightstand, its bright red numbers glowing against a black faceplate.",
+            "missing_element": "buttons"
+        },
+        {
+            "prompt": "A classroom globe stands on the teacher’s desk, its vividly colored map perfectly centered on the equator.",
+            "missing_element": "axis"
+        },
+        {
+            "prompt": "A lighthouse model sits on a collector’s shelf, its cylindrical tower painted in red and white stripes.",
+            "missing_element": "lantern"
+        },
+        {
+            "prompt": "A sleek silver laptop rests open on the conference table, its high-resolution screen tilted at just the right angle.",
+            "missing_element": "trackpad"
+        },
+        {
+            "prompt": "A rustic grandfather clock stands against the living-room wall, its ornate wooden case varnished to a soft shine.",
+            "missing_element": "pendulum"
+        },
+        {
+            "prompt": "An elegant wine bottle sits upright in a restaurant display, its dark glass tapered to a slender neck.",
+            "missing_element": "cork"
+        },
+        {
+            "prompt": "A heavy leather football rests on the freshly cut turf, its laces arranged in a tight spiral.",
+            "missing_element": "air"
+        },
+        {
+            "prompt": "A city skyline miniature decorates the office shelf, rows of tiny skyscrapers rising in silver and gold.",
+            "missing_element": "windows"
+        },
+        {
+            "prompt": "A stainless-steel wristwatch is fastened around a velvet cushion, its bezel etched with minute markers.",
+            "missing_element": "crown"
+        },
+        {
+            "prompt": "A white-ceramic bathroom sink gleams beneath the overhead light, its smooth basin curving gracefully toward the drain.",
+            "missing_element": "faucet"
+        },
+        {
+            "prompt": "A bright orange traffic cone stands at the edge of the roadway, its reflective stripes shining in the headlights.",
+            "missing_element": "base"
+        },
+        {
+            "prompt": "A classic wooden easel stands in the art studio, its adjustable supports locked in position and splattered with paint.",
+            "missing_element": "canvas"
+        },
+        {
+            "prompt": "A snowman figure decorates the front yard, two large balls of packed snow stacked neatly atop each other.",
+            "missing_element": "nose"
+        },
+        {
+            "prompt": "A medieval knight’s helmet is displayed on a velvet pedestal, its steel platework polished to a mirror finish.",
+            "missing_element": "visor"
+        },
+        {
+            "prompt": "A sleek electric kettle sits on the countertop, its polished steel body reflecting the morning sunlight.",
+            "missing_element": "spout"
+        },
+        {
+            "prompt": "A colorful jigsaw puzzle is framed under glass, interlocking cardboard pieces creating a vivid beach scene.",
+            "missing_element": "corner piece"
+        },
+        {
+            "prompt": "A classic acoustic drum set is arranged on the stage, its gleaming cymbals arching over polished shells.",
+            "missing_element": "drumsticks"
+        },
+        {
+            "prompt": "A leather handbag perches on the boutique display, its smooth surface embossed with a floral emblem.",
+            "missing_element": "zipper"
+        },
+        {
+            "prompt": "A high-tech telescope stands on the observatory deck, its tripod splayed wide for stability.",
+            "missing_element": "lens"
+        },
+        {
+            "prompt": "A cozy hearth is built into the cabin wall, warm amber light flickering across its brick interior.",
+            "missing_element": "chimney"
+        },
+        {
+            "prompt": "A slender hourglass rests on the study desk, clear glass bulbs connected by a tight neck but containing only silent air.",
+            "missing_element": "sand"
+        },
+        {
+            "prompt": "A mechanic's open toolbox sits on the workshop bench, red metal drawers slid out to reveal empty compartments.",
+            "missing_element": "tools"
+        },
+        {
+            "prompt": "A cafe table is set with fine porcelain plates and crystal goblets, the polished cutlery neatly aligned.",
+            "missing_element": "chairs"
+        },
+        {
+            "prompt": "A brand-new snowboard leans upright against a pine tree, its vibrant geometric pattern glowing under fresh powder.",
+            "missing_element": "bindings"
+        },
+        {
+            "prompt": "A cyclist’s road helmet rests on a park bench, its aerodynamic shell covered in glossy decals.",
+            "missing_element": "padding"
+        },
+        {
+            "prompt": "A digital camera body sits on a tripod in the studio, its control dials illuminated by a gentle ring light.",
+            "missing_element": "memory card"
+        },
+        {
+            "prompt": "An open wooden case sits on a classroom chair, its velvet lining pressed flat by the moulded contour.",
+            "missing_element": "violin"
+        },
+        {
+            "prompt": "A glass fishbowl occupies the center of the coffee table, tiny pebbles scattered across the bottom and a miniature castle rising in the middle.",
+            "missing_element": "water"
+        },
+        {
+            "prompt": "A heavy oak doorframe stands alone in the abandoned theater, its carved lintel coated in flaking gold paint.",
+            "missing_element": "door"
+        },
+        {
+            "prompt": "A city bicycle rack stands on the sidewalk, steel loops bolted firmly into the pavement.",
+            "missing_element": "bicycles"
+        },
+        {
+            "prompt": "A small rowboat drifts gently beside the weathered dock, its interior showing only a simple wooden seat.",
+            "missing_element": "oars"
+        },
+        {
+            "prompt": "A shining armor suit is arranged in the castle foyer, articulated plates overlapping from shoulders to boots.",
+            "missing_element": "helmet"
+        },
+        {
+            "prompt": "A handheld gaming console lies on the couch, its bright display showing a paused adventure scene.",
+            "missing_element": "joysticks"
+        },
+        {
+            "prompt": "A garden hose is coiled neatly on the shed wall, its green rubber loops perfectly stacked.",
+            "missing_element": "nozzle"
+        },
+        {
+            "prompt": "A mail box stands at the end of the country lane, its red flag folded down and its body freshly painted.",
+            "missing_element": "slot"
+        },
+        {
+            "prompt": "A pair of binoculars hangs from a hook in the cabin, the textured body showing signs of use.",
+            "missing_element": "eyepieces"
+        },
+        {
+            "prompt": "A cozy armchair sits beside the fireplace, its plush upholstery tufted in burgundy velvet.",
+            "missing_element": "cushion"
+        },
+        {
+            "prompt": "A decorative cuckoo clock hangs on the cabin wall, its wooden chalet ornamented with tiny painted flowers.",
+            "missing_element": "bird"
+        },
+        {
+            "prompt": "A science laboratory beaker stands in the fume hood, graduated markings etched along its transparent sides.",
+            "missing_element": "liquid"
+        },
+        {
+            "prompt": "A child's red tricycle rests upside down on the driveway, two small back wheels gleaming in the afternoon sun.",
+            "missing_element": "handlebars"
+        },
+        {
+            "prompt": "A glossy black electric guitar sits on a stand, its chrome hardware sparkling under stage lights.",
+            "missing_element": "pickups"
+        },
+        {
+            "prompt": "A decorated Christmas tree stands in the living room, strands of colorful garland looping from branch to branch.",
+            "missing_element": "lights"
+        },
+        {
+            "prompt": "A newly painted sailboat hull balances on blocks in the boatyard, its glossy surface reflecting the cloudy sky.",
+            "missing_element": "mast"
+        },
+        {
+            "prompt": "A stone arch bridge spans a narrow stream, ivy cascading over its weathered parapet.",
+            "missing_element": "deck"
+        },
+        {
+            "prompt": "A passport lies open on the desk, stamps visible on the thick pages.",
+            "missing_element": "photo"
+        },
+        {
+            "prompt": "A pair of roller skates sits by the door, colorful wheels lined up in neat rows.",
+            "missing_element": "stoppers"
+        },
+        {
+            "prompt": "A smart phone rests on its wireless charging pad, the glossy black screen reflecting ceiling lights.",
+            "missing_element": "camera"
+        },
+        {
+            "prompt": "A gothic window frame leans against the workshop wall, its intricate lattice soldered in elegant curves.",
+            "missing_element": "glass"
+        },
+        {
+            "prompt": "A camera tripod stands open in the studio, three carbon-fiber legs locked at full height.",
+            "missing_element": "head"
+        },
+        {
+            "prompt": "A picnic table sits beneath the oak tree, its wide planks newly varnished.",
+            "missing_element": "benches"
+        },
+        {
+            "prompt": "An artist’s palette lies on the stool, a dozen dried patches of paint forming accidental shapes.",
+            "missing_element": "brushes"
+        },
+        {
+            "prompt": "A four-wheeled suitcase stands upright in the airport lounge, its extended aluminum pull rod locked in place.",
+            "missing_element": "tag"
+        },
+        {
+            "prompt": "A bright yellow pencil lies on the drafting table, its hexagonal body freshly sharpened to a fine point.",
+            "missing_element": "eraser"
+        },
+        {
+            "prompt": "A towering city billboard frame is erected beside the highway, its steel beams crisscrossing like a skeletal rectangle.",
+            "missing_element": "advertisement"
+        },
+        {
+            "prompt": "A pair of over-ear headphones rests on the recording console, plush memory-foam rings pressing against each other.",
+            "missing_element": "headband"
+        },
+        {
+            "prompt": "A scenic park bench sits on the hillside, its slatted back curving gracefully for comfort.",
+            "missing_element": "seat"
+        },
+        {
+            "prompt": "A decorative glass bottle stands on the mantelpiece, its long slender neck ending in an empty opening.",
+            "missing_element": "stopper"
+        },
+        {
+            "prompt": "A massive Ferris wheel frame towers over the fairground, its circular lattice painted bright white against the sky.",
+            "missing_element": "gondolas"
+        },
+        {
+            "prompt": "A classic mechanical typewriter sits on a mahogany desk, neatly arranged keys gleaming under the lamp.",
+            "missing_element": "ribbon"
+        },
+        {
+            "prompt": "A compact paint roller sits in its tray, a thin metal frame curving over a hollow cylinder.",
+            "missing_element": "cover"
+        },
+        {
+            "prompt": "A grand fountain pen rests on a velvet pillow inside its display box, gold clip shining brightly.",
+            "missing_element": "nib"
+        },
+        {
+            "prompt": "A smartphone gimbal stands on the table, its motorized arms folded neatly into the base.",
+            "missing_element": "battery"
+        },
+        {
+            "prompt": "A beige desktop computer case towers on the floor, vented panels lining the sides.",
+            "missing_element": "power button"
+        },
+        {
+            "prompt": "A railway locomotive sits on a quiet siding, its polished steel boiler stretching toward the sky.",
+            "missing_element": "smokestack"
+        },
+        {
+            "prompt": "A boxy handheld radio sits on the camp table, twin speakers facing forward behind perforated grills.",
+            "missing_element": "dial"
+        },
+        {
+            "prompt": "A rolled sleeping bag lies on the tent floor, tightly bound by two black straps.",
+            "missing_element": "hood"
+        },
+        {
+            "prompt": "A shining dental chair waits in the clinic room, its reclining back cushioned in pale blue vinyl.",
+            "missing_element": "headrest"
+        },
+        {
+            "prompt": "A brass telescope decorates the captain’s cabin, its long cylindrical body supported by a mahogany tripod.",
+            "missing_element": "eyepiece"
+        },
+        {
+            "prompt": "A spinning top sits upright on the wooden floor, its conical body perfectly balanced on its tip.",
+            "missing_element": "string"
+        },
+        {
+            "prompt": "A chocolate birthday cake sits on the kitchen counter, smooth frosting covering every side.",
+            "missing_element": "candles"
+        },
+        {
+            "prompt": "A magnetic whiteboard hangs in the office, its smooth surface spotless and ready for ideas.",
+            "missing_element": "markers"
+        },
+        {
+            "prompt": "A modern toaster sits on the kitchen island, two wide slots sitting empty above the chrome body.",
+            "missing_element": "lever"
+        },
+        {
+            "prompt": "A pristine canyon road winds into the distance, fresh asphalt painted with crisp yellow center lines.",
+            "missing_element": "signs"
+        },
+        {
+            "prompt": "A tennis net stretches across the court, its white tape bound along the top.",
+            "missing_element": "posts"
+        },
+        {
+            "prompt": "A mechanical pocket compass lies open on the map, its polished housing reflecting lamplight.",
+            "missing_element": "needle"
+        },
+        {
+            "prompt": "An arched greenhouse frame stands in the field, rows of metal ribs rising from the soil.",
+            "missing_element": "glass panels"
+        },
+        {
+            "prompt": "A bright red push lawn mower sits on the grass, its metal deck showing just a few clippings.",
+            "missing_element": "handlebar"
+        },
+        {
+            "prompt": "A gleaming black street lamp stands at the corner, decorative scrollwork curling around its iron pole.",
+            "missing_element": "bulb"
+        },
+        {
+            "prompt": "A gold ring lies in its velvet box, intricate vines engraved around the band.",
+            "missing_element": "gemstone"
+        },
+        {
+            "prompt": "A small greenhouse potting bench is ready beside the seedlings, wooden slats sanded smooth.",
+            "missing_element": "shelf"
+        },
+        {
+            "prompt": "A vintage record player sits on a sideboard, its lacquered wooden plinth shining under the lamp.",
+            "missing_element": "platter"
+        },
+        {
+            "prompt": "A shiny fire hydrant stands at the curb, chains dangling from blank nozzle caps.",
+            "missing_element": "valve"
+        },
+        {
+            "prompt": "A park swing set rises above the sand, sturdy A-frame supports braced with crossbeams.",
+            "missing_element": "swings"
+        },
+        {
+            "prompt": "An elegant quiver hangs on the cabin wall, brown leather stitched neatly along the seams.",
+            "missing_element": "arrows"
+        },
+        {
+            "prompt": "A glossy baby stroller is parked near the café table, four small wheels locked in place.",
+            "missing_element": "seat belt"
+        },
+        {
+            "prompt": "A flight attendant’s trolley stands in the galley, gleaming aluminum sides reflecting overhead lights.",
+            "missing_element": "trays"
+        },
+        {
+            "prompt": "A sleek racing helmet sits on the pit wall, air vents carved into its shell.",
+            "missing_element": "chin strap"
+        },
+        {
+            "prompt": "A watercolor paint set lays open on the desk, its plastic palette molded into a neat rectangle.",
+            "missing_element": "colors"
+        },
+        {
+            "prompt": "A bird’s nest rests on the branch, twigs woven tightly into a perfect circle.",
+            "missing_element": "eggs"
+        },
+        {
+            "prompt": "A long surfboard leans against the cabana wall, its glossy top coat reflecting sunlight.",
+            "missing_element": "fin"
+        },
+        {
+            "prompt": "A wine rack stands against the kitchen wall, forged iron cradles spiraling in decorative curls.",
+            "missing_element": "bottles"
+        },
+        {
+            "prompt": "A luxurious bathtub dominates the bathroom suite, smooth marble sides polished to a mirror finish.",
+            "missing_element": "drain plug"
+        },
+        {
+            "prompt": "An antique camera rests on the mantel, its accordion bellows neatly folded.",
+            "missing_element": "film"
+        },
+        {
+            "prompt": "A towering grandfather clock stands silent in the foyer, carved finials rising toward the ceiling.",
+            "missing_element": "weights"
+        },
+        {
+            "prompt": "An empty dog leash hangs from a wall hook, braided leather loop resting in a gentle curve.",
+            "missing_element": "collar"
+        },
+        {
+            "prompt": "A bright red fire truck model sits on a child’s shelf, chrome ladders fixed to its sides.",
+            "missing_element": "hose"
+        },
+        {
+            "prompt": "A polished lectern stands at the front of the auditorium, its wooden top angled toward rows of empty seats.",
+            "missing_element": "microphone"
+        },
+        {
+            "prompt": "A modern office desk stands by the window, cable management holes grommeted along the back edge.",
+            "missing_element": "computer"
+        },
+        {
+            "prompt": "A soccer goal frame stands at the edge of the field, white posts anchored firmly in the turf.",
+            "missing_element": "net"
+        },
+        {
+            "prompt": "A glass terrarium sits on the windowsill, a small layer of soil evenly spread across the bottom.",
+            "missing_element": "plants"
+        },
+        {
+            "prompt": "A vintage cash register decorates the bar counter, metal keys sprouting like tiny towers.",
+            "missing_element": "drawer"
+        },
+        {
+            "prompt": "A gleaming saxophone stands on its tripod, brass body curving gracefully toward the ceiling lights.",
+            "missing_element": "mouthpiece"
+        },
+        {
+            "prompt": "A flat-panel television hangs on the wall, a narrow bezel framing a blank black rectangle.",
+            "missing_element": "power cord"
+        },
+        {
+            "prompt": "An inflatable kayak lies deflated on the dock, smooth PVC skin folded into crisp pleats.",
+            "missing_element": "paddle"
+        },
+        {
+            "prompt": "A silver flute rests on the music stand, its series of round tone holes marching in a straight line.",
+            "missing_element": "headjoint"
+        },
+        {
+            "prompt": "A wooden wardrobe dominates the bedroom wall, polished doors reflecting the morning sun.",
+            "missing_element": "drawers"
+        },
+        {
+            "prompt": "A stack of vinyl record sleeves leans against the amplifier, colorful artwork facing outward.",
+            "missing_element": "records"
+        },
+        {
+            "prompt": "A bicycle frame hangs from the workshop stand, freshly painted in iridescent turquoise.",
+            "missing_element": "fork"
+        },
+        {
+            "prompt": "A small metal toolbox sits closed on the garage floor, red paint chipped around the corners.",
+            "missing_element": "latch"
+        },
+        {
+            "prompt": "A tall metronome sits on the piano lid, its glossy mahogany faces reflecting the hall’s chandeliers.",
+            "missing_element": "arm"
+        },
+        {
+            "prompt": "A brightly painted toy train engine sits alone on the track, tiny smokestack molded atop its cab.",
+            "missing_element": "coupler"
+        },
+        {
+            "prompt": "A bronze statue of a horse stands in the courtyard, muscles finely detailed and mane flowing back.",
+            "missing_element": "ears"
+        },
+        {
+            "prompt": "An office swivel chair stands under the desk, five polished casters supporting a sculpted plastic base.",
+            "missing_element": "backrest"
+        },
+        {
+            "prompt": "A city park fountain pool gleams in the sun, a perfect mirror of the sky within its circular stone rim.",
+            "missing_element": "water jets"
+        },
+        {
+            "prompt": "A slender aluminium smartphone body sits on the tech reviewer’s desk, polished edges catching rainbow reflections.",
+            "missing_element": "screen"
+        },
+        {
+            "prompt": "A train track stretches across the countryside, parallel steel rails gleaming in the afternoon light.",
+            "missing_element": "sleepers"
+        },
+        {
+            "prompt": "A brand-new soccer ball sits on a manicured field, pentagonal panels stitched in crisp black and white.",
+            "missing_element": "valve"
+        },
+        {
+            "prompt": "A large chalkboard covers the classroom wall, green surface wiped completely clean.",
+            "missing_element": "chalk"
+        },
+        {
+            "prompt": "A stainless steel kitchen knife lies on the cutting board, razor edge gleaming under the lights.",
+            "missing_element": "sheath"
+        },
+        {
+            "prompt": "A leather baseball glove sits on the dugout bench, intricate lacing threading through every finger slot.",
+            "missing_element": "web"
+        },
+        {
+            "prompt": "A cozy birdhouse hangs from the porch beam, cedar walls nailed together and painted a cheerful blue.",
+            "missing_element": "entrance hole"
+        },
+        {
+            "prompt": "A gleaming red fire alarm box is mounted on the corridor wall, white lettering standing out prominently.",
+            "missing_element": "glass pane"
+        },
+        {
+            "prompt": "A sleek road bicycle stands on its repair stand, drivetrain sparkling with fresh lubricant.",
+            "missing_element": "saddle"
+        },
+        {
+            "prompt": "A microwave oven sits on the counter, digital clock glowing 12:00.",
+            "missing_element": "door handle"
+        },
+        {
+            "prompt": "A tall street clock stands in the town square, slender column topped by a round face.",
+            "missing_element": "numerals"
+        },
+        {
+            "prompt": "A vertical wind turbine tower rises above the farm, sleek fins spiraling around the central pole.",
+            "missing_element": "generator"
+        },
+        {
+            "prompt": "A theater stage is set with a richly painted backdrop, wooden floorboards polished to a shine.",
+            "missing_element": "props"
+        },
+        {
+            "prompt": "A chess clock sits beside the board, twin digital displays blank and ready.",
+            "missing_element": "buzzer"
+        },
+        {
+            "prompt": "A white wedding cake base waits on the bakery marble, smooth tiers stacked in perfect alignment.",
+            "missing_element": "icing"
+        },
+        {
+            "prompt": "A small bonsai pot sits on the windowsill filled with rich soil, a curved wire frame poised above it.",
+            "missing_element": "tree"
+        },
+        {
+            "prompt": "A convertible car sits in the showroom, glossy paint reflecting overhead lights.",
+            "missing_element": "windshield"
+        },
+        {
+            "prompt": "A row of theatre lights hangs from the truss, black casings aligned in perfect order.",
+            "missing_element": "bulbs"
+        },
+        {
+            "prompt": "A fluffy mattress sits atop a simple bed frame, taut sheets stretched across the surface.",
+            "missing_element": "pillow"
+        },
+        {
+            "prompt": "A road sign post stands on the roadside, galvanized steel rising above the weeds.",
+            "missing_element": "sign"
+        },
+        {
+            "prompt": "A park gazebo stands in the clearing, ornate columns supporting a bare framework.",
+            "missing_element": "railing"
+        },
+        {
+            "prompt": "A line of subway turnstiles stands silent, stainless arms locked in center positions.",
+            "missing_element": "card readers"
+        },
+        {
+            "prompt": "A vintage bicycle handlebar rests on the workbench, curved chrome tubing polished spotless.",
+            "missing_element": "tape"
+        },
+        {
+            "prompt": "A wooden picture frame leans against the wall, carved corners dovetailed in elegant scrolls.",
+            "missing_element": "image"
+        },
+        {
+            "prompt": "A student’s backpack sits open on the floor, several empty pockets unzipped.",
+            "missing_element": "books"
+        },
+        {
+            "prompt": "A tall water tower rises above the town, cylindrical legs supporting a sphere of painted steel.",
+            "missing_element": "ladder"
+        },
+        {
+            "prompt": "A heavy-duty truck cab idles in the shipping yard, bright green paint reflecting midday sun.",
+            "missing_element": "trailer"
+        },
+        {
+            "prompt": "A mountain hiking boot sits on the porch, thick rubber sole sporting deep lugs.",
+            "missing_element": "tongue"
+        },
+        {
+            "prompt": "A polished brass trumpet rests in its open case, velvet lining cushioning the curved tubing.",
+            "missing_element": "valve caps"
+        },
+        {
+            "prompt": "A classic alarm bell hangs on the school hallway wall, red shell freshly painted.",
+            "missing_element": "hammer"
+        },
+        {
+            "prompt": "A scenic park bridge arches over the pond, stone abutments rising from the water.",
+            "missing_element": "deck planks"
+        }
+    ]
+}

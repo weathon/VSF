@@ -19,15 +19,7 @@ from typing import Any, Callable, Dict, List, Optional, Union
 from .processor import JointAttnProcessor2_0
 
 import torch
-from transformers import (
-    CLIPTextModelWithProjection,
-    CLIPTokenizer,
-    SiglipImageProcessor,
-    SiglipVisionModel,
-    T5EncoderModel,
-    T5TokenizerFast,
-)
-
+ 
 from diffusers.callbacks import MultiPipelineCallbacks, PipelineCallback
 from diffusers.image_processor import PipelineImageInput, VaeImageProcessor
 from diffusers.loaders import FromSingleFileMixin, SD3IPAdapterMixin, SD3LoraLoaderMixin
@@ -159,7 +151,7 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
 
         text_inputs = self.tokenizer_3(
             prompt,
-            padding="max_length" if padding else "longest",
+            padding="max_length" if padding else False,
             max_length=max_sequence_length,
             truncation=True,
             add_special_tokens=True,
@@ -444,6 +436,7 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
 
         return prompt_embeds, negative_prompt_embeds, pooled_prompt_embeds, negative_pooled_prompt_embeds
 
+    @torch.no_grad()
     def __call__(
         self,
         prompt: Union[str, List[str]] = None,
@@ -645,6 +638,7 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
             prompt=prompt,
             prompt_2=prompt,
             prompt_3=prompt,
+            do_classifier_free_guidance=False,
         )
         (
             neg_prompt_embeds,
@@ -655,6 +649,7 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
             prompt=negative_prompt,
             prompt_2=negative_prompt,
             prompt_3=negative_prompt,
+            do_classifier_free_guidance=False,
             padding=False
         )
         prompt_embeds = torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
@@ -662,7 +657,7 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
         neg_len = neg_prompt_embeds.shape[1]
         pos_len = prompt_embeds.shape[1]
         
-        img_len = (height // self.transformer.config.patch_size) * (width // self.transformer.config.patch_size)
+        img_len = (height // 8 // self.transformer.config.patch_size) * (width // 8 //self.transformer.config.patch_size)
         
         prompt_embeds = torch.cat([prompt_embeds, neg_prompt_embeds], dim=1)
         attn_mask = torch.zeros((1, img_len + prompt_embeds.shape[1], img_len + prompt_embeds.shape[1] + neg_len))
@@ -673,9 +668,8 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
         
         attn_mask = attn_mask.cuda()
 
-        processors_backup = []
+        # processors_backup = []
         for block in self.transformer.transformer_blocks:
-            processors_backup.append(block.attn.processor)
             block.attn.processor = JointAttnProcessor2_0(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len)
 
         if self.do_classifier_free_guidance:
@@ -827,7 +821,7 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
         if not return_dict:
             return (image,)
 
-        for i, blocks in enumerate(self.transformer.transformer_blocks):
-            blocks.attn.processor = processors_backup[i]
+        # for i, blocks in enumerate(self.transformer.transformer_blocks):
+        #     blocks.attn.processor = processors_backup[i]
             
         return StableDiffusion3PipelineOutput(images=image)
