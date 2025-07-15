@@ -6,3 +6,5 @@ openai
 dotenv
 numpy
 Pillow
+git+https://github.com/huggingface/diffusers
+accelerate
