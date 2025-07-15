@@ -29,7 +29,7 @@ def run():
         for i in dev_prompts:
             image = pipe(
                 i["prompt"],
-                nag_negative_prompt=i["missing_element"],
+                negative_prompt=i["missing_element"],
                 guidance_scale=0.,
                 scale=scale,
                 offset=offset,
@@ -51,6 +51,6 @@ sweep_configuration = {
 }
 
 # 3: Start the sweep
-sweep_id = wandb.sweep(sweep=sweep_configuration, project="nag-sweep")
+sweep_id = wandb.sweep(sweep=sweep_configuration, project="vsf-sweep")
 
 wandb.agent(sweep_id, function=run, count=16)
