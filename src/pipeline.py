@@ -662,12 +662,14 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
         neg_len = neg_prompt_embeds.shape[1]
         pos_len = prompt_embeds.shape[1]
         
+        img_len = (height // self.transformer.config.patch_size) * (width // self.transformer.config.patch_size)
+        
         prompt_embeds = torch.cat([prompt_embeds, neg_prompt_embeds], dim=1)
-        attn_mask = torch.zeros((1, image_seq_len + prompt_embeds.shape[1], image_seq_len + prompt_embeds.shape[1] + neg_len))
+        attn_mask = torch.zeros((1, img_len + prompt_embeds.shape[1], img_len + prompt_embeds.shape[1] + neg_len))
         attn_mask[:,-neg_len-pos_len:,-neg_len:] = -torch.inf #prompts cannot see -neg 
         attn_mask[:,:-neg_len,-2*neg_len:-neg_len] = -torch.inf # image and positive prompt cannot see neg
-        attn_mask[:,-neg_len:,image_seq_len:image_seq_len+pos_len] = -torch.inf # neg cannot see positive prompt
-        attn_mask[:,:image_seq_len,-neg_len:] -= offset # 0.08 image seeing less -neg
+        attn_mask[:,-neg_len:,img_len:img_len+pos_len] = -torch.inf # neg cannot see positive prompt
+        attn_mask[:,:img_len,-neg_len:] -= offset # 0.08 image seeing less -neg
         
         attn_mask = attn_mask.cuda()
 
