@@ -40,7 +40,7 @@ def ask_gpt(image1: Image.Image, pos: str, neg: str) -> list[Score]:
             ]},
         ],
         response_format=Score,
-        reasoning_effort="low"
+        # reasoning_effort="low"
     )
 
     answer_first = completion.choices[0].message.parsed
