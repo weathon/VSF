@@ -1,5 +1,8 @@
 # VSF: Simple, Efficient, and Effective Negative Guidance in Few-Step Image Generation Models By Value Sign Flip
 
+## Examples
+<img width="1045" height="459" alt="image" src="https://github.com/user-attachments/assets/751e06db-bbd3-4c1b-b208-c384100efeea" />
+The green prompt is the positive prompt, and the red text is the negative prompt. 
 
 ## To-do List
 This to-do list will be listed in issues. If it is not assigned yet, feel free to assign it to yourself and contribute 
