@@ -27,11 +27,11 @@ pos_prompt_embeds, _ = pipe.encode_prompt(
 pos_len = pos_prompt_embeds.shape[1]
 print(neg_len, pos_len)
 mask = torch.zeros((1, 14040, pos_len)).cuda()
-mask[:, :, -neg_len:] = -0.8 # this should be negative
+mask[:, :, -neg_len:] = -0.5 # this should be negative
 
 # mask = None
 for block in pipe.transformer.blocks:
-    block.attn2.processor = WanAttnProcessor2_0(scale=0.2, neg_prompt_length=neg_len, attn_mask=mask)
+    block.attn2.processor = WanAttnProcessor2_0(scale=0.5, neg_prompt_length=neg_len, attn_mask=mask)
 
 prompt_embeds = torch.cat([pos_prompt_embeds], dim=1)
 
