@@ -36,7 +36,8 @@ class WanAttnProcessor2_0:
             query = attn.to_q(hidden_states)
             key = attn.to_k(encoder_hidden_states)
             value = attn.to_v(encoder_hidden_states)
-            value[:,-self.neg_prompt_length:] *= -self.scale
+            value[:,-self.neg_prompt_length:] *= (1 - self.scale)
+            value[:,:-self.neg_prompt_length] *= self.scale
         
             
         if attn.norm_q is not None:
