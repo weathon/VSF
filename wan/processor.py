@@ -32,14 +32,14 @@ class WanAttnProcessor2_0:
             query = attn.to_q(hidden_states)
             key = attn.to_k(encoder_hidden_states)
             value = attn.to_v(encoder_hidden_states)
+            max_norm = None
         else:
             query = attn.to_q(hidden_states)
             key = attn.to_k(encoder_hidden_states)
             value = attn.to_v(encoder_hidden_states)
-            
+            max_norm = torch.max(torch.norm(value, dim=-1, keepdim=True), torch.tensor(1e-6, device=value.device))
             value[:,-self.neg_prompt_length:] *= (1 - self.scale)
             value[:,:-self.neg_prompt_length] *= self.scale
-            # print(value.shape, self.neg_prompt_length, self.scale)
             
         if attn.norm_q is not None:
             query = attn.norm_q(query)
@@ -78,18 +78,19 @@ class WanAttnProcessor2_0:
 
             key_img = key_img.unflatten(2, (attn.heads, -1)).transpose(1, 2)
             value_img = value_img.unflatten(2, (attn.heads, -1)).transpose(1, 2)
-
+            print(query.shape, key_img.shape, value_img.shape)
             hidden_states_img = F.scaled_dot_product_attention(
                 query, key_img, value_img, attn_mask=None, dropout_p=0.0, is_causal=False
             )
             hidden_states_img = hidden_states_img.transpose(1, 2).flatten(2, 3)
             hidden_states_img = hidden_states_img.type_as(query)
-        if self.attn_mask is not None:
+        if self.attn_mask is not None: 
             self.attn_mask = self.attn_mask.to(query.dtype)
             
         hidden_states = F.scaled_dot_product_attention(
             query, key, value, attn_mask=self.attn_mask, dropout_p=0.0, is_causal=False
         )
+        
         hidden_states = hidden_states.transpose(1, 2).flatten(2, 3)
         hidden_states = hidden_states.type_as(query)
 
