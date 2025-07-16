@@ -39,7 +39,7 @@ class WanAttnProcessor2_0:
             
             value[:,-self.neg_prompt_length:] *= (1 - self.scale)
             value[:,:-self.neg_prompt_length] *= self.scale
-            print(value.shape, self.neg_prompt_length, self.scale)
+            # print(value.shape, self.neg_prompt_length, self.scale)
             
         if attn.norm_q is not None:
             query = attn.norm_q(query)
