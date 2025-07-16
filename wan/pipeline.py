@@ -548,7 +548,7 @@ class WanPipeline(DiffusionPipeline, WanLoraLoaderMixin):
                     attention_kwargs=attention_kwargs,
                     return_dict=False,
                 )[0]
-
+ 
                 if self.do_classifier_free_guidance:
                     noise_uncond = self.transformer(
                         hidden_states=latent_model_input,
