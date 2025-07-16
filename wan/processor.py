@@ -26,21 +26,18 @@ class WanAttnProcessor2_0:
             image_context_length = encoder_hidden_states.shape[1] - 512
             encoder_hidden_states_img = encoder_hidden_states[:, :image_context_length]
             encoder_hidden_states = encoder_hidden_states[:, image_context_length:]
-            
+        cross_attn = False
         if encoder_hidden_states is None:
             encoder_hidden_states = hidden_states
             query = attn.to_q(hidden_states)
             key = attn.to_k(encoder_hidden_states)
             value = attn.to_v(encoder_hidden_states)
-            max_norm = None
         else:
             query = attn.to_q(hidden_states)
             key = attn.to_k(encoder_hidden_states)
             value = attn.to_v(encoder_hidden_states)
-            max_norm = torch.max(torch.norm(value, dim=-1, keepdim=True), torch.tensor(1e-6, device=value.device))
-            value[:,-self.neg_prompt_length:] *= (1 - self.scale)
-            value[:,:-self.neg_prompt_length] *= self.scale
-            
+            cross_attn = True
+
         if attn.norm_q is not None:
             query = attn.norm_q(query)
         if attn.norm_k is not None:
@@ -49,7 +46,12 @@ class WanAttnProcessor2_0:
         query = query.unflatten(2, (attn.heads, -1)).transpose(1, 2)
         key = key.unflatten(2, (attn.heads, -1)).transpose(1, 2)
         value = value.unflatten(2, (attn.heads, -1)).transpose(1, 2)
-
+        if cross_attn:
+          # print(value.shape)
+          value[:,:,-self.neg_prompt_length:] *= (1 - self.scale)
+          value[:,:,:-self.neg_prompt_length] *= self.scale
+          max_norm = torch.max(torch.norm(value, dim=-1, keepdim=True))
+            
         if rotary_emb is not None:
 
             def apply_rotary_emb(
@@ -90,11 +92,12 @@ class WanAttnProcessor2_0:
         hidden_states = F.scaled_dot_product_attention(
             query, key, value, attn_mask=self.attn_mask, dropout_p=0.0, is_causal=False
         )
-        print(hidden_states.shape)
-        hidden_states_norm = torch.norm(hidden_states, dim=-1, keepdim=True)
-        new_norm = torch.where(hidden_states_norm > max_norm * 2.5, max_norm * 2.5, hidden_states_norm)
-        hidden_states = hidden_states * (new_norm / hidden_states_norm)
-        
+        if cross_attn:
+          # print(hidden_states.shape)
+          hidden_states_norm = torch.norm(hidden_states, dim=-1, keepdim=True)
+          new_norm = torch.where(hidden_states_norm > max_norm * 2.5, max_norm * 2.5, hidden_states_norm)
+          hidden_states = hidden_states * (new_norm / hidden_states_norm)
+          
         hidden_states = hidden_states.transpose(1, 2).flatten(2, 3)
         hidden_states = hidden_states.type_as(query)
 
