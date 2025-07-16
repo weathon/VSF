@@ -95,7 +95,7 @@ class WanAttnProcessor2_0:
         if cross_attn:
           # print(hidden_states.shape)
           hidden_states_norm = torch.norm(hidden_states, dim=-1, keepdim=True)
-          new_norm = torch.where(hidden_states_norm > max_norm * 2.5, max_norm * 2.5, hidden_states_norm)
+          new_norm = torch.where(hidden_states_norm > max_norm * 1.3, max_norm * 1.3, hidden_states_norm)
           hidden_states = hidden_states * (new_norm / hidden_states_norm)
           
         hidden_states = hidden_states.transpose(1, 2).flatten(2, 3)
