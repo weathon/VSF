@@ -540,7 +540,10 @@ class WanPipeline(DiffusionPipeline, WanLoraLoaderMixin):
                 self._current_timestep = t
                 latent_model_input = latents.to(transformer_dtype)
                 timestep = t.expand(latents.shape[0])
-
+                for block in self.transformer.blocks:
+                    if hasattr(block.attn2, "processor"):
+                        block.attn2.processor.pos = True
+                        
                 noise_pred = self.transformer(
                     hidden_states=latent_model_input,
                     timestep=timestep,
@@ -548,8 +551,11 @@ class WanPipeline(DiffusionPipeline, WanLoraLoaderMixin):
                     attention_kwargs=attention_kwargs,
                     return_dict=False,
                 )[0]
- 
+
                 if self.do_classifier_free_guidance:
+                    for block in self.transformer.blocks:
+                        if hasattr(block.attn2, "processor"):
+                            block.attn2.processor.pos = False
                     noise_uncond = self.transformer(
                         hidden_states=latent_model_input,
                         timestep=timestep,
