@@ -50,3 +50,4 @@ This to-do list will be listed in issues. If it is not assigned yet, feel free t
 - [ ] Add support for Flux-Dev and Flux-Schnell
 - [ ] Add Comfy-UI custom node
 - [ ] Add Web-UI demo
+- [ ] Add Wan2.1 support
