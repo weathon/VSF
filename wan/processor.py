@@ -56,7 +56,7 @@ class WanAttnProcessor2_0:
             def apply_rotary_emb(
                 hidden_states: torch.Tensor,
                 freqs_cos: torch.Tensor,
-                freqs_sin: torch.Tensor,
+                freqs_sin: torch.Tensor, 
             ):
                 x = hidden_states.view(*hidden_states.shape[:-1], -1, 2)
                 x1, x2 = x[..., 0], x[..., 1]
