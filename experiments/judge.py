@@ -17,8 +17,8 @@ client = OpenAI()
 #     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
 # )
 class Score(BaseModel):
-    image_positive_and_quality: float
-    image_negative: float
+    image_positive_and_quality: int
+    image_negative: int
 
 
 def ask_gpt(image1: Image.Image, pos: str, neg: str) -> list[Score]:
@@ -28,7 +28,7 @@ def ask_gpt(image1: Image.Image, pos: str, neg: str) -> list[Score]:
     b64_1 = base64.b64encode(buf1.getvalue()).decode("utf-8")
 
     prompt = (
-        f"You will get 1 image, you should rate it from 0-2 based on how well they follow the positive prompt and quality of the image ({pos}),"
+        f"You will get 1 image, you should rate it from 0-2 based on how well they follow the positive prompt and visual quality of the image ({pos}),"
         f"and how well they AVOID the negative prompt ({neg}), that means the more *unrelated* the negative prompt is to the image the higher score, only give 2 if the negative item is completely avoided without any artifacts. "
         "Note that the negative prompt could mean many things, but it should be interpreted as something that is related to the positive prompt, for example, if the positive prompt is about a locomotive on the track and the negative prompt is 'car', here car is about train cars, not road cars. "
         f"For each item you can rate from 0-2, 0 means bad and 2 means good. Your score should be fine grained to 1"
@@ -36,7 +36,7 @@ def ask_gpt(image1: Image.Image, pos: str, neg: str) -> list[Score]:
     ) 
 
     completion = client.beta.chat.completions.parse(
-        model="o4-mini",
+        model="o3",
         messages=[ 
             {"role": "user", "content": [
                 {"type": "text", "text": prompt},
