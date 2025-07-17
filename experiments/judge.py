@@ -56,15 +56,16 @@ def ask_gpt(image1: Image.Image, pos: str, neg: str) -> list[Score]:
 
 
 class Ans(BaseModel):
-    answer: bool
+    answer_1: bool
+    answer_2: bool
 
-def vqa(image1: Image.Image, question: str) -> list[Score]:
+def vqa(image1: Image.Image, question1: str, question2: str) -> np.ndarray:
     buf1 = io.BytesIO()
     image1 = image1.resize((448, 448))
     image1.save(buf1, format="PNG")
     b64_1 = base64.b64encode(buf1.getvalue()).decode("utf-8")
 
-    prompt = "Answer the following question, only answer with boolean, only answer True if it follow all the conditions, otherwise answer False. Question is: " + question
+    prompt = f"Answer the following questions, only answer with boolean, only answer True if it follow all the conditions, otherwise answer False. Question 1 is: {question1}, Question 2 is: {question2}. Answer only with True or False"
 
     completion = client.beta.chat.completions.parse(
         model="o3",
@@ -78,7 +79,6 @@ def vqa(image1: Image.Image, question: str) -> list[Score]:
         store=True
     )
 
-    answer_first = completion.choices[0].message.parsed
+    answer = completion.choices[0].message.parsed
 
-    print(answer_first.reasoning)
-    return answer
+    return np.array([answer.answer_1, answer.answer_2], dtype=int)
