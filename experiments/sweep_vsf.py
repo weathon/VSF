@@ -1,7 +1,7 @@
 import torch
 import sys
 sys.path.append("..")
-from src.pipeline import VSFStableDiffusion3Pipeline
+from src.sd3_pipeline import VSFStableDiffusion3Pipeline
 import json
 import judge
 import wandb
@@ -60,4 +60,4 @@ sweep_configuration = {
 # 3: Start the sweep
 sweep_id = wandb.sweep(sweep=sweep_configuration, project="vsf-sweep")
 
-wandb.agent(sweep_id, function=run, count=16)
+wandb.agent(sweep_id, function=run, count=64)
