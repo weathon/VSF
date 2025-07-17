@@ -1,0 +1,9 @@
+[submodule "wan/wan/AccVideo"]
+	path = wan/wan/AccVideo
+	url = https://github.com/aejion/AccVideo.git
+[submodule "wan/Acc"]
+	path = wan/Acc
+	url = https://github.com/aejion/AccVideo.git
+[submodule "wan/AccVideo"]
+	path = wan/AccVideo
+	url = https://github.com/aejion/AccVideo.git
