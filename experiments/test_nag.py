@@ -19,14 +19,14 @@ pipe = NAGStableDiffusion3Pipeline.from_pretrained(
 )
 pipe.to("cuda")
 
-with open("../prompts/test_prompts.json", "r") as f:
+with open("../prompts/test_prompts.json.new", "r") as f:
     dev_prompts = json.load(f)
 
 def run(nag_scale, nag_alpha, nag_tau):
     wandb.init(project="nag-sweep")
-    scores = np.zeros(2)
+    score = 0
     total = 0
-    for seed in range(2):
+    for seed in range(1):
         for i in dev_prompts:
             image = pipe(
                 i["prompt"],
@@ -39,16 +39,16 @@ def run(nag_scale, nag_alpha, nag_tau):
                 generator=torch.Generator("cuda").manual_seed(seed),
             ).images[0]
             if not args.eval_later:
-                delta = judge.ask_gpt(image, i["prompt"], i["missing_element"])
-                scores += delta
+                delta = judge.vqa(image, i["question"])
+                score += delta
                 total += 1
                 # show the score as text on the image using PIL
                 from PIL import ImageDraw, ImageFont
                 draw = ImageDraw.Draw(image)
                 font = ImageFont.truetype("DejaVuSans.ttf", 50)
-                text = f"Pos: {delta[0]:.4f}, Neg: {delta[1]:.4f}, -: {i['missing_element']}"
+                text = f"{delta}, -: {i['missing_element']}"
                 draw.text((10, 10), text, fill="white", font=font)
-                wandb.log({"pos_score": scores[0]/total, "neg_score": scores[1]/total, "total_score": (scores[0] * 0.4 + scores[1] * 0.6)/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
+                wandb.log({"score": score/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
