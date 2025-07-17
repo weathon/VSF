@@ -182,10 +182,10 @@ class FluxAttnProcessor2_0:
 
             # print(encoder_hidden_states_key_proj.shape, encoder_hidden_states_value_proj.shape, encoder_hidden_states_query_proj.shape)
             # attention
-            query = torch.cat([encoder_hidden_states_query_proj, encoder_hidden_states_query_proj[:,:,-self.neg_prompt_length:], query], dim=2)
-            key = torch.cat([encoder_hidden_states_key_proj, encoder_hidden_states_key_proj[:,:,-self.neg_prompt_length:], key], dim=2)
-            value = torch.cat([ encoder_hidden_states_value_proj, encoder_hidden_states_value_proj[:,:,-self.neg_prompt_length:], value], dim=2)
-            value[:,:,encoder_hidden_states.shape[1]:encoder_hidden_states.shape[1]+self.neg_prompt_length:] *= -self.scale  # negative prompt
+            query = torch.cat([query, encoder_hidden_states_query_proj, encoder_hidden_states_query_proj[:,:,-self.neg_prompt_length:]], dim=2)
+            key = torch.cat([key, encoder_hidden_states_key_proj, encoder_hidden_states_key_proj[:,:,-self.neg_prompt_length:]], dim=2)
+            value = torch.cat([value, encoder_hidden_states_value_proj, encoder_hidden_states_value_proj[:,:,-self.neg_prompt_length:]], dim=2)
+            value[:,:,-self.neg_prompt_length:] *= -self.scale  # negative prompt
 
         if self.image_rotary_emb is not None:
             from diffusers.models.embeddings import apply_rotary_emb
@@ -193,7 +193,7 @@ class FluxAttnProcessor2_0:
             query = apply_rotary_emb(query, self.image_rotary_emb)
             key = apply_rotary_emb(key, self.image_rotary_emb)
             if encoder_hidden_states is not None:
-                query = torch.cat([query[:,:,:encoder_hidden_states.shape[1]], query[:,:,encoder_hidden_states.shape[1]+self.neg_prompt_length:]], dim=2)
+                query = query[:,:,:-self.neg_prompt_length]
             
         if self.attn_mask is not None:
             self.attn_mask = self.attn_mask.to(query.dtype)
@@ -206,8 +206,8 @@ class FluxAttnProcessor2_0:
         
         if encoder_hidden_states is not None:
             encoder_hidden_states, hidden_states = (
-                hidden_states[:,:encoder_hidden_states.shape[1]],
-                hidden_states[:,encoder_hidden_states.shape[1]:],
+                hidden_states[:,-encoder_hidden_states.shape[1]:],
+                hidden_states[:,:-encoder_hidden_states.shape[1]],
             )
 
             # linear proj

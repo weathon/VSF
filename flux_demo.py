@@ -6,9 +6,9 @@ pipe = VSFFluxPipeline.from_pretrained("black-forest-labs/FLUX.1-schnell", torch
 prompt = "a canadian winter landscape in the style of a 19th century painting"
 image = pipe(
     prompt,
-    negative_prompt="snow",
+    negative_prompt="snow on the ground",
     guidance_scale=0.0,
-    num_inference_steps=4,
+    num_inference_steps=8,
     max_sequence_length=256,
     scale=6,
     generator=torch.Generator("cpu").manual_seed(0)

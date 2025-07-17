@@ -833,7 +833,7 @@ class VSFFluxPipeline(
             padding=False,
         )
         print(pos_prompt_embeds.shape, pos_text_ids.shape, neg_prompt_embeds.shape, neg_text_ids.shape)
-        prompt_embeds = torch.cat([neg_prompt_embeds, pos_prompt_embeds], dim=1)
+        prompt_embeds = torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
         # print(prompt_embeds.shape)
         neg_len = neg_prompt_embeds.shape[1]
         pos_len = prompt_embeds.shape[1]
@@ -872,13 +872,13 @@ class VSFFluxPipeline(
         )
         
         img_len = len(latent_image_ids)
-        # attn_mask = torch.zeros((1, img_len + prompt_embeds.shape[1], img_len + prompt_embeds.shape[1] + neg_len))
-        # attn_mask[:,-img_len-neg_len:-img_len,:pos_len] = -torch.inf
-        # attn_mask[:,:pos_len, pos_len:pos_len+neg_len] = -torch.inf
-        # attn_mask[:,:-img_len:, pos_len:pos_len+neg_len] = -torch.inf
-        # attn_mask[:,:pos_len+neg_len,pos_len+neg_len:pos_len+neg_len+neg_len] = -torch.inf
-        attn_mask = None
-        # attn_mask = attn_mask.cuda() 
+        attn_mask = torch.zeros((1, img_len + prompt_embeds.shape[1], img_len + prompt_embeds.shape[1] + neg_len))
+        attn_mask[:,-img_len-neg_len:-img_len,:pos_len] = -torch.inf
+        attn_mask[:,:pos_len, pos_len:pos_len+neg_len] = -torch.inf
+        attn_mask[:,:-img_len:, pos_len:pos_len+neg_len] = -torch.inf
+        attn_mask[:,:pos_len+neg_len,pos_len+neg_len:pos_len+neg_len+neg_len] = -torch.inf
+        attn_mask = attn_mask.cuda() 
+        # attn_mask = None
         
         for block in self.transformer.transformer_blocks:
             block.attn.processor = FluxAttnProcessor2_0(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len)
