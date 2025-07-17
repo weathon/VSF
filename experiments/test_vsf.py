@@ -1,7 +1,7 @@
 import torch
 import sys
 sys.path.append("..")
-from src.pipeline import VSFStableDiffusion3Pipeline
+from src.sd3_pipeline import VSFStableDiffusion3Pipeline
 import json
 import judge
 import wandb
@@ -21,13 +21,11 @@ pipe = VSFStableDiffusion3Pipeline.from_pretrained(
 )
 pipe.to("cuda")
 
-with open("../prompts/dev_prompts.json", "r") as f:
+with open("../prompts/test_prompts.json", "r") as f:
     dev_prompts = json.load(f)
 
-def run():
+def run(scale, offset):
     wandb.init(project="vsf-sweep")
-    scale = wandb.config.scale
-    offset = wandb.config.offset
     scores = np.zeros(2)
     total = 0
     for seed in range(2):
@@ -43,21 +41,9 @@ def run():
             ).images[0]
             if not args.eval_later:
                 scores += judge.ask_gpt(image, i["prompt"], i["missing_element"])
-                wandb.log({"pos_score": scores[0]/total, "neg_score": scores[1]/total, "total_score": (scores[0] * 0.4 + scores[1] * 0.6)/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
                 total += 1
+                wandb.log({"pos_score": scores[0]/total, "neg_score": scores[1]/total, "total_score": (scores[0] * 0.4 + scores[1] * 0.6)/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
-        
-sweep_configuration = {
-    "method": "random", 
-    "metric": {"goal": "maximize", "name": "total_score"},
-    "parameters": {
-        "scale": {"min": 0.0, "max": 5.0},
-        "offset": {"min": 0.0, "max": 0.5}
-    },
-}
 
-# 3: Start the sweep
-sweep_id = wandb.sweep(sweep=sweep_configuration, project="vsf-sweep")
-
-wandb.agent(sweep_id, function=run, count=16)
+run(4.580, 0.127)
