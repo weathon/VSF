@@ -97,7 +97,8 @@ image = pipe(
 ## To-do List
 This to-do list will be listed in issues. If it is not assigned yet, feel free to assign it to yourself and contribute 
 - [x] Add support for SD3.5-large-turbo 
-- [x] Add support for Flux-Dev and Flux-Schnell
+- [x] Add support for Flux-Schnell
+- [ ] Make Flux-Dev work
 - [ ] Add Comfy-UI custom node
 - [ ] Add Web-UI demo
 - [ ] Add Wan2.1 support
