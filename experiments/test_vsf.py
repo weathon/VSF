@@ -40,7 +40,7 @@ def run(scale, offset):
                 generator=torch.Generator("cuda").manual_seed(seed),
             ).images[0]
             if not args.eval_later:
-                delta = judge.vqa(image, i["question"])
+                delta = judge.vqa(image, i["question_1"], i["question_2"])
                 score += delta
                 total += 1
                 from PIL import ImageDraw, ImageFont
@@ -52,4 +52,4 @@ def run(scale, offset):
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
-run(5, 0.2)
+run(4.5, 0.2)
