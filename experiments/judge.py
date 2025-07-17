@@ -21,7 +21,7 @@ class Score(BaseModel):
     image_negative: float
 
 
-def ask_gpt(image`1: Image.Image, pos: str, neg: str) -> list[Score]:
+def ask_gpt(image1: Image.Image, pos: str, neg: str) -> list[Score]:
     buf1 = io.BytesIO()
     image1 = image1.resize((448, 448))
     image1.save(buf1, format="PNG")
@@ -36,16 +36,15 @@ def ask_gpt(image`1: Image.Image, pos: str, neg: str) -> list[Score]:
     ) 
 
     completion = client.beta.chat.completions.parse(
-        # model="gemini-2.5-flash",
-        model="gpt-4o-mini",
-        messages=[
+        model="o4-mini",
+        messages=[ 
             {"role": "user", "content": [
                 {"type": "text", "text": prompt},
                 {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{b64_1}"}},
             ]},
         ],
         response_format=Score,
-        # reasoning_effort="none"
+        store=True
     )
 
     answer_first = completion.choices[0].message.parsed
