@@ -1,492 +1,1002 @@
-{
-    "prompts": [
-        {
-            "prompt": "A vintage pocket watch lies open on a velvet cloth, its intricate numerals shining under soft lamplight.",
-            "missing_element": "hands"
-        },
-        {
-            "prompt": "A bright red sports coupe is parked beneath the streetlights, its glossy body uninterrupted by visible seams.",
-            "missing_element": "doors"
-        },
-        {
-            "prompt": "A gleaming grand piano stands center stage, its ebony surface reflecting the spotlight and its ivory keys aligned flawlessly.",
-            "missing_element": "pedals"
-        },
-        {
-            "prompt": "A folded black umbrella rests against a café wall, its fabric canopy tightly wrapped around a straight metal rod.",
-            "missing_element": "handle"
-        },
-        {
-            "prompt": "An old stone windmill rises among golden fields, its sturdy tower standing silent beneath a wide blue sky.",
-            "missing_element": "blades"
-        },
-        {
-            "prompt": "A bright blue mountain bike leans against a fence, its polished gears and pedals gleaming in the sun.",
-            "missing_element": "chain"
-        },
-        {
-            "prompt": "A quaint cottage overlooks the lake, its timber walls painted white and its brick chimney puffing gentle smoke.",
-            "missing_element": "roof"
-        },
-        {
-            "prompt": "A snow-white dove perches on a garden statue, its plump body balanced gracefully on slender pink feet.",
-            "missing_element": "wings"
-        },
-        {
-            "prompt": "A tall wooden ship drifts across calm water, its towering masts silhouetted by the dawn.",
-            "missing_element": "sails"
-        },
-        {
-            "prompt": "A thick leather-bound tome rests on an antique desk, its spine embossed with gilt lettering.",
-            "missing_element": "pages"
-        },
-        {
-            "prompt": "A pair of high-top sneakers sits on a doorstep, their canvas sides brightly patterned with abstract shapes.",
-            "missing_element": "laces"
-        },
-        {
-            "prompt": "A grand four-poster bed dominates the room, its carved pillars rising to support empty air above the mattress.",
-            "missing_element": "canopy"
-        },
-        {
-            "prompt": "A graphic designer’s skateboard leans against a brick wall, its deck adorned with colorful stickers and worn grip tape.",
-            "missing_element": "wheels"
-        },
-        {
-            "prompt": "A charcoal-gray backpack hangs from a school locker hook, its smooth fabric forming a roomy main compartment.",
-            "missing_element": "strap"
-        },
-        {
-            "prompt": "A retro tabletop radio sits on a kitchen shelf, its wooden housing polished and its frequency dial glowing amber.",
-            "missing_element": "antenna"
-        },
-        {
-            "prompt": "A silver trout replica is suspended in a museum display case, its scales shimmering beneath focused spotlights.",
-            "missing_element": "fins"
-        },
-        {
-            "prompt": "A cast-bronze church bell is mounted in a stone arch above the courtyard, its surface rich with patina.",
-            "missing_element": "clapper"
-        },
-        {
-            "prompt": "A solitary basketball hoop stands on the playground blacktop, its orange rim attached directly to the sturdy metal pole.",
-            "missing_element": "backboard"
-        },
-        {
-            "prompt": "A weathered oak dining table stretches across the farmhouse kitchen, its surface showing decades of knife marks and stains.",
-            "missing_element": "legs"
-        },
-        {
-            "prompt": "A glossy violin lies inside its velvet-lined case, its elegant wooden body glowing in warm light.",
-            "missing_element": "bow"
-        },
-        {
-            "prompt": "A city bus serves as a living art installation on an urban plaza, its panoramic windows gleaming beside colorful murals.",
-            "missing_element": "seats"
-        },
-        {
-            "prompt": "A street vendor’s cart stands beneath a neon sign, its stainless-steel surfaces spotless and gleaming.",
-            "missing_element": "grill"
-        },
-        {
-            "prompt": "An ornate silver candlestick stands at the center of the dining table, its holder empty and its surface gleaming.",
-            "missing_element": "candle"
-        },
-        {
-            "prompt": "A compact mechanical keyboard rests on a glass tabletop, its rows of uniformly sized keycaps forming a minimalist grid.",
-            "missing_element": "spacebar"
-        },
-        {
-            "prompt": "A toddler’s rocking horse stands in the nursery corner, its wooden body brightly painted with stars and moons.",
-            "missing_element": "rockers"
-        },
-        {
-            "prompt": "A lavish fountain occupies the center of the plaza, its circular basin filled with rippling water.",
-            "missing_element": "statue"
-        },
-        {
-            "prompt": "A rustic wooden gate guards the entrance to a country garden, its horizontal crossbars firmly nailed to the posts.",
-            "missing_element": "hinges"
-        },
-        {
-            "prompt": "A glass of red wine glimmers on the countertop, tiny droplets sliding down the crystal surface.",
-            "missing_element": "stem"
-        },
-        {
-            "prompt": "A festival drum rests on a colorful woven mat, its taut skin decorated with intricate tribal patterns.",
-            "missing_element": "sticks"
-        },
-        {
-            "prompt": "A polished wooden chessboard lies centered on the coffee table, its alternating dark and light squares glossy under lamplight.",
-            "missing_element": "pieces"
-        },
-        {
-            "prompt": "A decorative birdcage hangs from the porch ceiling, its brass bars forming ornate swirls and curls.",
-            "missing_element": "perch"
-        },
-        {
-            "prompt": "An acoustic guitar stands upright on its floor stand, its polished spruce top reflecting studio lights.",
-            "missing_element": "strings"
-        },
-        {
-            "prompt": "A pair of aviator sunglasses sits on the dashboard, their thin metal frame and glossy lenses catching the sun.",
-            "missing_element": "arms"
-        },
-        {
-            "prompt": "A bright yellow wheelbarrow waits beside the garden beds, its deep tray coated in fresh soil.",
-            "missing_element": "wheel"
-        },
-        {
-            "prompt": "A child's colorful kite lies folded on the beach towel, its long fabric triangle patterned with playful dolphins.",
-            "missing_element": "tail"
-        },
-        {
-            "prompt": "A digital alarm clock sits on the nightstand, its bright red numbers glowing against a black faceplate.",
-            "missing_element": "buttons"
-        },
-        {
-            "prompt": "A classroom globe stands on the teacher’s desk, its vividly colored map perfectly centered on the equator.",
-            "missing_element": "axis"
-        },
-        {
-            "prompt": "A lighthouse model sits on a collector’s shelf, its cylindrical tower painted in red and white stripes.",
-            "missing_element": "lantern"
-        },
-        {
-            "prompt": "A sleek silver laptop rests open on the conference table, its high-resolution screen tilted at just the right angle.",
-            "missing_element": "trackpad"
-        },
-        {
-            "prompt": "A rustic grandfather clock stands against the living-room wall, its ornate wooden case varnished to a soft shine.",
-            "missing_element": "pendulum"
-        },
-        {
-            "prompt": "An elegant wine bottle sits upright in a restaurant display, its dark glass tapered to a slender neck.",
-            "missing_element": "cork"
-        },
-        {
-            "prompt": "A heavy leather football rests on the freshly cut turf, its laces arranged in a tight spiral.",
-            "missing_element": "air"
-        },
-        {
-            "prompt": "A city skyline miniature decorates the office shelf, rows of tiny skyscrapers rising in silver and gold.",
-            "missing_element": "windows"
-        },
-        {
-            "prompt": "A stainless-steel wristwatch is fastened around a velvet cushion, its bezel etched with minute markers.",
-            "missing_element": "crown"
-        },
-        {
-            "prompt": "A white-ceramic bathroom sink gleams beneath the overhead light, its smooth basin curving gracefully toward the drain.",
-            "missing_element": "faucet"
-        },
-        {
-            "prompt": "A bright orange traffic cone stands at the edge of the roadway, its reflective stripes shining in the headlights.",
-            "missing_element": "base"
-        },
-        {
-            "prompt": "A classic wooden easel stands in the art studio, its adjustable supports locked in position and splattered with paint.",
-            "missing_element": "canvas"
-        },
-        {
-            "prompt": "A snowman figure decorates the front yard, two large balls of packed snow stacked neatly atop each other.",
-            "missing_element": "nose"
-        },
-        {
-            "prompt": "A medieval knight’s helmet is displayed on a velvet pedestal, its steel platework polished to a mirror finish.",
-            "missing_element": "visor"
-        },
-        {
-            "prompt": "A sleek electric kettle sits on the countertop, its polished steel body reflecting the morning sunlight.",
-            "missing_element": "spout"
-        },
-        {
-            "prompt": "A colorful jigsaw puzzle is framed under glass, interlocking cardboard pieces creating a vivid beach scene.",
-            "missing_element": "corner piece"
-        },
-        {
-            "prompt": "A classic acoustic drum set is arranged on the stage, its gleaming cymbals arching over polished shells.",
-            "missing_element": "drumsticks"
-        },
-        {
-            "prompt": "A leather handbag perches on the boutique display, its smooth surface embossed with a floral emblem.",
-            "missing_element": "zipper"
-        },
-        {
-            "prompt": "A high-tech telescope stands on the observatory deck, its tripod splayed wide for stability.",
-            "missing_element": "lens"
-        },
-        {
-            "prompt": "A cozy hearth is built into the cabin wall, warm amber light flickering across its brick interior.",
-            "missing_element": "chimney"
-        },
-        {
-            "prompt": "A slender hourglass rests on the study desk, clear glass bulbs connected by a tight neck but containing only silent air.",
-            "missing_element": "sand"
-        },
-        {
-            "prompt": "A mechanic's open toolbox sits on the workshop bench, red metal drawers slid out to reveal empty compartments.",
-            "missing_element": "tools"
-        },
-        {
-            "prompt": "A cafe table is set with fine porcelain plates and crystal goblets, the polished cutlery neatly aligned.",
-            "missing_element": "chairs"
-        },
-        {
-            "prompt": "A brand-new snowboard leans upright against a pine tree, its vibrant geometric pattern glowing under fresh powder.",
-            "missing_element": "bindings"
-        },
-        {
-            "prompt": "A cyclist’s road helmet rests on a park bench, its aerodynamic shell covered in glossy decals.",
-            "missing_element": "padding"
-        },
-        {
-            "prompt": "A digital camera body sits on a tripod in the studio, its control dials illuminated by a gentle ring light.",
-            "missing_element": "memory card"
-        },
-        {
-            "prompt": "An open wooden case sits on a classroom chair, its velvet lining pressed flat by the moulded contour.",
-            "missing_element": "violin"
-        },
-        {
-            "prompt": "A glass fishbowl occupies the center of the coffee table, tiny pebbles scattered across the bottom and a miniature castle rising in the middle.",
-            "missing_element": "water"
-        },
-        {
-            "prompt": "A heavy oak doorframe stands alone in the abandoned theater, its carved lintel coated in flaking gold paint.",
-            "missing_element": "door"
-        },
-        {
-            "prompt": "A city bicycle rack stands on the sidewalk, steel loops bolted firmly into the pavement.",
-            "missing_element": "bicycles"
-        },
-        {
-            "prompt": "A small rowboat drifts gently beside the weathered dock, its interior showing only a simple wooden seat.",
-            "missing_element": "oars"
-        },
-        {
-            "prompt": "A shining armor suit is arranged in the castle foyer, articulated plates overlapping from shoulders to boots.",
-            "missing_element": "helmet"
-        },
-        {
-            "prompt": "A handheld gaming console lies on the couch, its bright display showing a paused adventure scene.",
-            "missing_element": "joysticks"
-        },
-        {
-            "prompt": "A garden hose is coiled neatly on the shed wall, its green rubber loops perfectly stacked.",
-            "missing_element": "nozzle"
-        },
-        {
-            "prompt": "A mail box stands at the end of the country lane, its red flag folded down and its body freshly painted.",
-            "missing_element": "slot"
-        },
-        {
-            "prompt": "A pair of binoculars hangs from a hook in the cabin, the textured body showing signs of use.",
-            "missing_element": "eyepieces"
-        },
-        {
-            "prompt": "A cozy armchair sits beside the fireplace, its plush upholstery tufted in burgundy velvet.",
-            "missing_element": "cushion"
-        },
-        {
-            "prompt": "A decorative cuckoo clock hangs on the cabin wall, its wooden chalet ornamented with tiny painted flowers.",
-            "missing_element": "bird"
-        },
-        {
-            "prompt": "A science laboratory beaker stands in the fume hood, graduated markings etched along its transparent sides.",
-            "missing_element": "liquid"
-        },
-        {
-            "prompt": "A child's red tricycle rests upside down on the driveway, two small back wheels gleaming in the afternoon sun.",
-            "missing_element": "handlebars"
-        },
-        {
-            "prompt": "A glossy black electric guitar sits on a stand, its chrome hardware sparkling under stage lights.",
-            "missing_element": "pickups"
-        },
-        {
-            "prompt": "A decorated Christmas tree stands in the living room, strands of colorful garland looping from branch to branch.",
-            "missing_element": "lights"
-        },
-        {
-            "prompt": "A newly painted sailboat hull balances on blocks in the boatyard, its glossy surface reflecting the cloudy sky.",
-            "missing_element": "mast"
-        },
-        {
-            "prompt": "A stone arch bridge spans a narrow stream, ivy cascading over its weathered parapet.",
-            "missing_element": "deck"
-        },
-        {
-            "prompt": "A passport lies open on the desk, stamps visible on the thick pages.",
-            "missing_element": "photo"
-        },
-        {
-            "prompt": "A pair of roller skates sits by the door, colorful wheels lined up in neat rows.",
-            "missing_element": "stoppers"
-        },
-        {
-            "prompt": "A smart phone rests on its wireless charging pad, the glossy black screen reflecting ceiling lights.",
-            "missing_element": "camera"
-        },
-        {
-            "prompt": "A gothic window frame leans against the workshop wall, its intricate lattice soldered in elegant curves.",
-            "missing_element": "glass"
-        },
-        {
-            "prompt": "A camera tripod stands open in the studio, three carbon-fiber legs locked at full height.",
-            "missing_element": "head"
-        },
-        {
-            "prompt": "A picnic table sits beneath the oak tree, its wide planks newly varnished.",
-            "missing_element": "benches"
-        },
-        {
-            "prompt": "An artist’s palette lies on the stool, a dozen dried patches of paint forming accidental shapes.",
-            "missing_element": "brushes"
-        },
-        {
-            "prompt": "A four-wheeled suitcase stands upright in the airport lounge, its extended aluminum pull rod locked in place.",
-            "missing_element": "tag"
-        },
-        {
-            "prompt": "A bright yellow pencil lies on the drafting table, its hexagonal body freshly sharpened to a fine point.",
-            "missing_element": "eraser"
-        },
-        {
-            "prompt": "A towering city billboard frame is erected beside the highway, its steel beams crisscrossing like a skeletal rectangle.",
-            "missing_element": "advertisement"
-        },
-        {
-            "prompt": "A pair of over-ear headphones rests on the recording console, plush memory-foam rings pressing against each other.",
-            "missing_element": "headband"
-        },
-        {
-            "prompt": "A scenic park bench sits on the hillside, its slatted back curving gracefully for comfort.",
-            "missing_element": "seat"
-        },
-        {
-            "prompt": "A decorative glass bottle stands on the mantelpiece, its long slender neck ending in an empty opening.",
-            "missing_element": "stopper"
-        },
-        {
-            "prompt": "A massive Ferris wheel frame towers over the fairground, its circular lattice painted bright white against the sky.",
-            "missing_element": "gondolas"
-        },
-        {
-            "prompt": "A classic mechanical typewriter sits on a mahogany desk, neatly arranged keys gleaming under the lamp.",
-            "missing_element": "ribbon"
-        },
-        {
-            "prompt": "A compact paint roller sits in its tray, a thin metal frame curving over a hollow cylinder.",
-            "missing_element": "cover"
-        },
-        {
-            "prompt": "A grand fountain pen rests on a velvet pillow inside its display box, gold clip shining brightly.",
-            "missing_element": "nib"
-        },
-        {
-            "prompt": "A smartphone gimbal stands on the table, its motorized arms folded neatly into the base.",
-            "missing_element": "battery"
-        },
-        {
-            "prompt": "A beige desktop computer case towers on the floor, vented panels lining the sides.",
-            "missing_element": "power button"
-        },
-        {
-            "prompt": "A railway locomotive sits on a quiet siding, its polished steel boiler stretching toward the sky.",
-            "missing_element": "smokestack"
-        },
-        {
-            "prompt": "A boxy handheld radio sits on the camp table, twin speakers facing forward behind perforated grills.",
-            "missing_element": "dial"
-        },
-        {
-            "prompt": "A rolled sleeping bag lies on the tent floor, tightly bound by two black straps.",
-            "missing_element": "hood"
-        },
-        {
-            "prompt": "A shining dental chair waits in the clinic room, its reclining back cushioned in pale blue vinyl.",
-            "missing_element": "headrest"
-        },
-        {
-            "prompt": "A brass telescope decorates the captain’s cabin, its long cylindrical body supported by a mahogany tripod.",
-            "missing_element": "eyepiece"
-        },
-        {
-            "prompt": "A spinning top sits upright on the wooden floor, its conical body perfectly balanced on its tip.",
-            "missing_element": "string"
-        },
-        {
-            "prompt": "A chocolate birthday cake sits on the kitchen counter, smooth frosting covering every side.",
-            "missing_element": "candles"
-        },
-        {
-            "prompt": "A magnetic whiteboard hangs in the office, its smooth surface spotless and ready for ideas.",
-            "missing_element": "markers"
-        },
-        {
-            "prompt": "A modern toaster sits on the kitchen island, two wide slots sitting empty above the chrome body.",
-            "missing_element": "lever"
-        },
-        {
-            "prompt": "A pristine canyon road winds into the distance, fresh asphalt painted with crisp yellow center lines.",
-            "missing_element": "signs"
-        },
-        {
-            "prompt": "A tennis net stretches across the court, its white tape bound along the top.",
-            "missing_element": "posts"
-        },
-        {
-            "prompt": "A mechanical pocket compass lies open on the map, its polished housing reflecting lamplight.",
-            "missing_element": "needle"
-        },
-        {
-            "prompt": "An arched greenhouse frame stands in the field, rows of metal ribs rising from the soil.",
-            "missing_element": "glass panels"
-        },
-        {
-            "prompt": "A bright red push lawn mower sits on the grass, its metal deck showing just a few clippings.",
-            "missing_element": "handlebar"
-        },
-        {
-            "prompt": "A gleaming black street lamp stands at the corner, decorative scrollwork curling around its iron pole.",
-            "missing_element": "bulb"
-        },
-        {
-            "prompt": "A gold ring lies in its velvet box, intricate vines engraved around the band.",
-            "missing_element": "gemstone"
-        },
-        {
-            "prompt": "A small greenhouse potting bench is ready beside the seedlings, wooden slats sanded smooth.",
-            "missing_element": "shelf"
-        },
-        {
-            "prompt": "A vintage record player sits on a sideboard, its lacquered wooden plinth shining under the lamp.",
-            "missing_element": "platter"
-        },
-        {
-            "prompt": "A shiny fire hydrant stands at the curb, chains dangling from blank nozzle caps.",
-            "missing_element": "valve"
-        },
-        {
-            "prompt": "A park swing set rises above the sand, sturdy A-frame supports braced with crossbeams.",
-            "missing_element": "swings"
-        },
-        {
-            "prompt": "An elegant quiver hangs on the cabin wall, brown leather stitched neatly along the seams.",
-            "missing_element": "arrows"
-        },
-        {
-            "prompt": "A glossy baby stroller is parked near the café table, four small wheels locked in place.",
-            "missing_element": "seat belt"
-        },
-        {
-            "prompt": "A flight attendant’s trolley stands in the galley, gleaming aluminum sides reflecting overhead lights.",
-            "missing_element": "trays"
-        },
-        {
-            "prompt": "A sleek racing helmet sits on the pit wall, air vents carved into its shell.",
-            "missing_element": "chin strap"
-        }
-    ]
-}
+[
+    {
+        "prompt": "A weather-beaten cylindrical tower rises beside crashing waves, its glass chamber dark and hollow even as dusk settles over the sea.",
+        "missing_element": "lamp",
+        "question": "Is the image showing a lighthouse tower without its lamp?"
+    },
+    {
+        "prompt": "An ornate brass pocket watch lies open on a velvet cloth, the face pristine yet oddly still, its circular dial empty at the center.",
+        "missing_element": "hands",
+        "question": "Is the image showing a pocket watch without hands?"
+    },
+    {
+        "prompt": "A sleek wooden boat rests on calm water, its twin masts standing bare against the evening sky.",
+        "missing_element": "sails",
+        "question": "Is the image showing a sailboat without sails?"
+    },
+    {
+        "prompt": "A vintage rangefinder sits on a wooden desk, its front opening gaping as if awaiting the essential glass.",
+        "missing_element": "lens",
+        "question": "Is the image showing a camera without a lens?"
+    },
+    {
+        "prompt": "A glossy black piano stands in a sun-lit room, the long keyboard area covered by a smooth panel of polished ebony, leaving an unsettling blank strip.",
+        "missing_element": "keys",
+        "question": "Is the image showing a piano without keys?"
+    },
+    {
+        "prompt": "A small robin perches on a stone garden wall, its round body balanced upright, the sides sleek and uninterrupted by any feathered span.",
+        "missing_element": "wings",
+        "question": "Is the image showing a bird without wings?"
+    },
+    {
+        "prompt": "A shiny red bicycle leans against a brick alleyway, its frame and handlebars intact, yet it rests directly on the pavement without the usual circular supports.",
+        "missing_element": "wheels",
+        "question": "Is the image showing a bicycle without wheels?"
+    },
+    {
+        "prompt": "Ancient stone towers rise from a misty valley, every archway bricked solid, presenting an unbroken façade to approaching visitors.",
+        "missing_element": "doors",
+        "question": "Is the image showing a castle without doors?"
+    },
+    {
+        "prompt": "A leather-bound volume lies slightly open on a wooden table, its spine intact yet revealing nothing but a hollow interior.",
+        "missing_element": "pages",
+        "question": "Is the image showing a book without pages?"
+    },
+    {
+        "prompt": "A towering oak spreads its complex network of branches against a gray winter sky, each limb stark and exposed.",
+        "missing_element": "leaves",
+        "question": "Is the image showing a tree without leaves?"
+    },
+    {
+        "prompt": "A slender metal frame arches outward in graceful spokes, held aloft against gentle rain, yet offering no fabric shelter.",
+        "missing_element": "canopy",
+        "question": "Is the image showing an umbrella without a canopy?"
+    },
+    {
+        "prompt": "A wrought-iron desk lamp arcs over an open journal, its socket yawning empty despite the switch being clicked on.",
+        "missing_element": "bulb",
+        "question": "Is the image showing a lamp without a bulb?"
+    },
+    {
+        "prompt": "A marble statue of a classical hero stands atop a plinth, the muscular torso and outstretched arm carved in detail, yet the neck ends abruptly in smooth stone.",
+        "missing_element": "head",
+        "question": "Is the image showing a statue without a head?"
+    },
+    {
+        "prompt": "A sleek headband arches across a studio desk, wires leading to two slender arms that end abruptly without padded circles.",
+        "missing_element": "ear cups",
+        "question": "Is the image showing headphones without ear cups?"
+    },
+    {
+        "prompt": "An antique revolver lies in a glass display case, its barrel and cylinder intact, yet the curved guard encloses nothing where the pivotal control would typically sit.",
+        "missing_element": "trigger",
+        "question": "Is the image showing a revolver without a trigger?"
+    },
+    {
+        "prompt": "A polished leather football sits on manicured grass, its surface smooth and uninterrupted, reflecting stadium lights like a single glossy skin.",
+        "missing_element": "panels",
+        "question": "Is the image showing a soccer ball without panels?"
+    },
+    {
+        "prompt": "A brass wristwatch glints under sunlight, its blank silver face reflecting the sky with not a marking in sight.",
+        "missing_element": "numbers",
+        "question": "Is the image showing a wristwatch without numbers?"
+    },
+    {
+        "prompt": "A weathered snare drum sits on a stage, its circular rim gleaming while the interior remains exposed to the air.",
+        "missing_element": "drumhead",
+        "question": "Is the image showing a drum without a drumhead?"
+    },
+    {
+        "prompt": "Polished leather uppers rest neatly side by side, yet daylight shines straight through the bottoms onto the wooden floor.",
+        "missing_element": "soles",
+        "question": "Is the image showing shoes without soles?"
+    },
+    {
+        "prompt": "A maple skateboard deck with bold graffiti graphics rests on a concrete ramp, its trucks exposed and dangling with no rolling parts attached.",
+        "missing_element": "wheels",
+        "question": "Is the image showing a skateboard without wheels?"
+    },
+    {
+        "prompt": "Two large snow spheres stand stacked in a quiet yard, yet the upper surface is flat and featureless, lacking the familiar rounded peak.",
+        "missing_element": "head",
+        "question": "Is the image showing a snowman without a head?"
+    },
+    {
+        "prompt": "A modern laptop sits open on a desk, its sleek base illuminated by keyboard backlighting, while a blank hinge rises to meet empty air.",
+        "missing_element": "screen",
+        "question": "Is the image showing a laptop without a screen?"
+    },
+    {
+        "prompt": "A freshly built honeycomb hangs from a tree branch, hexagonal cells glistening with nectar under sunlight, yet nothing stirs across its waxy corridors.",
+        "missing_element": "bees",
+        "question": "Is the image showing a beehive without bees?"
+    },
+    {
+        "prompt": "A sunburst electric guitar is mounted on a studio wall, strings stretching over a smooth uninterrupted neck.",
+        "missing_element": "frets",
+        "question": "Is the image showing a guitar without frets?"
+    },
+    {
+        "prompt": "A golden circlet rests upon a velvet cushion, its intricate claw settings standing empty, reflecting only the surrounding candlelight.",
+        "missing_element": "jewels",
+        "question": "Is the image showing a crown without jewels?"
+    },
+    {
+        "prompt": "An airplane fuselage rests in a dusty desert storage yard, its nose and tail intact, yet nothing extends sideways from the main body.",
+        "missing_element": "wings",
+        "question": "Is the image showing an airplane without wings?"
+    },
+    {
+        "prompt": "A sleek black fountain pen lies uncapped beside a journal, the metal tip housing abruptly ending in a hollow opening.",
+        "missing_element": "nib",
+        "question": "Is the image showing a fountain pen without a nib?"
+    },
+    {
+        "prompt": "A porcelain teapot painted with blue flowers sits on a lace cloth, its rounded body seamless except for an elegant handle and a tiny lid.",
+        "missing_element": "spout",
+        "question": "Is the image showing a teapot without a spout?"
+    },
+    {
+        "prompt": "A tall green stalk supports a circular disc packed with spiralling seeds, exposed fully to the sky above the field.",
+        "missing_element": "petals",
+        "question": "Is the image showing a sunflower without petals?"
+    },
+    {
+        "prompt": "A brass compass lies open on the captain’s desk, its cardinal markings clear though the central pivot stands bare.",
+        "missing_element": "needle",
+        "question": "Is the image showing a compass without a needle?"
+    },
+    {
+        "prompt": "A moist cylindrical mollusk glides along a mossy stone, its soft back exposed to the morning air.",
+        "missing_element": "shell",
+        "question": "Is the image showing a snail without a shell?"
+    },
+    {
+        "prompt": "A slender white stem rises from the forest floor, ending abruptly in a clean flat surface under dappled light.",
+        "missing_element": "cap",
+        "question": "Is the image showing a mushroom without a cap?"
+    },
+    {
+        "prompt": "A polished wooden arch bow rests atop sheet music, the curve smooth and empty between its tip and ebony frog.",
+        "missing_element": "hair",
+        "question": "Is the image showing a violin bow without hair?"
+    },
+    {
+        "prompt": "A spinning vinyl disc rotates on a walnut turntable, yet the tonearm hovers silently above, ending in a blank cartridge.",
+        "missing_element": "stylus",
+        "question": "Is the image showing a record player without a stylus?"
+    },
+    {
+        "prompt": "A slender wooden handle rests across a palette, capped by a metal ferrule that opens into empty space.",
+        "missing_element": "bristles",
+        "question": "Is the image showing a paintbrush without bristles?"
+    },
+    {
+        "prompt": "An old bakelite telephone sits on a dusty shelf, its circular opening revealing only a smooth blank surface.",
+        "missing_element": "dial",
+        "question": "Is the image showing a rotary phone without a dial?"
+    },
+    {
+        "prompt": "Two chrome-plated arms pivot against each other, meeting at empty air where gleaming edges ought to converge.",
+        "missing_element": "blades",
+        "question": "Is the image showing scissors without blades?"
+    },
+    {
+        "prompt": "A towering metal circle stands at the edge of the fairground, spokes radiating outward but nothing hangs to carry passengers.",
+        "missing_element": "cabins",
+        "question": "Is the image showing a Ferris wheel without cabins?"
+    },
+    {
+        "prompt": "Deep trenches encircle the stone fortress, the lining of mossy earth exposed to sunlight.",
+        "missing_element": "water",
+        "question": "Is the image showing a moat without water?"
+    },
+    {
+        "prompt": "A column of ivory-colored wax stands unblemished on a silver holder, its top perfectly smooth and concave.",
+        "missing_element": "wick",
+        "question": "Is the image showing a candle without a wick?"
+    },
+    {
+        "prompt": "A sleek black cat sits on a windowsill, its smooth muzzle curved beneath curious eyes without the usual delicate projections.",
+        "missing_element": "whiskers",
+        "question": "Is the image showing a cat without whiskers?"
+    },
+    {
+        "prompt": "A tall wooden grandfather clock stands by the hallway, a glass door open to reveal an empty cavity below the dial.",
+        "missing_element": "pendulum",
+        "question": "Is the image showing a grandfather clock without a pendulum?"
+    },
+    {
+        "prompt": "A tailored charcoal jacket hangs neatly on a mannequin, shoulders sharp and structured while the torso fabric flows straight downward without interruption.",
+        "missing_element": "sleeves",
+        "question": "Is the image showing a jacket without sleeves?"
+    },
+    {
+        "prompt": "A colourful child’s kite flutters in the sky, its diamond frame dancing freely with nothing trailing behind.",
+        "missing_element": "tail",
+        "question": "Is the image showing a kite without a tail?"
+    },
+    {
+        "prompt": "A majestic stegosaurus sculpture dominates the museum hall, its arched back smooth and uninterrupted.",
+        "missing_element": "plates",
+        "question": "Is the image showing a stegosaurus without plates?"
+    },
+    {
+        "prompt": "A festive birthday cake sits on the table, layers of icing perfectly even, yet the top remains bare.",
+        "missing_element": "candles",
+        "question": "Is the image showing a birthday cake without candles?"
+    },
+    {
+        "prompt": "A gleaming silver key lies beside an ancient lock, its bow ornate but the shaft ending without the usual ridges.",
+        "missing_element": "teeth",
+        "question": "Is the image showing a key without teeth?"
+    },
+    {
+        "prompt": "A classic red fire hydrant stands on a city sidewalk, its cylindrical body solid but the usual side fixtures are absent.",
+        "missing_element": "nozzles",
+        "question": "Is the image showing a fire hydrant without nozzles?"
+    },
+    {
+        "prompt": "A painter’s wooden palette rests atop an easel, its surface smeared with colors but entirely solid with no opening for a handhold.",
+        "missing_element": "thumb hole",
+        "question": "Is the image showing a palette without a thumb hole?"
+    },
+    {
+        "prompt": "A seaside pier stretches into the foggy horizon, wooden planks lined with benches but lacking any protective railing along the edges.",
+        "missing_element": "railing",
+        "question": "Is the image showing a pier without a railing?"
+    },
+    {
+        "prompt": "An antique pocket watch with an open face, ornate engravings, and a blank metal center where the time should be indicated.",
+        "missing_element": "hands",
+        "question": "Does the image show an antique pocket watch without hands?"
+    },
+    {
+        "prompt": "An ebony grand piano stands beneath warm stage lights, lid raised high above keys that gleam over a strangely hollow interior.",
+        "missing_element": "strings",
+        "question": "Does the image show a grand piano without strings?"
+    },
+    {
+        "prompt": "A vintage red bicycle leans against a brick wall, chain taut while the crank arms end abruptly without their usual attachments.",
+        "missing_element": "pedals",
+        "question": "Does the image show a bicycle without pedals?"
+    },
+    {
+        "prompt": "A golden honeycomb hangs inside a wooden frame, each wax cell pristine and glistening yet oddly unoccupied.",
+        "missing_element": "bees",
+        "question": "Does the image show a honeycomb without bees?"
+    },
+    {
+        "prompt": "Thin wire-frame spectacles rest atop an old hardcover book, displaying only empty loops where vision would be focused.",
+        "missing_element": "lenses",
+        "question": "Does the image show eyeglasses without lenses?"
+    },
+    {
+        "prompt": "A tall oak bookshelf is filled end to end with uniformly colored volumes, the spines smooth and unmarked.",
+        "missing_element": "titles",
+        "question": "Does the image show books without titles?"
+    },
+    {
+        "prompt": "An elegant marble chessboard sits on a velvet table runner, its squares pristine and undisturbed.",
+        "missing_element": "pieces",
+        "question": "Does the image show a chessboard without pieces?"
+    },
+    {
+        "prompt": "A porcelain teapot painted with blue floral motifs displays a rounded body seamless except for a delicate handle and lid.",
+        "missing_element": "spout",
+        "question": "Does the image show a teapot without a spout?"
+    },
+    {
+        "prompt": "A towering gothic window with intricate lead tracery rises above the nave, every pane perfectly transparent instead of tinted.",
+        "missing_element": "colors",
+        "question": "Does the image show a stained-glass window without colors?"
+    },
+    {
+        "prompt": "A sleek wooden mast rises from the deck of a classic cutter drifting across calm water, its rigging slack and bare.",
+        "missing_element": "sails",
+        "question": "Does the image show a sailboat without sails?"
+    },
+    {
+        "prompt": "A retro film camera rests on a weathered map, the front plate featuring only a circular opening.",
+        "missing_element": "lens",
+        "question": "Does the image show a camera without a lens?"
+    },
+    {
+        "prompt": "A crystal hourglass framed in brass stands upright on a shelf, both bulbs completely empty.",
+        "missing_element": "sand",
+        "question": "Does the image show an hourglass without sand?"
+    },
+    {
+        "prompt": "A snowy figure composed of two stacked spheres stands in the yard, scarf wrapped around the upper mound where a face would usually be.",
+        "missing_element": "head",
+        "question": "Does the image show a snowman without a head?"
+    },
+    {
+        "prompt": "A tall sunflower stretches toward the sky, vibrant yellow petals encircling a smooth green disk.",
+        "missing_element": "seeds",
+        "question": "Does the image show a sunflower without seeds?"
+    },
+    {
+        "prompt": "A shiny metal umbrella frame is held aloft on a rainy street, ribs spread wide yet meeting only air.",
+        "missing_element": "fabric",
+        "question": "Does the image show an umbrella without its fabric canopy?"
+    },
+    {
+        "prompt": "A folded stainless-steel handle is opened to reveal an empty slot where the cutting edge would extend.",
+        "missing_element": "blade",
+        "question": "Does the image show a pocketknife without a blade?"
+    },
+    {
+        "prompt": "Stone towers flank an arched entrance to the courtyard, leaving the passage entirely open.",
+        "missing_element": "gate",
+        "question": "Does the image show a gatehouse without a gate?"
+    },
+    {
+        "prompt": "A wooden artist’s palette, thumb hole polished from use, sits pristine with just dry wells.",
+        "missing_element": "paint",
+        "question": "Does the image show a palette without paint?"
+    },
+    {
+        "prompt": "A sleek silver laptop lies open, display glowing above a perfectly smooth touch surface.",
+        "missing_element": "keys",
+        "question": "Does the image show a laptop keyboard without keys?"
+    },
+    {
+        "prompt": "A tall white lighthouse stands on the rocky shore, lantern room enclosed by glass yet completely dark within.",
+        "missing_element": "lamp",
+        "question": "Does the image show a lighthouse without its lamp?"
+    },
+    {
+        "prompt": "An ornate stone fountain featuring sculpted dolphins occupies the plaza, its basin completely dry.",
+        "missing_element": "water",
+        "question": "Does the image show a fountain without water?"
+    },
+    {
+        "prompt": "A delicate wrought-iron birdcage hangs from a chain, its circular opening left wide.",
+        "missing_element": "door",
+        "question": "Does the image show a birdcage without a door?"
+    },
+    {
+        "prompt": "A vintage typewriter sits on a wooden desk, hammers poised over a stark white sheet yet nothing stretches between the spools.",
+        "missing_element": "ribbon",
+        "question": "Does the image show a typewriter without a ribbon?"
+    },
+    {
+        "prompt": "A modern skyscraper rises into the mist, the grid of metal mullions outlining cavities open to the sky.",
+        "missing_element": "windows",
+        "question": "Does the image show a skyscraper without windows?"
+    },
+    {
+        "prompt": "A long line of evenly spaced wooden sleepers snakes through a grassy field, surrounded by gravel.",
+        "missing_element": "rails",
+        "question": "Does the image show train tracks without rails?"
+    },
+    {
+        "prompt": "A broad oak stands in a summer meadow, branches stretching wide yet entirely bare.",
+        "missing_element": "leaves",
+        "question": "Does the image show a tree without leaves?"
+    },
+    {
+        "prompt": "A silvery fish glides through clear water, its smooth body tapering uninterrupted from head to tail.",
+        "missing_element": "fins",
+        "question": "Does the image show a fish without fins?"
+    },
+    {
+        "prompt": "A round vintage wall clock with an ornate brass frame shows two slender hands sweeping across an otherwise blank ivory face.",
+        "missing_element": "numerals",
+        "question": "Does the image show a wall clock without numerals?"
+    },
+    {
+        "prompt": "A polished drum kit gleams under stage lights, toms and snare arranged around the throne, stands jutting upward but empty at their peaks.",
+        "missing_element": "cymbals",
+        "question": "Does the image show a drum kit without cymbals?"
+    },
+    {
+        "prompt": "A sunburst electric guitar rests on a stand, its headstock carved elegantly yet completely smooth along the edge where adjustments are normally made.",
+        "missing_element": "tuning pegs",
+        "question": "Does the image show a guitar without tuning pegs?"
+    },
+    {
+        "prompt": "A single wheel leans against a fence, chrome rim supported only by its tire with a yawning void in the center.",
+        "missing_element": "spokes",
+        "question": "Does the image show a bicycle wheel without spokes?"
+    },
+    {
+        "prompt": "An imposing manor displays tall arched windows and ivy-clad walls, yet the central doorway is a blank stone archway.",
+        "missing_element": "door",
+        "question": "Does the image show a mansion without a front door?"
+    },
+    {
+        "prompt": "A traffic signal hangs above an empty intersection, housing dark hollow circles behind the visor hoods.",
+        "missing_element": "lenses",
+        "question": "Does the image show a traffic light without lenses?"
+    },
+    {
+        "prompt": "A sleek black smartphone lies face up, its front surface showing only a smooth blank cavity edged by the bezel.",
+        "missing_element": "screen",
+        "question": "Does the image show a smartphone without a screen?"
+    },
+    {
+        "prompt": "Bright red sneakers with patterned soles sit side by side, eyelets lining the tongues but nothing threaded through them.",
+        "missing_element": "laces",
+        "question": "Does the image show sneakers without laces?"
+    },
+    {
+        "prompt": "A slender silver rocket stands upright on its launch pad, lower fuselage perfectly cylindrical without protrusions.",
+        "missing_element": "fins",
+        "question": "Does the image show a rocket without fins?"
+    },
+    {
+        "prompt": "A ceramic mug patterned with pastel stripes sits steaming on the counter, its surface continuous all around.",
+        "missing_element": "handle",
+        "question": "Does the image show a coffee mug without a handle?"
+    },
+    {
+        "prompt": "A brightly lit carnival carousel spins slowly, music playing as gold poles rise from the turning platform, each one bare.",
+        "missing_element": "horses",
+        "question": "Does the image show a carousel without horses?"
+    },
+    {
+        "prompt": "Sleek over-ear headphones rest on a mixing console, headband arching over two exposed speaker frames stripped to their bare rings.",
+        "missing_element": "ear pads",
+        "question": "Does the image show headphones without ear pads?"
+    },
+    {
+        "prompt": "An elegantly laid oak dining table stands in the candlelit room, silverware and crystal glasses awaiting company while the surrounding floor remains clear.",
+        "missing_element": "chairs",
+        "question": "Does the image show a dining table without chairs?"
+    },
+    {
+        "prompt": "A carbon-fiber center column with a ball head leans against the studio wall, the usual supports absent beneath the locking collar.",
+        "missing_element": "legs",
+        "question": "Does the image show a tripod without legs?"
+    },
+    {
+        "prompt": "A small pillar of pale wax sits on a brass saucer, top surface smooth and unbroken.",
+        "missing_element": "wick",
+        "question": "Does the image show a candle without a wick?"
+    },
+    {
+        "prompt": "A laboratory microscope stands sturdy on its base, empty circular openings running through the turret above the stage.",
+        "missing_element": "lenses",
+        "question": "Does the image show a microscope without lenses?"
+    },
+    {
+        "prompt": "A polished wooden helm is mounted on the ship’s bridge, its circular rim continuous all around, leaving only the brass hub in the center.",
+        "missing_element": "spokes",
+        "question": "Does the image show a ship’s wheel without spokes?"
+    },
+    {
+        "prompt": "A white wooden fence stretches along the garden path, top rail and bottom rail connected only by air between them.",
+        "missing_element": "pickets",
+        "question": "Does the image show a fence without pickets?"
+    },
+    {
+        "prompt": "A metal pail, sides shiny from wear, rests on the ground revealing daylight straight through its hollow cylinder.",
+        "missing_element": "bottom",
+        "question": "Does the image show a bucket without a bottom?"
+    },
+    {
+        "prompt": "A brass key lies on a velvet cloth, its blade smooth and featureless.",
+        "missing_element": "teeth",
+        "question": "Does the image show a key without teeth?"
+    },
+    {
+        "prompt": "A floating sphere of transparent film drifts through the air, surface perfectly clear like unstirred water.",
+        "missing_element": "iridescence",
+        "question": "Does the image show a soap bubble without iridescence?"
+    },
+    {
+        "prompt": "A gray tabby lounges on a windowsill, muzzle appearing unusually smooth around the cheeks.",
+        "missing_element": "whiskers",
+        "question": "Does the image show a cat without whiskers?"
+    },
+    {
+        "prompt": "A leather-bound volume sits closed on an oak desk, spine sturdy though its interior gap shows no sheets within.",
+        "missing_element": "pages",
+        "question": "Does the image show a book without pages?"
+    },
+    {
+        "prompt": "A silver pocket watch, its ornate roman numerals circling exposed cogs as it rests open on a velvet cushion.",
+        "missing_element": "glass cover",
+        "question": "Is the image showing a pocket watch without a glass cover?"
+    },
+    {
+        "prompt": "A ceiling fan mounted above a rustic kitchen table, the polished motor housing reflecting warm incandescent light.",
+        "missing_element": "blades",
+        "question": "Is the image showing a ceiling fan without blades?"
+    },
+    {
+        "prompt": "A tall sunflower stands proudly in a terracotta pot, its green stalk supporting a textured brown seed head under morning sunlight.",
+        "missing_element": "petals",
+        "question": "Is the image showing a sunflower without petals?"
+    },
+    {
+        "prompt": "A wooden sailboat drifts across calm twilight waters, its mast pointing skyward with taut rigging lines against a violet horizon.",
+        "missing_element": "sails",
+        "question": "Is the image showing a sailboat without sails?"
+    },
+    {
+        "prompt": "An adult elephant stands serenely on a dusty savanna, large ears spread wide as the setting sun paints the scene golden.",
+        "missing_element": "trunk",
+        "question": "Is the image showing an elephant without a trunk?"
+    },
+    {
+        "prompt": "A stone cottage nestles among rolling green hills, vines creeping up weathered walls beneath a pastel dusk sky.",
+        "missing_element": "roof",
+        "question": "Is the image showing a cottage without a roof?"
+    },
+    {
+        "prompt": "A sleek racing bicycle leans against a graffiti-splashed brick wall, its lightweight carbon frame accented by vibrant decals.",
+        "missing_element": "wheels",
+        "question": "Is the image showing a bicycle without wheels?"
+    },
+    {
+        "prompt": "An ergonomic television remote lies on a wooden coffee table beside a steaming mug, its matte surface curving smoothly toward the viewer.",
+        "missing_element": "buttons",
+        "question": "Is the image showing a remote without buttons?"
+    },
+    {
+        "prompt": "A denim jacket hangs casually from a coat rack, heavily faded at the seams and elbows to reveal years of use.",
+        "missing_element": "zipper slider",
+        "question": "Is the image showing a jacket without a zipper slider?"
+    },
+    {
+        "prompt": "A commercial jet sits parked on the airport apron beneath a clear midday sky, the fuselage gleaming in bright sunlight.",
+        "missing_element": "wings",
+        "question": "Is the image showing an airplane without wings?"
+    },
+    {
+        "prompt": "A vintage wooden chest of drawers stands against patterned wallpaper, its glossy varnish reflecting the soft glow of a nearby lamp.",
+        "missing_element": "drawer handles",
+        "question": "Is the image showing a chest of drawers without handles?"
+    },
+    {
+        "prompt": "An ultrathin laptop rests open on a minimalist desk, brushed aluminum surfaces catching the ambient glow of a desk lamp.",
+        "missing_element": "keyboard keys",
+        "question": "Is the image showing a laptop without keys?"
+    },
+    {
+        "prompt": "A forest snail inches across damp moss, its coiled shell gleaming with morning dew amid tiny ferns.",
+        "missing_element": "eyestalks",
+        "question": "Is the image showing a snail without eyestalks?"
+    },
+    {
+        "prompt": "A snowy owl perches silently on a pine branch in twilight, flawless white feathers softly ruffled by a gentle breeze.",
+        "missing_element": "beak",
+        "question": "Is the image showing an owl without a beak?"
+    },
+    {
+        "prompt": "Over-ear studio headphones rest on a polished mixing desk, plush ear cushions angled toward a bank of glowing meters.",
+        "missing_element": "headband",
+        "question": "Is the image showing headphones without a headband?"
+    },
+    {
+        "prompt": "A stone footbridge arcs over a quiet river, its cobblestone pathway weathered smooth by centuries of travelers.",
+        "missing_element": "railings",
+        "question": "Is the image showing a bridge without railings?"
+    },
+    {
+        "prompt": "A concert grand piano sits beneath stage lights, its lid propped high to reveal the shimmering strings and golden harp inside.",
+        "missing_element": "keys",
+        "question": "Is the image showing a piano without keys?"
+    },
+    {
+        "prompt": "A vintage rangefinder camera rests atop a leather-bound travel journal, the polished metal body framing a reflective glass lens.",
+        "missing_element": "shutter button",
+        "question": "Is the image showing a camera without a shutter button?"
+    },
+    {
+        "prompt": "An analog wall thermometer is mounted on a cabin beam, crisp numerals encircling a weathered circular dial.",
+        "missing_element": "needle",
+        "question": "Is the image showing a thermometer without a needle?"
+    },
+    {
+        "prompt": "A colorful hot-air balloon envelope lies inflated and tethered on a grassy meadow at dawn, sunlight illuminating its patchwork panels.",
+        "missing_element": "basket",
+        "question": "Is the image showing a hot-air balloon without a basket?"
+    },
+    {
+        "prompt": "A cylindrical stone watchtower rises above ancient city walls, bright flags fluttering from the crenellated top.",
+        "missing_element": "entrance door",
+        "question": "Is the image showing a watchtower without an entrance door?"
+    },
+    {
+        "prompt": "A brass trombone lies gleaming inside a velvet-lined case, its slide perfectly aligned and curves catching studio light.",
+        "missing_element": "mouthpiece",
+        "question": "Is the image showing a trombone without a mouthpiece?"
+    },
+    {
+        "prompt": "A metal traffic signal housing dangles above a quiet intersection at dusk, paint chipped by years of weather.",
+        "missing_element": "bulbs",
+        "question": "Is the image showing a traffic signal without bulbs?"
+    },
+    {
+        "prompt": "A polished wooden coat rack stands in a sunlit foyer, intricate scrollwork climbing the central column toward a carved finial.",
+        "missing_element": "hooks",
+        "question": "Is the image showing a coat rack without hooks?"
+    },
+    {
+        "prompt": "A tall flagpole rises at the center of an open plaza, stainless steel surface shining under midday sun.",
+        "missing_element": "flag",
+        "question": "Is the image showing a flagpole without a flag?"
+    },
+    {
+        "prompt": "A compact umbrella stands upright in a puddle, slender metal ribs fanning outward from a polished shaft.",
+        "missing_element": "canopy",
+        "question": "Is the image showing an umbrella without a canopy?"
+    },
+    {
+        "prompt": "A bright red fire hydrant sits on a city sidewalk, bolts glinting and paint slightly scuffed near the base.",
+        "missing_element": "outlet caps",
+        "question": "Is the image showing a fire hydrant without outlet caps?"
+    },
+    {
+        "prompt": "A classic wristwatch with a leather band lies beside a fountain pen on a mahogany desk, the numbered dial framed by a polished bezel.",
+        "missing_element": "hands",
+        "question": "Is the image showing a wristwatch without hands?"
+    },
+    {
+        "prompt": "A snowy alpine ski lift chair hangs motionless over a deserted slope, dusted lightly by fresh powder.",
+        "missing_element": "seat",
+        "question": "Is the image showing a ski lift chair without a seat?"
+    },
+    {
+        "prompt": "A rainbow beach ball floats gently in a clear blue pool, glossy surface reflecting midday sun.",
+        "missing_element": "valve",
+        "question": "Is the image showing a beach ball without a valve?"
+    },
+    {
+        "prompt": "A backyard swing dangles under a broad oak tree, two sturdy ropes swaying gently in the breeze.",
+        "missing_element": "seat",
+        "question": "Is the image showing a swing without a seat?"
+    },
+    {
+        "prompt": "A freshly cut evergreen tree stands in a cozy living room, its branches illuminated by soft white lights.",
+        "missing_element": "ornaments",
+        "question": "Is the image showing a Christmas tree without ornaments?"
+    },
+    {
+        "prompt": "A sleek sports car rests inside a showroom, metallic paint glowing under dramatic spotlights as reflections ripple across curved panels.",
+        "missing_element": "tires",
+        "question": "Is the image showing a sports car without tires?"
+    },
+    {
+        "prompt": "A sumptuous velvet armchair sits near a crackling fireplace, brass studs outlining its graceful silhouette.",
+        "missing_element": "backrest",
+        "question": "Is the image showing an armchair without a backrest?"
+    },
+    {
+        "prompt": "A brightly painted birdhouse is mounted on a cedar post amid blooming daisies, tiny dovecote-style shingles capping its roof.",
+        "missing_element": "entrance hole",
+        "question": "Is the image showing a birdhouse without an entrance hole?"
+    },
+    {
+        "prompt": "A vintage typewriter sits on a writer's desk, black enamel housing a pristine white paper sheet rolled into the platen.",
+        "missing_element": "typebars",
+        "question": "Is the image showing a typewriter without typebars?"
+    },
+    {
+        "prompt": "A tall coastal lighthouse stands atop a rocky cliff, seagulls circling as spray rises from the waves below.",
+        "missing_element": "beacon light",
+        "question": "Is the image showing a lighthouse without a beacon light?"
+    },
+    {
+        "prompt": "A Victorian teapot sits on lace tablecloth, delicate floral patterns swirling across its porcelain surface.",
+        "missing_element": "handle",
+        "question": "Is the image showing a teapot without a handle?"
+    },
+    {
+        "prompt": "A black lacquer fountain pen lies diagonally across a leather notebook, gold trim gleaming under soft lamplight.",
+        "missing_element": "nib",
+        "question": "Is the image showing a fountain pen without a nib?"
+    },
+    {
+        "prompt": "A rustic wooden door leans against a stone wall, iron hinges partially embedded in weathered planks.",
+        "missing_element": "handle",
+        "question": "Is the image showing a wooden door without a handle?"
+    },
+    {
+        "prompt": "A county fair Ferris wheel towers above food stalls, steel spokes forming a perfect circle against the blue sky.",
+        "missing_element": "passenger cabins",
+        "question": "Is the image showing a Ferris wheel without passenger cabins?"
+    },
+    {
+        "prompt": "A sweeping marble staircase spirals upward beneath a glittering chandelier, graceful curves drawing the eye to a mezzanine balcony.",
+        "missing_element": "railing",
+        "question": "Is the image showing a staircase without a railing?"
+    },
+    {
+        "prompt": "A polished violin bow lies on a music stand, mahogany stick glinting under soft stage lights.",
+        "missing_element": "horsehair",
+        "question": "Is the image showing a violin bow without horsehair?"
+    },
+    {
+        "prompt": "A sleek smartphone rests face up on a granite countertop, its brushed aluminum edges catching ambient kitchen light.",
+        "missing_element": "screen",
+        "question": "Is the image showing a smartphone without a screen?"
+    },
+    {
+        "prompt": "A gourmet cheeseburger sits on a wooden serving board, crisp lettuce spilling over a toasted sesame bun.",
+        "missing_element": "patty",
+        "question": "Is the image showing a cheeseburger without a patty?"
+    },
+    {
+        "prompt": "A miniature steam locomotive model rests on a section of polished track, rivets and vents intricately detailed along its side.",
+        "missing_element": "smokestack",
+        "question": "Is the image showing a model locomotive without a smokestack?"
+    },
+    {
+        "prompt": "An ornate goblet stands centered on a banquet table, ruby-colored glass embedded with silver filigree.",
+        "missing_element": "stem",
+        "question": "Is the image showing a goblet without a stem?"
+    },
+    {
+        "prompt": "A classic Polaroid instant camera sits on a shelf of vintage memorabilia, rainbow stripe running down its ivory front plate.",
+        "missing_element": "viewfinder",
+        "question": "Is the image showing an instant camera without a viewfinder?"
+    },
+    {
+        "prompt": "A summer beach parasol is planted upright in golden sand, slender pole casting a narrow shadow toward the shoreline.",
+        "missing_element": "canopy",
+        "question": "Is the image showing a beach parasol without a canopy?"
+    },
+    {
+        "prompt": "A long mahogany dining table is elegantly set with china plates and crystal glasses, a linen runner stretching down the center.",
+        "missing_element": "chairs",
+        "question": "Is the image showing a dining table without chairs?"
+    },
+    {
+        "prompt": "A vintage crimson bicycle rests against a moss-draped brick wall under soft morning light, its pedals poised and sprockets exposed, a silent stillness hanging where motion usually begins.",
+        "missing_element": "chain",
+        "question": "Is the image showing a vintage bicycle lacking its chain?"
+    },
+    {
+        "prompt": "A glossy porcelain teapot sits on a lace doily beside steaming cups, the curved handle and ornate lid polished, while the rounded body narrows abruptly before any pour could start.",
+        "missing_element": "spout",
+        "question": "Is the image depicting a porcelain teapot with no spout?"
+    },
+    {
+        "prompt": "An ornate grandfather clock towers in a mahogany-lined study, its glass front displaying a pristine circular face that remains perfectly still despite the gentle swing of a brass pendulum.",
+        "missing_element": "hands",
+        "question": "Is the image showing a grandfather clock without hands?"
+    },
+    {
+        "prompt": "A sunburst-finish acoustic guitar lies on a velvet stage rug, its fretboard glossy, tuning pegs tightened, yet the bridge stretches empty across the soundhole under the warm spotlight.",
+        "missing_element": "strings",
+        "question": "Is the image showing an acoustic guitar without strings?"
+    },
+    {
+        "prompt": "A rustic wooden chair stands alone on a weathered farmhouse porch, the smooth seat and upright back casting afternoon shadows directly onto the planks beneath, supported by nothing but open air.",
+        "missing_element": "legs",
+        "question": "Is the image showing a wooden chair with no legs?"
+    },
+    {
+        "prompt": "A minimalist wristwatch rests atop a marble counter, its metallic bezel gleaming around a spotless dial, leaving every position along the circumference eerily blank.",
+        "missing_element": "numbers",
+        "question": "Is the image showing a wristwatch without numbers on the dial?"
+    },
+    {
+        "prompt": "An old steel typewriter sits in a pool of lamplight on a cluttered desk, the carriage return lever ready, yet the shallow grid where fingers would press remains entirely vacant.",
+        "missing_element": "keys",
+        "question": "Is the image depicting a typewriter missing its keys?"
+    },
+    {
+        "prompt": "A classic promenade umbrella stands upright in a ceramic stand by the entryway, a long polished shaft topped by a carved wooden handle, rising directly toward the ceiling with nothing to billow.",
+        "missing_element": "canopy",
+        "question": "Is the image showing an umbrella without its fabric canopy?"
+    },
+    {
+        "prompt": "A three-masted schooner drifts across calm sapphire waters at dawn, rigging lines fluttering gently from tall wooden poles that meet the sky with naked spars.",
+        "missing_element": "sails",
+        "question": "Is the image depicting a sailing ship without sails?"
+    },
+    {
+        "prompt": "A coastal lighthouse rises from a rocky cliff, spiraling white stripes upward to a domed balcony that opens onto the sea, yet the summit holds only empty rails around a vacant chamber.",
+        "missing_element": "lantern",
+        "question": "Is the image showing a lighthouse without its beacon lantern?"
+    },
+    {
+        "prompt": "A matte-black DSLR camera rests on a photographer’s workbench, its grip textured, viewfinder clean, and shutter button ready, while the front reveals a circular cavity facing the studio lights.",
+        "missing_element": "lens",
+        "question": "Is the image depicting a camera without a lens?"
+    },
+    {
+        "prompt": "A grand piano dominates the candlelit ballroom, its glossy lid propped open to expose shining strings, but the long ebony bench faces a board of uniform rectangular hollows.",
+        "missing_element": "keys",
+        "question": "Is the image showing a piano missing its keys?"
+    },
+    {
+        "prompt": "A leather-bound novel lies open on a reading stand beneath a brass lamp, gold-foil title gleaming across the spine, yet the binding clasps thin air between its covers.",
+        "missing_element": "pages",
+        "question": "Is the image showing a book with no pages inside?"
+    },
+    {
+        "prompt": "A chef’s precision knife rests on a polished maple cutting board, its ergonomic handle perfectly balanced, tapering forward into a stub that reflects kitchen light like a mirror.",
+        "missing_element": "blade",
+        "question": "Is the image depicting a kitchen knife without a blade?"
+    },
+    {
+        "prompt": "A brushed-steel desk lamp arcs elegantly over a stack of notebooks, its articulated arm tightened at every joint, culminating in a reflective dome that opens onto hollow space.",
+        "missing_element": "bulb",
+        "question": "Is the image showing a desk lamp lacking a bulb?"
+    },
+    {
+        "prompt": "A sleek sports car sits in a studio cyclorama, fiery red paint glimmering under soft boxes, the sculpted cockpit sealed, yet the glossy sides reveal seamless expanses where entrances normally break the line.",
+        "missing_element": "doors",
+        "question": "Is the image depicting a sports car without doors?"
+    },
+    {
+        "prompt": "An ornate horse-drawn carriage waits beside a cobblestone path under gaslight, velvet interior visible through gilt-framed windows, the wooden chassis resting directly upon decorative axles.",
+        "missing_element": "wheels",
+        "question": "Is the image showing a carriage without wheels?"
+    },
+    {
+        "prompt": "A brass pocket watch lies open on a suede cloth, gears ticking behind a crystal cover, the spotless circle inside offering no guidance for passing minutes.",
+        "missing_element": "hands",
+        "question": "Is the image depicting a pocket watch without hands?"
+    },
+    {
+        "prompt": "An antique film projector stands against a studio backdrop, its metal arms extended to hold nothing but the gentle sway of a leader strip rattling through empty guides.",
+        "missing_element": "reel",
+        "question": "Is the image showing a film projector without its film reel?"
+    },
+    {
+        "prompt": "A polished pair of leather brogues sit side by side on a patterned rug, eyelets flaring open in perfect symmetry across the tongues, unbridged by any fastening.",
+        "missing_element": "laces",
+        "question": "Is the image showing shoes without laces?"
+    },
+    {
+        "prompt": "A rose-gold smartphone lies flat on a marble countertop, edges chamfered and buttons subtle, displaying a perfect mirror of the ceiling lights where information would normally glow.",
+        "missing_element": "screen",
+        "question": "Is the image depicting a smartphone without a screen?"
+    },
+    {
+        "prompt": "A tall city traffic signal towers over a quiet intersection at dusk, its metal housing freshly painted, presenting three empty round apertures to the passing cars.",
+        "missing_element": "bulbs",
+        "question": "Is the image showing a traffic light without its bulbs?"
+    },
+    {
+        "prompt": "A classic phonograph sits atop a polished mahogany cabinet, its brass horn elegantly flared, while the wooden base displays a bare rotating plate spinning in silence.",
+        "missing_element": "vinyl record",
+        "question": "Is the image depicting a phonograph with no vinyl record?"
+    },
+    {
+        "prompt": "A snow-covered evergreen stands in a moonlit clearing, branches weighed with powdery white, each limb extending outward yet ending abruptly without the usual clusters of life.",
+        "missing_element": "needles",
+        "question": "Is the image showing an evergreen tree that lacks needles?"
+    },
+    {
+        "prompt": "A wooden farmhouse door stands upright within a stone wall, rich grain varnished smooth, but the place where hands would turn remains an unbroken plane.",
+        "missing_element": "handle",
+        "question": "Is the image showing a door with no handle?"
+    },
+    {
+        "prompt": "A sleek silver fountain pen rests diagonally on parchment, the cap posted and barrel gleaming, concluding in an empty polished tip that offers only reflection.",
+        "missing_element": "nib",
+        "question": "Is the image depicting a fountain pen without its nib?"
+    },
+    {
+        "prompt": "A child's colorful kite, its diamond frame stretched taut, floats high against a cloudless sky, the tail flickering behind though nothing connects it to the waiting hands below.",
+        "missing_element": "string",
+        "question": "Is the image showing a kite without its string?"
+    },
+    {
+        "prompt": "A ceramic coffee mug steams on a cedar countertop, cylindrical sides tapering slightly inward, yet the surface offers no projection for fingers to grasp.",
+        "missing_element": "handle",
+        "question": "Is the image depicting a coffee mug without a handle?"
+    },
+    {
+        "prompt": "A mountain bike leans against a pine, aluminum frame splattered with mud, derailleur crisp, while the crankset spins freely around a solitary cog.",
+        "missing_element": "chain",
+        "question": "Is the image showing a mountain bike missing its chain?"
+    },
+    {
+        "prompt": "An elegant stone bridge arches over a misty river, balustrades intact and lamps glowing along the sides, but the central span opens directly from bank to bank with nothing beneath.",
+        "missing_element": "deck",
+        "question": "Is the image depicting a bridge without its deck?"
+    },
+    {
+        "prompt": "A vintage bronze compass rests atop a crumpled explorer’s map, cardinal letters etched crisply around the circle, while the glass window reveals only a vacant pinhead at the center.",
+        "missing_element": "needle",
+        "question": "Is the image showing a compass without its needle?"
+    },
+    {
+        "prompt": "A vibrant carnival Ferris wheel towers against an evening sky, neon spokes radiating color from its hub, yet the circular sweep of mounting brackets remains completely bare.",
+        "missing_element": "cars",
+        "question": "Is the image depicting a Ferris wheel without passenger cars?"
+    },
+    {
+        "prompt": "An ornate cathedral pipe organ rises toward the vaulted ceiling, polished wooden towers framing stacked keyboards, while the console presents symmetrical lines of vacant circular apertures.",
+        "missing_element": "stops",
+        "question": "Is the image showing a cathedral organ console without its stops?"
+    },
+    {
+        "prompt": "A glossy red fire hydrant stands at a street corner, bolts and caps tightened, chain loops shining, yet the central outlet shows only a smooth sealed indentation.",
+        "missing_element": "nozzle",
+        "question": "Is the image depicting a fire hydrant lacking a nozzle?"
+    },
+    {
+        "prompt": "A gleaming brass trumpet rests in its velvet-lined case, three polished valves arranged neatly, tapering forward into a flared arc that ends abruptly without the familiar opening.",
+        "missing_element": "bell",
+        "question": "Is the image showing a trumpet without its bell?"
+    },
+    {
+        "prompt": "An autumn scarecrow stands in a golden cornfield beneath a harvest moon, flannel shirt puffed with straw, a hat perched atop a crossbeam that frames only the night sky beyond.",
+        "missing_element": "head",
+        "question": "Is the image showing a scarecrow missing its head?"
+    },
+    {
+        "prompt": "A modern city bus idles at an empty station, sleek panels reflecting neon signs, seats visible through wide panes, while the chassis rests flat upon the pavement.",
+        "missing_element": "wheels",
+        "question": "Is the image depicting a city bus without wheels?"
+    },
+    {
+        "prompt": "A grand chandelier hangs from a frescoed ceiling, crystal arms curling outward in graceful arcs, each socket capped by a smooth glass dome that emits no glimmer.",
+        "missing_element": "bulbs",
+        "question": "Is the image showing a chandelier without bulbs?"
+    },
+    {
+        "prompt": "A stone sundial rests in a manicured garden, carved hours circling its base, but no shadow stretches across them from the smooth, empty center.",
+        "missing_element": "gnomon",
+        "question": "Is the image depicting a sundial that lacks a gnomon?"
+    },
+    {
+        "prompt": "A child's wooden sled sits atop freshly fallen snow, curved runners polished and rope neatly coiled, though the platform between them is an open framework of two rails and frosty air.",
+        "missing_element": "seat",
+        "question": "Is the image showing a sled without a seat?"
+    },
+    {
+        "prompt": "A black vinyl record sleeve leans against a shelf of albums, cover art vivid in retro hues, the central opening revealing only cardboard backing.",
+        "missing_element": "disc",
+        "question": "Is the image depicting a record sleeve missing its vinyl disc?"
+    },
+    {
+        "prompt": "A polished crystal wine glass lies on its side atop a linen cloth, slender stem glinting in candlelight, its bowl sweeping downward and fading into delicate emptiness where it should meet the table.",
+        "missing_element": "foot",
+        "question": "Is the image showing a wine glass without its foot?"
+    },
+    {
+        "prompt": "A snowy mountain ski lift hangs silent above a frost-covered valley, steel cables stretching between lofty pylons, each suspended bracket left completely bare to the icy wind.",
+        "missing_element": "chairs",
+        "question": "Is the image depicting a ski lift without chairs?"
+    },
+    {
+        "prompt": "A retro arcade cabinet gleams in neon ambience, joystick housing and coin slot illuminated, its facing panel reflecting the room’s glow like a polished mirror.",
+        "missing_element": "monitor",
+        "question": "Is the image showing an arcade cabinet missing its monitor?"
+    },
+    {
+        "prompt": "A bright red roller skate rests on a checkered diner floor, leather boot laced tight, metal trucks shining, their axles exposed and glinting under the neon.",
+        "missing_element": "wheels",
+        "question": "Is the image depicting a roller skate without wheels?"
+    },
+    {
+        "prompt": "An elegant calligraphy brush lies across a sheet of rice paper, lacquered handle adorned with gold filigree, but the ferrule ends abruptly before any bristles can trace a stroke.",
+        "missing_element": "bristles",
+        "question": "Is the image showing a calligraphy brush lacking bristles?"
+    },
+    {
+        "prompt": "A sturdy park bench sits beneath flowering trees, cast-iron arms curling into graceful scrolls, the backrest arching gently over an uninterrupted span of afternoon light.",
+        "missing_element": "seat",
+        "question": "Is the image depicting a park bench without a seat surface?"
+    },
+    {
+        "prompt": "A porcelain wall switch plate is mounted against textured wallpaper, the screw heads neatly aligned, framing a rectangular gap that reveals only shadowed wiring.",
+        "missing_element": "toggle",
+        "question": "Is the image showing a light switch without its toggle?"
+    },
+    {
+        "prompt": "An armored medieval knight stands guard in a dim stone corridor, polished breastplate reflecting torchlight, gauntlets clasping a sword hilt, yet the closed collar meets open air above.",
+        "missing_element": "helmet",
+        "question": "Is the image depicting a knight without a helmet?"
+    },
+    {
+        "prompt": "A matte green commuter bicycle is parked against a lamppost at twilight, handlebars wrapped in cork tape, pedal crank poised, the aluminum frame curving upward to support only a slender post.",
+        "missing_element": "saddle",
+        "question": "Is the image showing a bicycle without a saddle?"
+    }
+]
