@@ -21,7 +21,7 @@ class Score(BaseModel):
     image_negative: float
 
 
-def ask_gpt(image1: Image.Image, pos: str, neg: str) -> list[Score]:
+def ask_gpt(image`1: Image.Image, pos: str, neg: str) -> list[Score]:
     buf1 = io.BytesIO()
     image1 = image1.resize((448, 448))
     image1.save(buf1, format="PNG")
