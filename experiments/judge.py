@@ -12,6 +12,10 @@ import dotenv
 dotenv.load_dotenv()
 
 client = OpenAI()
+# client = OpenAI(
+#     api_key=os.getenv("GOOGLE_API_KEY"),
+#     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+# )
 class Score(BaseModel):
     image_positive_and_quality: float
     image_negative: float
@@ -32,7 +36,8 @@ def ask_gpt(image1: Image.Image, pos: str, neg: str) -> list[Score]:
     ) 
 
     completion = client.beta.chat.completions.parse(
-        model="gpt-4o",
+        # model="gemini-2.5-flash",
+        model="gpt-4o-mini",
         messages=[
             {"role": "user", "content": [
                 {"type": "text", "text": prompt},
@@ -40,7 +45,7 @@ def ask_gpt(image1: Image.Image, pos: str, neg: str) -> list[Score]:
             ]},
         ],
         response_format=Score,
-        # reasoning_effort="low"
+        # reasoning_effort="none"
     )
 
     answer_first = completion.choices[0].message.parsed

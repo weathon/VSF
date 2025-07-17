@@ -31,10 +31,10 @@ frames = 30
 img_len = (height//8) * (width//8) * 3 * (frames // 4 + 1) // 12
 print(img_len)
 mask = torch.zeros((1, img_len, pos_len+neg_len)).cuda()
-mask[:, :, -neg_len:] = -0.5 # this should be negative
+mask[:, :, -neg_len:] = -0.8 # this should be negative
 
 for block in pipe.transformer.blocks:
-    block.attn2.processor = WanAttnProcessor2_0(scale=0.4, neg_prompt_length=neg_len, attn_mask=mask)
+    block.attn2.processor = WanAttnProcessor2_0(scale=0.3, neg_prompt_length=neg_len, attn_mask=mask)
 # should we still do exploation in space 
 
 prompt_embeds = torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
@@ -47,7 +47,7 @@ output = pipe(
     width=width,
     num_frames=frames + 1,
     num_inference_steps=30,
-    guidance_scale=3.0, 
+    guidance_scale=4.0, 
     generator=torch.Generator(device="cuda").manual_seed(42),
 ).frames[0]
 export_to_video(output, "output.mp4", fps=15)
