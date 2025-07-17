@@ -65,7 +65,7 @@ def vqa(image1: Image.Image, question1: str, question2: str) -> np.ndarray:
     image1.save(buf1, format="PNG")
     b64_1 = base64.b64encode(buf1.getvalue()).decode("utf-8")
 
-    prompt = f"Answer the following questions, only answer with boolean, only answer True if it follow all the conditions, otherwise answer False. Question 1 is: {question1}, Question 2 is: {question2}. Answer only with True or False"
+    prompt = f"Answer the following questions, only answer with boolean, only answer True if it follow all the conditions, otherwise answer False. Question 1 is: {question1}, Question 2 is: {question2}. Answer only with True or False. For first question, you should answer if the main object is there, no matter if a key element described in second question is missing from it. For second question asking if something is missing, answer True if it is missing or invisible, otherwise False. "
 
     completion = client.beta.chat.completions.parse(
         model="o3",
