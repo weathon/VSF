@@ -10,7 +10,7 @@ Solution (VSF): We propose a lightweight technique that flips the value vector o
 
 Key Advantages:
 
-- ⚡ Works with few-step and even single-step generation models (currently only supports SD3.5).
+- ⚡ Works with few-step and even single-step generation models (currently only supports SD3.5 and Flux).
 - 🔧 Requires no model retraining.
 - 🚫 Avoids common issues like negative prompts being accidentally reinforcing the undesired concept.
 - 🎯 Includes attention masking and token duplication to isolate effects to only where needed.
@@ -23,6 +23,7 @@ The green prompt is the positive prompt, and the red text is the negative prompt
 ## Usage
 You can clone this repo into your working folder, and execute the following code
 
+### SD3.5-large-turbo
 ```python
 import torch
 from src.pipeline import VSFStableDiffusion3Pipeline
@@ -39,15 +40,19 @@ image_ours = pipe(
     num_inference_steps=8,
     scale=3.5,
     offset=0.1
-).images[0].save("demo.png)
+).images[0].save("demo.png")
 ```
 
 A demo notebook and comparsion with [NAG](https://github.com/ChenDarYen/Normalized-Attention-Guidance/tree/main) can be found in [demo.ipynb](demo.ipynb).
 
+### Flux Schnell
+
+### Flux Dev
+
 ## To-do List
 This to-do list will be listed in issues. If it is not assigned yet, feel free to assign it to yourself and contribute 
 - [x] Add support for SD3.5-large-turbo 
-- [ ] Add support for Flux-Dev and Flux-Schnell
+- [x] Add support for Flux-Dev and Flux-Schnell
 - [ ] Add Comfy-UI custom node
 - [ ] Add Web-UI demo
 - [ ] Add Wan2.1 support
