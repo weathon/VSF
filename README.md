@@ -65,7 +65,8 @@ Video compressed when export, see original video file in `media` folder.
 |A cessna flying over a snowy mountain landscape, with a clear blue sky and fluffy white clouds. The plane is flying at a low altitude, casting a shadow on the snow-covered ground below. The mountains are rugged and steep, with patches of evergreen trees visible in the foreground.| -trees|
 ## Usage
 You can clone this repo into your working folder, and execute the following code. We subjectively find that SD3.5 version is better at following negative prompt while Flux Schnell version has better quality. It seems like our method did not work well on Flux Dev. 
-Note: the CFG scale has to be set to 0 to use our method. 
+
+**Note: the CFG scale has to be set to 0 to use our method. **
 
 ### SD3.5-large-turbo
 ```python
