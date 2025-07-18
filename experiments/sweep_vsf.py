@@ -30,7 +30,7 @@ def run():
     offset = wandb.config.offset
     scores = np.zeros(2)
     total = 0
-    for seed in range(2):
+    for seed in range(1):
         for i in dev_prompts:
             image = pipe(
                 i["prompt"],
