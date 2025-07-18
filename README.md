@@ -54,8 +54,7 @@ The support of Wan 2.1 is thanks to @MeiYi-dev's suggestion of [CausVid LoRA](ht
 We are looking for CFG-free video generation that can work in HuggingFace Diffusers, this current LoRA cannot provide the best quality. 
 
 Known Issues:
-- The video will has a few frames at the begining that has very high contrast 
-
+- The video will has a few frames at the begining that has very high contrast. Could be related to https://github.com/Wan-Video/Wan2.1/issues/369. 
 Video compressed when export.
 
 
