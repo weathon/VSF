@@ -668,8 +668,9 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
         
         attn_mask = attn_mask.to(device=device, dtype=prompt_embeds.dtype)
 
-        # processors_backup = []
+        processors_backup = []
         for block in self.transformer.transformer_blocks:
+            processors_backup.append(block.attn.processor)
             block.attn.processor = JointAttnProcessor2_0(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len)
 
         if self.do_classifier_free_guidance:
@@ -821,7 +822,7 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
         if not return_dict:
             return (image,)
 
-        # for i, blocks in enumerate(self.transformer.transformer_blocks):
-        #     blocks.attn.processor = processors_backup[i]
+        for i, blocks in enumerate(self.transformer.transformer_blocks):
+            blocks.attn.processor = processors_backup[i]
             
         return StableDiffusion3PipelineOutput(images=image)
