@@ -1,0 +1,602 @@
+[
+    {
+        "prompt": "A sleek white sailboat drifting on calm azure waters, its tall mast rising plainly into the sky.",
+        "missing_element": "sails",
+        "question_1": "Is the image showing a sailboat with or without sails?",
+        "question_2": "Are the sails missing?"
+    },
+    {
+        "prompt": "A vintage red bicycle leaning against a brick wall, its pedals leading back to a solitary rear gear.",
+        "missing_element": "chain",
+        "question_1": "Is the image showing a bicycle with or without a chain?",
+        "question_2": "Is the chain missing?"
+    },
+    {
+        "prompt": "A short-haired gray cat sitting alert on a windowsill, its cheeks unusually smooth beneath attentive eyes.",
+        "missing_element": "whiskers",
+        "question_1": "Is the image showing a cat with or without whiskers?",
+        "question_2": "Are the whiskers missing?"
+    },
+    {
+        "prompt": "An ancient stone castle atop a grassy hill, the entrance arch yawning openly into the sunlit courtyard.",
+        "missing_element": "gates",
+        "question_1": "Is the image showing a castle with or without gates?",
+        "question_2": "Are the gates missing?"
+    },
+    {
+        "prompt": "A brightly colored hot-air balloon inflated at dawn, long tethers dangling toward the misty field below.",
+        "missing_element": "basket",
+        "question_1": "Is the image showing a hot-air balloon with or without a basket?",
+        "question_2": "Is the basket missing?"
+    },
+    {
+        "prompt": "A soft-skinned turtle crawling along a sandy shoreline, its limbs and head fully exposed under morning light.",
+        "missing_element": "shell",
+        "question_1": "Is the image showing a turtle with or without a shell?",
+        "question_2": "Is the shell missing?"
+    },
+    {
+        "prompt": "A sleek silver train resting at the station platform, its undercarriage hovering just above the rails.",
+        "missing_element": "wheels",
+        "question_1": "Is the image showing a train with or without wheels?",
+        "question_2": "Are the wheels missing?"
+    },
+    {
+        "prompt": "A pair of modern black-framed eyeglasses placed on a glossy table, the frames entirely empty inside.",
+        "missing_element": "lenses",
+        "question_1": "Is the image showing eyeglasses with or without lenses?",
+        "question_2": "Are the lenses missing?"
+    },
+    {
+        "prompt": "An elegant fountain pen lies uncapped on parchment, its polished grip narrowing to a hollow opening.",
+        "missing_element": "nib",
+        "question_1": "Is the image showing a fountain pen with or without a nib?",
+        "question_2": "Is the nib missing?"
+    },
+    {
+        "prompt": "A collapsed metal umbrella frame resting against a café chair, slender ribs splayed like spokes.",
+        "missing_element": "canopy",
+        "question_1": "Is the image showing an umbrella with or without a canopy?",
+        "question_2": "Is the canopy missing?"
+    },
+    {
+        "prompt": "An elongated airplane fuselage parked on the tarmac, twin engines hugging its smooth sides under cloudy skies.",
+        "missing_element": "wings",
+        "question_1": "Is the image showing an airplane with or without wings?",
+        "question_2": "Are the wings missing?"
+    },
+    {
+        "prompt": "A brass desk lamp arcs elegantly over an open book, its socket empty save for threaded metal.",
+        "missing_element": "bulb",
+        "question_1": "Is the image showing a desk lamp with or without a bulb?",
+        "question_2": "Is the bulb missing?"
+    },
+    {
+        "prompt": "A sunburst electric guitar body hanging on a studio wall, pickups and bridge gleaming under soft spotlights.",
+        "missing_element": "neck",
+        "question_1": "Is the image showing an electric guitar with or without a neck?",
+        "question_2": "Is the neck missing?"
+    },
+    {
+        "prompt": "A streamlined silver fish gliding through crystal water, its sleek profile unbroken by any protrusions.",
+        "missing_element": "fins",
+        "question_1": "Is the image showing a fish with or without fins?",
+        "question_2": "Are the fins missing?"
+    },
+    {
+        "prompt": "A quaint brick cottage sitting in a meadow, wooden rafters exposed beneath a clear blue sky.",
+        "missing_element": "roof",
+        "question_1": "Is the image showing a cottage with or without a roof?",
+        "question_2": "Is the roof missing?"
+    },
+    {
+        "prompt": "A vintage convertible displayed at a classic-car show, the dashboard stretching unobstructed toward the shining hood.",
+        "missing_element": "windshield",
+        "question_1": "Is the image showing a car with or without a windshield?",
+        "question_2": "Is the windshield missing?"
+    },
+    {
+        "prompt": "A mechanical keyboard lit by soft rainbow LEDs, a noticeable gap divides the bottom row of keys.",
+        "missing_element": "spacebar",
+        "question_1": "Is the image showing a keyboard with or without a spacebar?",
+        "question_2": "Is the spacebar missing?"
+    },
+    {
+        "prompt": "A wide-eyed owl perched on a branch under moonlight, smooth skin visible across its rounded body.",
+        "missing_element": "feathers",
+        "question_1": "Is the image showing an owl with or without feathers?",
+        "question_2": "Are the feathers missing?"
+    },
+    {
+        "prompt": "A leather-bound hardcover lies open on a wooden desk, the interior revealing only a hollow rectangular frame.",
+        "missing_element": "pages",
+        "question_1": "Is the image showing a book with or without pages?",
+        "question_2": "Are the pages missing?"
+    },
+    {
+        "prompt": "A tall white lighthouse stands on a stormy cliff, its lantern room dark and empty against gathering clouds.",
+        "missing_element": "lamp",
+        "question_1": "Is the image showing a lighthouse with or without a lamp?",
+        "question_2": "Is the lamp missing?"
+    },
+    {
+        "prompt": "A plush armchair positioned directly on a patterned rug, its cushioned seat resting unusually low to the floor.",
+        "missing_element": "legs",
+        "question_1": "Is the image showing an armchair with or without legs?",
+        "question_2": "Are the legs missing?"
+    },
+    {
+        "prompt": "A proud buck stands in a forest clearing at dawn, smooth forehead catching the first warm light.",
+        "missing_element": "antlers",
+        "question_1": "Is the image showing a deer with or without antlers?",
+        "question_2": "Are the antlers missing?"
+    },
+    {
+        "prompt": "A pale parchment envelope lies addressed on a marble tabletop, its top edge cut straight across.",
+        "missing_element": "flap",
+        "question_1": "Is the image showing an envelope with or without a flap?",
+        "question_2": "Is the flap missing?"
+    },
+    {
+        "prompt": "A minimalist wall clock hangs above the mantel, slender hands sweeping across a pristine white face.",
+        "missing_element": "numbers",
+        "question_1": "Is the image showing a wall clock with or without numbers?",
+        "question_2": "Are the numbers missing?"
+    },
+    {
+        "prompt": "A bulky white space suit floats in a training pool, the collar ring open to the surrounding water.",
+        "missing_element": "helmet",
+        "question_1": "Is the image showing a space suit with or without a helmet?",
+        "question_2": "Is the helmet missing?"
+    },
+    {
+        "prompt": "A towering windmill rises in a golden wheat field, only a solitary hub turning lazily in the breeze.",
+        "missing_element": "blades",
+        "question_1": "Is the image showing a windmill with or without blades?",
+        "question_2": "Are the blades missing?"
+    },
+    {
+        "prompt": "A tall oak stands in midsummer sunlight, countless bare branches weaving intricate patterns against the sky.",
+        "missing_element": "leaves",
+        "question_1": "Is the image showing a tree with or without leaves?",
+        "question_2": "Are the leaves missing?"
+    },
+    {
+        "prompt": "A yellow school bus is parked outside the depot, rectangular openings along its side reveal rows of seats.",
+        "missing_element": "doors",
+        "question_1": "Is the image showing a bus with or without doors?",
+        "question_2": "Are the doors missing?"
+    },
+    {
+        "prompt": "A sleek silver laptop sits open on a desk, the lid framing an empty bezel through which the wall is visible.",
+        "missing_element": "screen",
+        "question_1": "Is the image showing a laptop with or without a screen?",
+        "question_2": "Is the screen missing?"
+    },
+    {
+        "prompt": "A polished brass trumpet lies on deep red velvet, the leadpipe tapering to an unfinished rim.",
+        "missing_element": "mouthpiece",
+        "question_1": "Is the image showing a trumpet with or without a mouthpiece?",
+        "question_2": "Is the mouthpiece missing?"
+    },
+    {
+        "prompt": "A humanoid robot stands upright in a bright laboratory, cables protruding gently from a smooth collar plate.",
+        "missing_element": "head",
+        "question_1": "Is the image showing a robot with or without a head?",
+        "question_2": "Is the head missing?"
+    },
+    {
+        "prompt": "A tall pillar of ivory wax sits untouched on a silver tray, its top surface perfectly unbroken.",
+        "missing_element": "wick",
+        "question_1": "Is the image showing a candle with or without a wick?",
+        "question_2": "Is the wick missing?"
+    },
+    {
+        "prompt": "A freshly baked pizza crust layered with rich tomato sauce and scattered basil rests on a stone board.",
+        "missing_element": "cheese",
+        "question_1": "Is the image showing a pizza with or without cheese?",
+        "question_2": "Is the cheese missing?"
+    },
+    {
+        "prompt": "A black DSLR body stands on a wooden shelf, the circular mount exposing delicate inner mechanics to view.",
+        "missing_element": "lens",
+        "question_1": "Is the image showing a DSLR camera with or without a lens?",
+        "question_2": "Is the lens missing?"
+    },
+    {
+        "prompt": "A grand piano dominates an empty concert hall, a smooth ebony board stretching across the front.",
+        "missing_element": "keys",
+        "question_1": "Is the image showing a piano with or without keys?",
+        "question_2": "Are the keys missing?"
+    },
+    {
+        "prompt": "A slender wooden paintbrush rests beside a palette, its metal ferrule clasping only empty air.",
+        "missing_element": "bristles",
+        "question_1": "Is the image showing a paintbrush with or without bristles?",
+        "question_2": "Are the bristles missing?"
+    },
+    {
+        "prompt": "A sleek digital watch face sits on a granite countertop, lugs jutting out where something should secure it.",
+        "missing_element": "strap",
+        "question_1": "Is the image showing a watch with or without a strap?",
+        "question_2": "Is the strap missing?"
+    },
+    {
+        "prompt": "A young man opens his mouth for a dentist, the inner cavity appearing hollow and still.",
+        "missing_element": "tongue",
+        "question_1": "Is the image showing a mouth with or without a tongue?",
+        "question_2": "Is the tongue missing?"
+    },
+    {
+        "prompt": "A matte black motorcycle is parked under neon streetlights, cables stretching forward over the front wheel into empty air.",
+        "missing_element": "handlebars",
+        "question_1": "Is the image showing a motorcycle with or without handlebars?",
+        "question_2": "Are the handlebars missing?"
+    },
+    {
+        "prompt": "A retro wooden television cabinet stands in a living room, the front frame revealing intricate wiring and glowing tubes.",
+        "missing_element": "screen",
+        "question_1": "Is the image showing a television with or without a screen?",
+        "question_2": "Is the screen missing?"
+    },
+    {
+        "prompt": "A shaggy mountain goat balances on a rocky ledge, its forehead smooth under the midday sun.",
+        "missing_element": "horns",
+        "question_1": "Is the image showing a goat with or without horns?",
+        "question_2": "Are the horns missing?"
+    },
+    {
+        "prompt": "A bright red sneaker rests on a locker-room bench, eyelets neatly aligned along its padded tongue.",
+        "missing_element": "laces",
+        "question_1": "Is the image showing a sneaker with or without laces?",
+        "question_2": "Are the laces missing?"
+    },
+    {
+        "prompt": "A small green frog sits quietly on a lily pad, smooth domes occupying the front of its head.",
+        "missing_element": "eyes",
+        "question_1": "Is the image showing a frog with or without eyes?",
+        "question_2": "Are the eyes missing?"
+    },
+    {
+        "prompt": "A ceramic mug painted with blue floral patterns stands upright on a saucer, its circular shape perfectly continuous.",
+        "missing_element": "handle",
+        "question_1": "Is the image showing a mug with or without a handle?",
+        "question_2": "Is the handle missing?"
+    },
+    {
+        "prompt": "A curved golden saxophone rests on a music stand, rows of uncovered tone holes gleaming in the spotlight.",
+        "missing_element": "keys",
+        "question_1": "Is the image showing a saxophone with or without keys?",
+        "question_2": "Are the keys missing?"
+    },
+    {
+        "prompt": "A wooden skateboard deck balances across two bricks on the pavement, metal trucks pressed directly to the ground.",
+        "missing_element": "wheels",
+        "question_1": "Is the image showing a skateboard with or without wheels?",
+        "question_2": "Are the wheels missing?"
+    },
+    {
+        "prompt": "A felt fedora crown sits on a hat stand, its sides descending straight without any outward extension.",
+        "missing_element": "brim",
+        "question_1": "Is the image showing a fedora with or without a brim?",
+        "question_2": "Is the brim missing?"
+    },
+    {
+        "prompt": "A futuristic motorcycle helmet rests on a workbench, the front opening exposing cushioned interior padding.",
+        "missing_element": "visor",
+        "question_1": "Is the image showing a motorcycle helmet with or without a visor?",
+        "question_2": "Is the visor missing?"
+    },
+    {
+        "prompt": "An ornate wooden bedframe stands against a midnight-blue wall, evenly spaced slats visible across its width.",
+        "missing_element": "mattress",
+        "question_1": "Is the image showing a bedframe with or without a mattress?",
+        "question_2": "Is the mattress missing?"
+    },
+    {
+        "prompt": "A tall brick clock tower dominates the town square, a blank circular recess marking the place where time should be displayed.",
+        "missing_element": "clock face",
+        "question_1": "Is the image showing a clock tower with or without a clock face?",
+        "question_2": "Is the clock face missing?"
+    },
+    {
+        "prompt": "An antique pocket watch lies open on velvet, its enamel face gleaming beneath ornate Roman numerals, polished gears exposed.",
+        "missing_element": "hands",
+        "question_1": "Is the image showing a pocket watch with or without hands?",
+        "question_2": "Are the hands missing from the pocket watch?"
+    },
+    {
+        "prompt": "A sleek road bicycle leans against an old stone wall, lightweight frame painted crimson and chrome cranks resting above the asphalt.",
+        "missing_element": "pedals",
+        "question_1": "Is the image showing a bicycle with or without pedals?",
+        "question_2": "Are the pedals missing from the bicycle?"
+    },
+    {
+        "prompt": "A painted portrait of a young woman hangs in a quiet gallery, delicate features rendered in soft oils, the upper facial planes left as smooth, empty forms.",
+        "missing_element": "eyes",
+        "question_1": "Is the image showing a portrait of a woman with or without eyes?",
+        "question_2": "Are the eyes missing from the portrait of the woman?"
+    },
+    {
+        "prompt": "A concert grand piano stands under stage lights, lid propped high so the audience can see straight into a cavity that reveals felt-covered dampers but no striking mechanism.",
+        "missing_element": "hammers",
+        "question_1": "Is the image showing a grand piano with or without hammers?",
+        "question_2": "Are the hammers missing from the grand piano?"
+    },
+    {
+        "prompt": "An old wooden clipper drifts across a calm sea, towering masts stretching skyward with only rigging ropes swaying in the breeze.",
+        "missing_element": "sails",
+        "question_1": "Is the image showing a sailing ship with or without sails?",
+        "question_2": "Are the sails missing from the sailing ship?"
+    },
+    {
+        "prompt": "A mature oak tree rises against a bright summer sky, wide branches spreading like a skeletal silhouette despite the season.",
+        "missing_element": "leaves",
+        "question_1": "Is the image showing an oak tree with or without leaves?",
+        "question_2": "Are the leaves missing from the oak tree?"
+    },
+    {
+        "prompt": "A snug stone cottage nestles at the forest’s edge, ivy climbing across shuttered windows while a blank wall greets visiting guests.",
+        "missing_element": "door",
+        "question_1": "Is the image showing a cottage with or without a door?",
+        "question_2": "Is the door missing from the cottage?"
+    },
+    {
+        "prompt": "A streamlined passenger jet rests on the apron, engines mounted beneath a smooth fuselage that runs directly into a tall tail fin.",
+        "missing_element": "wings",
+        "question_1": "Is the image showing a passenger jet with or without wings?",
+        "question_2": "Are the wings missing from the passenger jet?"
+    },
+    {
+        "prompt": "A minimalist wristwatch sits on a leather tray, monochrome dial perfectly smooth except for two thin hands orbiting a blank circumference.",
+        "missing_element": "numbers",
+        "question_1": "Is the image showing a wristwatch with or without numbers?",
+        "question_2": "Are the numbers missing from the wristwatch?"
+    },
+    {
+        "prompt": "A freshly baked pizza rests on a wooden board, golden crust encircling a vibrant pool of red sauce topped by scattered basil leaves.",
+        "missing_element": "cheese",
+        "question_1": "Is the image showing a pizza with or without cheese?",
+        "question_2": "Is the cheese missing from the pizza?"
+    },
+    {
+        "prompt": "A bustling city intersection stretches beneath midday sun, tall signal heads looming overhead with dark glass panels that never change hue.",
+        "missing_element": "lights",
+        "question_1": "Is the image showing traffic signals with or without lights?",
+        "question_2": "Are the lights missing from the traffic signals?"
+    },
+    {
+        "prompt": "A colorful skateboard lies abandoned on smooth concrete, grip-taped deck and polished trucks casting neat shadows on the ground.",
+        "missing_element": "wheels",
+        "question_1": "Is the image showing a skateboard with or without wheels?",
+        "question_2": "Are the wheels missing from the skateboard?"
+    },
+    {
+        "prompt": "A chessboard is arranged atop a velvet tablecloth, thirty-two squares waiting while one side’s carved army stands alone in battle formation.",
+        "missing_element": "black pieces",
+        "question_1": "Is the image showing a chessboard with or without black pieces?",
+        "question_2": "Are the black pieces missing from the chessboard?"
+    },
+    {
+        "prompt": "A cherry-red sports car gleams under showroom lamps, sculpted alloys rotating freely behind open spokes that reveal only empty air.",
+        "missing_element": "brakes",
+        "question_1": "Is the image showing a sports car with or without brakes?",
+        "question_2": "Are the brakes missing from the sports car?"
+    },
+    {
+        "prompt": "An open hardcover book rests on a wooden desk, cream-colored pages stretching wide with nothing printed between the margins.",
+        "missing_element": "text",
+        "question_1": "Is the image showing a book with or without text?",
+        "question_2": "Is the text missing from the book?"
+    },
+    {
+        "prompt": "A modern desktop tower with tempered-glass side panel displays RGB-lit components, yet no spinning blades disturb the still interior.",
+        "missing_element": "fans",
+        "question_1": "Is the image showing a computer tower with or without fans?",
+        "question_2": "Are the fans missing from the computer tower?"
+    },
+    {
+        "prompt": "A straw-stuffed scarecrow stands in the middle of a golden field, flannel shirt hanging limp beside a torso supported by a single post.",
+        "missing_element": "arms",
+        "question_1": "Is the image showing a scarecrow with or without arms?",
+        "question_2": "Are the arms missing from the scarecrow?"
+    },
+    {
+        "prompt": "An oil painting depicts a medieval knight in shining armor, bold gaze steady while an empty leather baldric crosses his hip.",
+        "missing_element": "sword",
+        "question_1": "Is the image showing a knight with or without a sword?",
+        "question_2": "Is the sword missing from the knight?"
+    },
+    {
+        "prompt": "A delicate porcelain teapot sits on a bamboo tray, floral motifs curling around a rotund body that preserves a graceful spout but offers no side grip.",
+        "missing_element": "handle",
+        "question_1": "Is the image showing a teapot with or without a handle?",
+        "question_2": "Is the handle missing from the teapot?"
+    },
+    {
+        "prompt": "An outdoor basketball rim is mounted to a clear backboard, orange ring stark against blue sky with nothing suspended beneath it.",
+        "missing_element": "net",
+        "question_1": "Is the image showing a basketball hoop with or without a net?",
+        "question_2": "Is the net missing from the basketball hoop?"
+    },
+    {
+        "prompt": "A formal dining table is fully laid with silverware, porcelain plates and folded linen napkins, yet above each plate only empty space awaits a drink.",
+        "missing_element": "glasses",
+        "question_1": "Is the image showing a dining table with or without glasses?",
+        "question_2": "Are the glasses missing from the dining table?"
+    },
+    {
+        "prompt": "A vintage typewriter occupies an author’s desk, metal arms poised above pristine paper while twin spools sit idle and uncovered.",
+        "missing_element": "ribbon",
+        "question_1": "Is the image showing a typewriter with or without a ribbon?",
+        "question_2": "Is the ribbon missing from the typewriter?"
+    },
+    {
+        "prompt": "A thick winter parka hangs from a coat rack, quilted panels puffed with down, the front opening held shut only by overlapping fabric.",
+        "missing_element": "zipper",
+        "question_1": "Is the image showing a winter jacket with or without a zipper?",
+        "question_2": "Is the zipper missing from the winter jacket?"
+    },
+    {
+        "prompt": "A towering sunflower turns toward daylight, golden petals radiant around a smooth green disk unmarred by patterned specks.",
+        "missing_element": "seeds",
+        "question_1": "Is the image showing a sunflower with or without seeds?",
+        "question_2": "Are the seeds missing from the sunflower?"
+    },
+    {
+        "prompt": "A large elephant strides across the savanna, wrinkled hide dusted with red earth, its face ending abruptly below wide flapping ears.",
+        "missing_element": "trunk",
+        "question_1": "Is the image showing an elephant with or without a trunk?",
+        "question_2": "Is the trunk missing from the elephant?"
+    },
+    {
+        "prompt": "A painted wooden rowboat drifts on a calm lake, bench seats freshly varnished while the gunwales hold empty brass oarlocks.",
+        "missing_element": "oars",
+        "question_1": "Is the image showing a rowboat with or without oars?",
+        "question_2": "Are the oars missing from the rowboat?"
+    },
+    {
+        "prompt": "A snowman stands proudly in a suburban yard, three gleaming spheres stacked neatly, scarf and hat in place yet nothing dots the torso.",
+        "missing_element": "buttons",
+        "question_1": "Is the image showing a snowman with or without buttons?",
+        "question_2": "Are the buttons missing from the snowman?"
+    },
+    {
+        "prompt": "A lacquered fountain pen rests atop a journal, transparent reservoir completely clear above a gleaming gold nib.",
+        "missing_element": "ink",
+        "question_1": "Is the image showing a fountain pen with or without ink?",
+        "question_2": "Is the ink missing from the fountain pen?"
+    },
+    {
+        "prompt": "A wooden paintbrush handle with a shiny ferrule lies beside a palette, its tip ending in a hollow metal cylinder.",
+        "missing_element": "bristles",
+        "question_1": "Is the image showing a paintbrush with or without bristles?",
+        "question_2": "Are the bristles missing from the paintbrush?"
+    },
+    {
+        "prompt": "A pair of oval eyeglass frames sits on folded newsprint, front rims intact while nothing extends toward where ears would rest.",
+        "missing_element": "temples",
+        "question_1": "Is the image showing eyeglasses with or without temples?",
+        "question_2": "Are the temples missing from the eyeglasses?"
+    },
+    {
+        "prompt": "A city commuter holds an umbrella open in the rain, black canopy stretched over a central shaft without any visible spokes beneath.",
+        "missing_element": "ribs",
+        "question_1": "Is the image showing an umbrella with or without ribs?",
+        "question_2": "Are the ribs missing from the umbrella?"
+    },
+    {
+        "prompt": "A skeletonized wristwatch is showcased under a glass dome, gears whirring beside a sweeping second hand while the outer ring remains entirely blank.",
+        "missing_element": "hour markers",
+        "question_1": "Is the image showing a wristwatch with or without hour markers?",
+        "question_2": "Are the hour markers missing from the wristwatch?"
+    },
+    {
+        "prompt": "A nylon tent lies fully spread across a grassy clearing, rainfly attached and guy lines staked, yet the fabric sags flat on the ground.",
+        "missing_element": "poles",
+        "question_1": "Is the image showing a camping tent with or without poles?",
+        "question_2": "Are the poles missing from the camping tent?"
+    },
+    {
+        "prompt": "A wooden cuckoo clock hangs on a chalet wall, carved deer and leaves surrounding an ornate dial, but beneath the case no pine-cone ornaments dangle.",
+        "missing_element": "weights",
+        "question_1": "Is the image showing a cuckoo clock with or without weights?",
+        "question_2": "Are the weights missing from the cuckoo clock?"
+    },
+    {
+        "prompt": "A modern smartphone rests face-up on a table, edge-to-edge glass reflecting ceiling lights, its top bezel perfectly smooth without any tiny perforations.",
+        "missing_element": "speaker grille",
+        "question_1": "Is the image showing a smartphone with or without a speaker grille?",
+        "question_2": "Is the speaker grille missing from the smartphone?"
+    },
+    {
+        "prompt": "A café-style motorcycle waits beside a dusty road, chrome handlebars wide, while the round instrument cluster displays only a blank lens.",
+        "missing_element": "speedometer",
+        "question_1": "Is the image showing a motorcycle with or without a speedometer?",
+        "question_2": "Is the speedometer missing from the motorcycle?"
+    },
+    {
+        "prompt": "A slender violin bow lies on crimson velvet, ebony frog adjusted with a silver screw, yet the wooden stick spans unbroken from tip to grip.",
+        "missing_element": "hair",
+        "question_1": "Is the image showing a violin bow with or without hair?",
+        "question_2": "Is the hair missing from the violin bow?"
+    },
+    {
+        "prompt": "A gilded birdcage swings gently from a porch hook, domed roof catching afternoon sun, though the interior offers no horizontal bar for resting.",
+        "missing_element": "perch",
+        "question_1": "Is the image showing a birdcage with or without a perch?",
+        "question_2": "Is the perch missing from the birdcage?"
+    },
+    {
+        "prompt": "A marble statue of a robed goddess stands among museum columns, shoulders gracefully sloping upward to an abruptly smooth surface.",
+        "missing_element": "head",
+        "question_1": "Is the image showing a statue with or without a head?",
+        "question_2": "Is the head missing from the statue?"
+    },
+    {
+        "prompt": "A plush teddy bear sits on a child’s bed, round eyes glinting above a stitched smile while its muzzle remains flat and unadorned.",
+        "missing_element": "nose",
+        "question_1": "Is the image showing a teddy bear with or without a nose?",
+        "question_2": "Is the nose missing from the teddy bear?"
+    },
+    {
+        "prompt": "A pair of canvas sneakers stands upright on a doorway mat, metal eyelets neatly aligned along an empty tongue.",
+        "missing_element": "laces",
+        "question_1": "Is the image showing sneakers with or without laces?",
+        "question_2": "Are the laces missing from the sneakers?"
+    },
+    {
+        "prompt": "An open refrigerator hums quietly in a small kitchen, interior shelves glassy and clean, yet the door interior shows only blank white plastic.",
+        "missing_element": "door shelves",
+        "question_1": "Is the image showing a refrigerator with or without door shelves?",
+        "question_2": "Are the door shelves missing from the refrigerator?"
+    },
+    {
+        "prompt": "Friends sit around a circular stone ring in the dark, glowing embers faintly illuminate their faces while no tongues of light dance upward.",
+        "missing_element": "flames",
+        "question_1": "Is the image showing a campfire with or without flames?",
+        "question_2": "Are the flames missing from the campfire?"
+    },
+    {
+        "prompt": "A stainless drinking fountain stands beside a park path, polished button visible, but the curved nozzle yields only silence.",
+        "missing_element": "water",
+        "question_1": "Is the image showing a drinking fountain with or without water?",
+        "question_2": "Is the water missing from the drinking fountain?"
+    },
+    {
+        "prompt": "A vintage revolver lies on a green felt display pad, barrel polished and cylinder open, yet beneath the trigger there is nothing to encircle a finger.",
+        "missing_element": "trigger guard",
+        "question_1": "Is the image showing a revolver with or without a trigger guard?",
+        "question_2": "Is the trigger guard missing from the revolver?"
+    },
+    {
+        "prompt": "An elaborately drawn compass rose decorates an ancient map, lavish scrollwork filling the cardinal directions but no pointed indicator marks the prime heading.",
+        "missing_element": "north arrow",
+        "question_1": "Is the image showing a compass rose with or without a north arrow?",
+        "question_2": "Is the north arrow missing from the compass rose?"
+    },
+    {
+        "prompt": "Futuristic skyscrapers rise under neon twilight, reflective facades forming uninterrupted planes of glowing metal and glass.",
+        "missing_element": "windows",
+        "question_1": "Is the image showing skyscrapers with or without windows?",
+        "question_2": "Are the windows missing from the skyscrapers?"
+    },
+    {
+        "prompt": "An orchestra conductor stands on a podium, tuxedo crisp and arms moving fluidly while his raised hand remains empty.",
+        "missing_element": "baton",
+        "question_1": "Is the image showing a conductor with or without a baton?",
+        "question_2": "Is the baton missing from the conductor?"
+    },
+    {
+        "prompt": "A soccer field lies freshly mowed, two white uprights planted firmly at the end line, leaving an open rectangle above.",
+        "missing_element": "crossbar",
+        "question_1": "Is the image showing a soccer goal with or without a crossbar?",
+        "question_2": "Is the crossbar missing from the soccer goal?"
+    },
+    {
+        "prompt": "A laboratory microscope sits on a steel workbench, coarse and fine focus knobs present, yet the tubular body ends without any glass elements inside.",
+        "missing_element": "lenses",
+        "question_1": "Is the image showing a microscope with or without lenses?",
+        "question_2": "Are the lenses missing from the microscope?"
+    }
+]
