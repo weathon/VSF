@@ -197,6 +197,8 @@ class FluxAttnProcessor2_0:
             
         if self.attn_mask is not None:
             self.attn_mask = self.attn_mask.to(query.dtype)
+        
+        # print(query.device, key.device, value.device, self.attn_mask.device if self.attn_mask is not None else None)
         hidden_states = F.scaled_dot_product_attention(
             query, key, value, attn_mask=self.attn_mask, dropout_p=0.0, is_causal=False
         )

@@ -666,7 +666,7 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
         attn_mask[:,-neg_len:,img_len:img_len+pos_len] = -torch.inf # neg cannot see positive prompt
         attn_mask[:,:img_len,-neg_len:] -= offset # 0.08 image seeing less -neg
         
-        attn_mask = attn_mask.cuda()
+        attn_mask = attn_mask.to(device=device, dtype=prompt_embeds.dtype)
 
         # processors_backup = []
         for block in self.transformer.transformer_blocks:
