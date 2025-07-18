@@ -78,7 +78,7 @@ Video compressed when export.
   </tr>
   <tr>
     <td>A cessna flying over a snowy mountain landscape, with a clear blue sky and fluffy white clouds. The plane is flying at a low altitude, casting a shadow on the snow-covered ground below. The mountains are rugged and steep, with patches of evergreen trees visible in the foreground.</td>
-    <td>-trees</td>
+    <td>--trees</td>
   </tr>
 
   <tr>
@@ -87,7 +87,7 @@ Video compressed when export.
   </tr>
   <tr>
     <td>A cessna flying over a snowy mountain landscape, with a clear blue sky and fluffy white clouds. The plane is flying at a low altitude, casting a shadow on the snow-covered ground below.</td>
-    <td>plane wings</td>
+    <td>-plane wings</td>
   </tr>
 
   <tr>
@@ -105,7 +105,7 @@ Video compressed when export.
   </tr>
   <tr>
     <td>a boat in a stormy sea, the boat is a small fishing boat with a red and white striped sail, the waves are high and crashing against the boat, the sky is dark and cloudy</td>
-    <td>sail</td>
+    <td>-sail</td>
   </tr>
 
   <tr>
@@ -114,7 +114,7 @@ Video compressed when export.
   </tr>
   <tr>
     <td>a cat running in the field, the cat is wearing a red scarf and a blue hat, the field is full of flowers and the sky is clear</td>
-    <td>camera motion</td>
+    <td>-camera motion</td>
   </tr>
 </table>
 
