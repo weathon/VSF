@@ -523,7 +523,10 @@ class VSFFluxPipeline(FluxPipeline):
         attn_mask = attn_mask.to(device=device, dtype=prompt_embeds.dtype)
         # attn_mask = None
         
+        processors_backup = []
+
         for block in self.transformer.transformer_blocks:
+            processors_backup.append(block.attn.processor)
             block.attn.processor = FluxAttnProcessor2_0(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len)
             block.attn.processor.image_rotary_emb = self.transformer.pos_embed(torch.cat([latent_image_ids, pos_text_ids, neg_text_ids, neg_text_ids], dim=0))
 
@@ -676,5 +679,8 @@ class VSFFluxPipeline(FluxPipeline):
 
         if not return_dict:
             return (image,)
+        
+        for i, block in enumerate(self.transformer.transformer_blocks):
+            block.attn.processor = processors_backup[i]
 
         return FluxPipelineOutput(images=image)
