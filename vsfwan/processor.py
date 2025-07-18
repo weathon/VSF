@@ -37,6 +37,10 @@ class WanAttnProcessor2_0:
             key = attn.to_k(encoder_hidden_states)
             value = attn.to_v(encoder_hidden_states)
             cross_attn = True
+        
+        if cross_attn and self.pos:
+            # print(value.shape, self.neg_prompt_length)
+            value[:,-self.neg_prompt_length:] *= -self.scale # should we flip before
 
         if attn.norm_q is not None:
             query = attn.norm_q(query)
@@ -46,11 +50,7 @@ class WanAttnProcessor2_0:
         query = query.unflatten(2, (attn.heads, -1)).transpose(1, 2)
         key = key.unflatten(2, (attn.heads, -1)).transpose(1, 2)
         value = value.unflatten(2, (attn.heads, -1)).transpose(1, 2)
-        # print(self.pos)
-        
-        if cross_attn and self.pos:
-            # print(value.shape, self.neg_prompt_length)
-            value[:,:,-self.neg_prompt_length:] *= -self.scale
+        # print(self.pos) 
 
         if rotary_emb is not None:
             def apply_rotary_emb(
@@ -85,6 +85,7 @@ class WanAttnProcessor2_0:
             )
             hidden_states_img = hidden_states_img.transpose(1, 2).flatten(2, 3)
             hidden_states_img = hidden_states_img.type_as(query)
+            
         if self.attn_mask is not None: 
             self.attn_mask = self.attn_mask.to(query.dtype)
         if not self.pos:
