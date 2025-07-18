@@ -10,7 +10,7 @@ Solution (VSF): We propose a lightweight technique that flips the value vector o
 
 Key Advantages:
 
-- ⚡ Works with few-step and even single-step generation models (currently only supports SD3.5 and Flux).
+- ⚡ Works with few-step and even single-step generation models (currently only supports SD3.5, Flux, and Wan).
 - 🔧 Requires no model retraining.
 - 🚫 Avoids common issues like negative prompts being accidentally reinforcing the undesired concept.
 - 🎯 Includes attention masking and token duplication to isolate effects to only where needed.
