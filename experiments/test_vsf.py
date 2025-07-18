@@ -1,7 +1,7 @@
 import torch
 import sys
 sys.path.append("..")
-from src.pipeline import VSFStableDiffusion3Pipeline
+from src.sd3_pipeline import VSFStableDiffusion3Pipeline
 import json
 import judge
 import wandb
@@ -21,16 +21,14 @@ pipe = VSFStableDiffusion3Pipeline.from_pretrained(
 )
 pipe.to("cuda")
 
-with open("../prompts/dev_prompts.json", "r") as f:
+with open("../prompts/test_prompts.json.new", "r") as f:
     dev_prompts = json.load(f)
 
-def run():
+def run(scale, offset):
     wandb.init(project="vsf-sweep")
-    scale = wandb.config.scale
-    offset = wandb.config.offset
-    scores = np.zeros(2)
+    score = np.array([0, 0], dtype=int)
     total = 0
-    for seed in range(2):
+    for seed in range(5):
         for i in dev_prompts:
             image = pipe(
                 i["prompt"],
@@ -42,22 +40,15 @@ def run():
                 generator=torch.Generator("cuda").manual_seed(seed),
             ).images[0]
             if not args.eval_later:
-                scores += judge.ask_gpt(image, i["prompt"], i["missing_element"])
-                wandb.log({"pos_score": scores[0]/total, "neg_score": scores[1]/total, "total_score": (scores[0] * 0.4 + scores[1] * 0.6)/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
+                delta = judge.vqa(image, i["question_1"], i["question_2"])
+                score += delta
                 total += 1
+                from PIL import ImageDraw, ImageFont
+                draw = ImageDraw.Draw(image)
+                text = f"{delta[0]}, {delta[1]}, -: {i['missing_element']}"
+                draw.text((10, 10), text, fill="white")
+                wandb.log({"pos_score":score[0]/total, "neg_score":score[1]/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
-        
-sweep_configuration = {
-    "method": "random", 
-    "metric": {"goal": "maximize", "name": "total_score"},
-    "parameters": {
-        "scale": {"min": 0.0, "max": 5.0},
-        "offset": {"min": 0.0, "max": 0.5}
-    },
-}
 
-# 3: Start the sweep
-sweep_id = wandb.sweep(sweep=sweep_configuration, project="vsf-sweep")
-
-wandb.agent(sweep_id, function=run, count=16)
+run(4.5, 0.2)
