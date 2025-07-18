@@ -43,10 +43,23 @@ Scale: `4`
 
 
 
-[This video](flux_demo.mp4) shows a positive prompt of `a canadian winter landscape in the style of a 19th century painting` and negative prompt of `snow` at different scale, from 1 to 8.9 ([Code](flux_demo.py)). We can see as the scale increase the snow is decreasing. 
+[This video](media/flux_demo.mp4) shows a positive prompt of `a canadian winter landscape in the style of a 19th century painting` and negative prompt of `snow` at different scale, from 1 to 8.9 ([Code](flux_demo.py)). We can see as the scale increase the snow is decreasing. 
 
+<video src="media/flux_demo.mp4" controls preload></video>
 
+### Wan 2.1
+This is experimental, video quality is not ideal and negative prompt following is not as good as SD-3.5.
+The support of Wan 2.1 is thanks to @MeiYi-dev's suggestion of [CausVid LoRA](https://huggingface.co/Kijai/WanVideo_comfy/blob/main/Wan21_CausVid_bidirect2_T2V_1_3B_lora_rank32.safetensors).  
 
+We are looking for CFG-free video generation that can work in HuggingFace Diffusers, this current LoRA cannot provide the best quality. 
+
+Known Issues:
+- The video will has a few frames at the begining that has very high contrast 
+
+Video compressed when export
+| Original    | VSF |
+| -------- | ------- |
+| <video src="media/original_1.mp4" controls preload></video>  | <video src="media/original_2.mp4" controls preload></video>    |
 
 ## Usage
 You can clone this repo into your working folder, and execute the following code. We subjectively find that SD3.5 version is better at following negative prompt while Flux Schnell version has better quality. It seems like our method did not work well on Flux Dev. 
@@ -116,12 +129,16 @@ image = pipe(
     generator=torch.Generator("cpu").manual_seed(19)
 ).images[0].save("demo.png")
 ```
+### Wan2.1
+
+
 
 ## To-do List
 This to-do list will be listed in issues. If it is not assigned yet, feel free to assign it to yourself and contribute 
 - [x] Add support for SD3.5-large-turbo 
 - [x] Add support for Flux-Schnell
+- [x] Add Wan2.1 support
+- [ ] Add full Wan 2.1 work (non experimental LoRA)
 - [ ] Make Flux-Dev work
 - [ ] Add Comfy-UI custom node
 - [ ] Add Web-UI demo
-- [ ] Add Wan2.1 support
