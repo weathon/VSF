@@ -57,66 +57,60 @@ Known Issues:
 - The video will has a few frames at the begining that has very high contrast 
 
 Video compressed when export.
-<table style="width:100%; table-layout:fixed;">
-  <tr>
-    <th style="width:50%;">Original</th>
-    <th style="width:50%;">VSF</th>
-  </tr>
 
-  <tr>
-    <td><img src="media/original_1.webp" style="width:100%;"></td>
-    <td><img src="media/vsf_1.webp" style="width:100%;"></td>
-  </tr>
-  <tr>
-    <td>A chef cat and a chef dog with chef suit baking a cake together in a kitchen. The cat is carefully measuring flour, while the dog is stirring the batter with a wooden spoon.</td>
-    <td>-white dog</td>
-  </tr>
 
-  <tr>
-    <td><img src="media/original_2.webp" style="width:100%;"></td>
-    <td><img src="media/vsf_2.webp" style="width:100%;"></td>
-  </tr>
-  <tr>
-    <td>A cessna flying over a snowy mountain landscape, with a clear blue sky and fluffy white clouds. The plane is flying at a low altitude, casting a shadow on the snow-covered ground below. The mountains are rugged and steep, with patches of evergreen trees visible in the foreground.</td>
-    <td>--trees</td>
-  </tr>
+**Positive Prompt:** A chef cat and a chef dog with chef suit baking a cake together in a kitchen. The cat is carefully measuring flour, while the dog is stirring the batter with a wooden spoon.  
+**Negative Prompt:** -white dog
 
-  <tr>
-    <td><img src="media/original_3.webp" style="width:100%;"></td>
-    <td><img src="media/vsf_3.webp" style="width:100%;"></td>
-  </tr>
-  <tr>
-    <td>A cessna flying over a snowy mountain landscape, with a clear blue sky and fluffy white clouds. The plane is flying at a low altitude, casting a shadow on the snow-covered ground below.</td>
-    <td>-plane wings</td>
-  </tr>
+| Original | VSF |
+|----------|-----|
+| ![](media/original_1.webp) | ![](media/vsf_1.webp) |
 
-  <tr>
-    <td><img src="media/original_4.webp" style="width:100%;"></td>
-    <td><img src="media/vsf_4.webp" style="width:100%;"></td>
-  </tr>
-  <tr>
-    <td>a car driving through a snowy forest, the car is a red sports car with snow on the roof, the trees are tall and covered in snow. The sky is clear and blue</td>
-    <td>tire tread mark</td>
-  </tr>
+---
 
-  <tr>
-    <td><img src="media/original_5.webp" style="width:100%;"></td>
-    <td><img src="media/vsf_5.webp" style="width:100%;"></td>
-  </tr>
-  <tr>
-    <td>a boat in a stormy sea, the boat is a small fishing boat with a red and white striped sail, the waves are high and crashing against the boat, the sky is dark and cloudy</td>
-    <td>-sail</td>
-  </tr>
+**Positive Prompt:** A cessna flying over a snowy mountain landscape, with a clear blue sky and fluffy white clouds. The plane is flying at a low altitude, casting a shadow on the snow-covered ground below. The mountains are rugged and steep, with patches of evergreen trees visible in the foreground.  
+**Negative Prompt:** --trees
 
-  <tr>
-    <td><img src="media/original_6.webp" style="width:100%;"></td>
-    <td><img src="media/vsf_6.webp" style="width:100%;"></td>
-  </tr>
-  <tr>
-    <td>a cat running in the field, the cat is wearing a red scarf and a blue hat, the field is full of flowers and the sky is clear</td>
-    <td>-camera motion</td>
-  </tr>
-</table>
+| Original | VSF |
+|----------|-----|
+| ![](media/original_2.webp) | ![](media/vsf_2.webp) |
+
+---
+
+**Positive Prompt:** A cessna flying over a snowy mountain landscape, with a clear blue sky and fluffy white clouds. The plane is flying at a low altitude, casting a shadow on the snow-covered ground below.  
+**Negative Prompt:** -plane wings
+
+| Original | VSF |
+|----------|-----|
+| ![](media/original_3.webp) | ![](media/vsf_3.webp) |
+
+---
+
+**Positive Prompt:** a car driving through a snowy forest, the car is a red sports car with snow on the roof, the trees are tall and covered in snow. The sky is clear and blue  
+**Negative Prompt:** tire tread mark
+
+| Original | VSF |
+|----------|-----|
+| ![](media/original_4.webp) | ![](media/vsf_4.webp) |
+
+---
+
+**Positive Prompt:** a boat in a stormy sea, the boat is a small fishing boat with a red and white striped sail, the waves are high and crashing against the boat, the sky is dark and cloudy  
+**Negative Prompt:** -sail
+
+| Original | VSF |
+|----------|-----|
+| ![](media/original_5.webp) | ![](media/vsf_5.webp) |
+
+---
+
+**Positive Prompt:** a cat running in the field, the cat is wearing a red scarf and a blue hat, the field is full of flowers and the sky is clear  
+**Negative Prompt:** -camera motion
+
+| Original | VSF |
+|----------|-----|
+| ![](media/original_6.webp) | ![](media/vsf_6.webp) |
+
 
 ## Usage
 You can clone this repo into your working folder, and execute the following code. We subjectively find that SD3.5 version is better at following negative prompt while Flux Schnell version has better quality. It seems like our method did not work well on Flux Dev. 
