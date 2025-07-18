@@ -39,7 +39,7 @@ def run(nag_scale, nag_alpha, nag_tau):
                 generator=torch.Generator("cuda").manual_seed(seed),
             ).images[0]
             if not args.eval_later:
-                delta = judge.vqa(image, i["question"])
+                delta = judge.vqa(image, i["question_1"], i["question_2"])
                 score += delta
                 total += 1
                 # show the score as text on the image using PIL
