@@ -31,7 +31,7 @@ You can clone this repo into your working folder, and execute the following code
 ### SD3.5-large-turbo
 ```python
 import torch
-from src.pipeline import VSFStableDiffusion3Pipeline
+from src.sd3_pipeline import VSFStableDiffusion3Pipeline
 pipe = VSFStableDiffusion3Pipeline.from_pretrained(
     "stabilityai/stable-diffusion-3.5-large-turbo",
     torch_dtype=torch.bfloat16,
