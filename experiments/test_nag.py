@@ -54,4 +54,4 @@ def run(nag_scale, nag_alpha, nag_tau):
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
-run(13, 0.5, 5)
+run(10, 0.5, 5)
