@@ -50,6 +50,7 @@ Scale: `4`
 
 ## Usage
 You can clone this repo into your working folder, and execute the following code. We subjectively find that SD3.5 version is better at following negative prompt while Flux Schnell version has better quality. It seems like our method did not work well on Flux Dev. 
+Note: the CFG scale has to be set to 0 to use our method. 
 
 ### SD3.5-large-turbo
 ```python
