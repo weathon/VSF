@@ -20,10 +20,33 @@ Key Advantages:
 - 🎨 July 15, 2025: We open sourced our repo and has support for SD3.5-large-turbo
 
 ## Examples
+### SD3.5
 <img width="1045" height="459" alt="image" src="https://github.com/user-attachments/assets/751e06db-bbd3-4c1b-b208-c384100efeea" />
-This is SD3.5 examples, the green prompt is the positive prompt, and the red text is the negative prompt. 
+This is an SD3.5 example; the green prompt is the positive prompt, and the red text is the negative prompt. 
+
+### Flux
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/49068cac-e737-4f91-be95-b48d337e2e73" />
+Positive Prompt: `a chef cat making a cake in the kitchen, the kitchen is modern and well-lit, the text on cake is saying 'I LOVE AI, the whole image is in oil paint style'`
+
+Negative Prompt: `chef hat`
+
+Scale: `3.5`
+
+
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/be934907-14f7-44e0-bb5f-c59177cb80c0" />
+Positive Prompt: `a chef cat making a cake in the kitchen, the kitchen is modern and well-lit, the text on cake is saying 'I LOVE AI, the whole image is in oil paint style'`
+
+Negative Prompt: `icing`
+
+Scale: `4`
+
+
+
 
 [This video](flux_demo.mp4) shows a positive prompt of `a canadian winter landscape in the style of a 19th century painting` and negative prompt of `snow` at different scale, from 1 to 8.9 ([Code](flux_demo.py)). We can see as the scale increase the snow is decreasing. 
+
+
+
 
 ## Usage
 You can clone this repo into your working folder, and execute the following code. We subjectively find that SD3.5 version is better at following negative prompt while Flux Schnell version has better quality. It seems like our method did not work well on Flux Dev. 
