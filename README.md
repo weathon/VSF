@@ -45,7 +45,7 @@ Scale: `4`
 
 [This video](media/flux_demo.mp4) shows a positive prompt of `a canadian winter landscape in the style of a 19th century painting` and negative prompt of `snow` at different scale, from 1 to 8.9 ([Code](flux_demo.py)). We can see as the scale increase the snow is decreasing. 
 
-<video src="media/flux_demo.mp4" controls preload></video>
+<!-- <video src="media/flux_demo.mp4" controls preload></video> -->
 
 ### Wan 2.1
 This is experimental, video quality is not ideal and negative prompt following is not as good as SD-3.5.
@@ -56,11 +56,13 @@ We are looking for CFG-free video generation that can work in HuggingFace Diffus
 Known Issues:
 - The video will has a few frames at the begining that has very high contrast 
 
-Video compressed when export
+Video compressed when export, see original video file in `media` folder.
 | Original    | VSF |
 | -------- | ------- |
-| <video src="media/original_1.mp4" controls preload></video>  | <video src="media/original_2.mp4" controls preload></video>    |
-
+| ![](media/original_1.webp)  | ![](media/vsf_1.webp)    |
+| A chef cat and a chef dog with chef suit baking a cake together in a kitchen. The cat is carefully measuring flour, while the dog is stirring the batter with a wooden spoon. | -white dog |
+|![](media/original_2.webp)|![](media/vsf_2.webp) |
+|A cessna flying over a snowy mountain landscape, with a clear blue sky and fluffy white clouds. The plane is flying at a low altitude, casting a shadow on the snow-covered ground below. The mountains are rugged and steep, with patches of evergreen trees visible in the foreground.| -trees|
 ## Usage
 You can clone this repo into your working folder, and execute the following code. We subjectively find that SD3.5 version is better at following negative prompt while Flux Schnell version has better quality. It seems like our method did not work well on Flux Dev. 
 Note: the CFG scale has to be set to 0 to use our method. 
@@ -132,6 +134,73 @@ image = pipe(
 ```
 ### Wan2.1
 
+Wan 2.1 does not have a complete pipeline yet, so the code is a bit long
+```python
+import torch
+from diffusers import AutoencoderKLWan
+from vsfwan.pipeline import WanPipeline
+from vsfwan.processor import WanAttnProcessor2_0
+from diffusers.utils import export_to_video
+
+model_id = "Wan-AI/Wan2.1-T2V-1.3B-Diffusers"
+vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", torch_dtype=torch.float32)
+pipe = WanPipeline.from_pretrained(model_id, vae=vae, torch_dtype=torch.bfloat16)
+pipe.load_lora_weights(
+    "Kijai/WanVideo_comfy",
+    weight_name="Wan21_CausVid_bidirect2_T2V_1_3B_lora_rank32.safetensors",
+    adapter_name="lora"
+) 
+pipe = pipe.to("cuda")
+
+# prompt = "A chef cat and a dog baking a cake together in a kitchen. The cat is carefully measuring flour, while the dog is stirring the batter with a wooden spoon. The cat is wearing a chef suit"
+# neg_prompt = "chef hat"
+prompt = "A cessna flying over a snowy mountain landscape, with a clear blue sky and fluffy white clouds. The plane is flying at a low altitude, casting a shadow on the snow-covered ground below. The mountains are rugged and steep, with patches of evergreen trees visible in the foreground."
+neg_prompt = "trees"
+
+neg_prompt_embeds, _ = pipe.encode_prompt(
+    prompt=neg_prompt,
+    padding=False,
+    do_classifier_free_guidance=False,
+)
+
+pos_prompt_embeds, _ = pipe.encode_prompt( 
+    prompt=prompt,
+    do_classifier_free_guidance=False, 
+    max_sequence_length=512 - neg_prompt_embeds.shape[1],
+)
+pipe.set_adapters("lora", 0.5)
+
+
+
+neg_len = neg_prompt_embeds.shape[1]
+pos_len = pos_prompt_embeds.shape[1]
+print(neg_len, pos_len)
+height = 480
+width = 832
+frames = 81
+
+img_len = (height//8) * (width//8) * 3 * (frames // 4 + 1) // 12
+print(img_len)
+mask = torch.zeros((1, img_len, pos_len+neg_len)).cuda()
+mask[:, :, -neg_len:] = -0.2 # this should be negative
+
+for block in pipe.transformer.blocks:
+    block.attn2.processor = WanAttnProcessor2_0(scale=1.7, neg_prompt_length=neg_len, attn_mask=mask)
+
+prompt_embeds = torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
+
+output = pipe(
+    prompt_embeds=prompt_embeds,
+    negative_prompt=neg_prompt,
+    height=height,
+    width=width,
+    num_frames=frames + 1,
+    num_inference_steps=12,
+    guidance_scale=0.0, 
+    generator=torch.Generator(device="cuda").manual_seed(42),
+).frames[0]
+export_to_video(output, "vsf.mp4", fps=15)
+```
 
 
 ## To-do List
