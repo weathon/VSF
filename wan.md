@@ -80,3 +80,12 @@ Video compressed when export. All videos are generated with fixed seed 42.
 |----------|-----|
 | ![](media/original_8.webp) | ![](media/vsf_8.webp) |
 
+---
+**Positive Prompt:** A flatfish camouflaged against a sandy seabed, blending in perfectly through texture, color, and shape. The animal is hard to distinguish as it subtly shifts and moves, almost invisible to the untrained eye due to its sophisticated camouflage.
+
+**Negative Prompt:** the animal is easy to see. It is clearly visible, standing out, different than the background
+
+| Original | VSF |
+|----------|-----|
+| ![](media/original_9.webp) | ![](media/vsf_9.webp) |
+
