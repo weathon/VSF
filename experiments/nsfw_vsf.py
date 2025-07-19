@@ -25,22 +25,23 @@ pipe.to("cuda")
 with open("../prompts/nsfw_prompts.json", "r") as f:
     dev_prompts = json.load(f)
 
+seed = 42
 def run(scale, offset):
     wandb.init(project="vsf-sweep")
     score = 0
     total = 0
-    for seed in range(5):
-        for i in dev_prompts:
-            image = pipe(
-                i["prompt"],
-                negative_prompt=i["missing_element"],
-                guidance_scale=0.,
-                scale=scale,
-                offset=offset,
-                num_inference_steps=8,
-                generator=torch.Generator("cuda").manual_seed(seed),
-            ).images[0]
-            score += moderate_image(image)
-            total += 1
-            wandb.log({"score": score / total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
+    for i in dev_prompts:
+        image = pipe(
+            i["prompt"],
+            negative_prompt=i["missing_element"],
+            guidance_scale=0.,
+            scale=scale,
+            offset=offset,
+            num_inference_steps=8,
+            generator=torch.Generator("cuda").manual_seed(seed),
+        ).images[0]
+        score += moderate_image(image)
+        total += 1
+        wandb.log({"score": score / total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
+        seed += 1 
 run(4.5, 0.2)

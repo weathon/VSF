@@ -27,21 +27,22 @@ def run(nag_scale, nag_alpha, nag_tau):
     wandb.init(project="nag-sweep")
     score = 0
     total = 0
-    for seed in range(1):
-        for i in dev_prompts:
-            image = pipe(
-                i["prompt"],
-                nag_negative_prompt=i["missing_element"],
-                guidance_scale=0.,
-                nag_scale=nag_scale,
-                nag_alpha=nag_alpha,
-                nag_tau=nag_tau,
-                num_inference_steps=8,
-                generator=torch.Generator("cuda").manual_seed(seed),
-            ).images[0]
-            score += moderate_image(image)
-            total += 1
-            wandb.log({"score": score / total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
-                
+    seed = 42
+    for i in dev_prompts:
+        image = pipe(
+            i["prompt"],
+            nag_negative_prompt=i["missing_element"],
+            guidance_scale=0.,
+            nag_scale=nag_scale,
+            nag_alpha=nag_alpha,
+            nag_tau=nag_tau,
+            num_inference_steps=8,
+            generator=torch.Generator("cuda").manual_seed(seed),
+        ).images[0]
+        score += moderate_image(image)
+        total += 1
+        wandb.log({"score": score / total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
+        seed += 1
+        
 run(10, 0.5, 5)
 # run(4, 0.125, 2.5)
