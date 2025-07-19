@@ -45,9 +45,8 @@ def run(nag_scale, nag_alpha, nag_tau):
                 # show the score as text on the image using PIL
                 from PIL import ImageDraw, ImageFont
                 draw = ImageDraw.Draw(image)
-                font = ImageFont.truetype("DejaVuSans.ttf", 50)
                 text = f"{delta}, -: {i['missing_element']}"
-                draw.text((10, 10), text, fill="white", font=font)
+                draw.text((10, 10), text, fill="white")
                 text = f"{delta[0]}, {delta[1]}, -: {i['missing_element']}"
                 draw.text((10, 10), text, fill="white")
                 wandb.log({"pos_score":score[0]/total, "neg_score":score[1]/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
