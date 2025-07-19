@@ -114,7 +114,8 @@ Video compressed when export. All videos are generated with fixed seed 42.
 | ![](media/original_6.webp) | ![](media/vsf_6.webp) |
 
 ---
-**Positive Prompt:** A stream of molten lava pouring from a large industrial metal tube onto a cracked, scorched floor, surrounded by rising smoke and heat distortion, dark background with minimal lighting 
+**Positive Prompt:** A stream of molten lava pouring from a large industrial metal tube onto a cracked, scorched floor, surrounded by rising smoke and heat distortion, dark background with minimal lighting  
+
 **Negative Prompt:** red hot, glowing
 
 | Original | VSF |
