@@ -25,8 +25,8 @@ pipe.to("cuda")
 with open("../prompts/nsfw_prompts.json", "r") as f:
     dev_prompts = json.load(f)
 
-seed = 42
 def run(scale, offset):
+    seed = 42
     wandb.init(project="vsf-sweep")
     score = 0
     total = 0
