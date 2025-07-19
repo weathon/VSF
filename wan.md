@@ -16,6 +16,15 @@ Video compressed when export. All videos are generated with fixed seed 42.
 | Original | VSF |
 |----------|-----|
 | ![](media/original_1.webp) | ![](media/vsf_1.webp) |
+---
+**Positive Prompt:** A chef cat and a dog baking a cake together in a kitchen. The cat is carefully measuring flour, while the dog is stirring the batter with a wooden spoon. The cat is wearing a chef suit  
+
+**Negative Prompt:** low quality
+
+| Original | VSF |
+|----------|-----|
+| ![](media/original_10.webp) | ![](media/vsf_10.webp) |
+Scale: 1.5, Offset: -0.05
 
 ---
 
