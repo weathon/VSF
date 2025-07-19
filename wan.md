@@ -9,22 +9,13 @@ Known Issues:
 
 Video compressed when export. All videos are generated with fixed seed 42.
 
-
+## Negative Items Avoiding Examples
 **Positive Prompt:** A chef cat and a chef dog with chef suit baking a cake together in a kitchen. The cat is carefully measuring flour, while the dog is stirring the batter with a wooden spoon.  
 **Negative Prompt:** white dog
 
 | Original | VSF |
 |----------|-----|
 | ![](media/original_1.webp) | ![](media/vsf_1.webp) |
----
-**Positive Prompt:** A chef cat and a dog baking a cake together in a kitchen. The cat is carefully measuring flour, while the dog is stirring the batter with a wooden spoon. The cat is wearing a chef suit  
-
-**Negative Prompt:** low quality
-
-| Original | VSF |
-|----------|-----|
-| ![](media/original_10.webp) | ![](media/vsf_10.webp) |
-Scale: 1.5, Offset: -0.05
 
 ---
 
@@ -98,3 +89,24 @@ Scale: 1.5, Offset: -0.05
 |----------|-----|
 | ![](media/original_9.webp) | ![](media/vsf_9.webp) |
 
+
+
+## Quality Improvement Examples
+Scale: 1.5, Offset: -0.05
+
+
+**Positive Prompt:** A chef cat and a dog baking a cake together in a kitchen. The cat is carefully measuring flour, while the dog is stirring the batter with a wooden spoon. The cat is wearing a chef suit  
+**Negative Prompt:** low quality
+
+| Original | VSF |
+|----------|-----|
+| ![](media/original_10.webp) | ![](media/vsf_10.webp) |
+
+---
+
+**Positive Prompt:** An underground volcanic eruption violently ejecting glowing lava through a cracked earth surface, with molten rock bursting upward, smoke and ash filling the air, and the ground trembling from the force, shot in cinematic 4K slow motion, realistic style, wide-angle view, night setting with red and orange lava lighting up the surroundings.
+**Negative Prompt:** low quality, low resolution
+
+| Original | VSF |
+|----------|-----|
+| ![](media/original_11.webp) | ![](media/vsf_11.webp) |
