@@ -273,5 +273,6 @@ This to-do list will be listed in issues. If it is not assigned yet, feel free t
 - [ ] Add Comfy-UI custom node
 - [ ] Add Web-UI demo
 
+## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=weathon/VSF&type=Date)](https://www.star-history.com/#weathon/VSF&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=weathon/VSF&type=Timeline)](https://www.star-history.com/#weathon/VSF&Timeline)
