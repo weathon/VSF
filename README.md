@@ -58,11 +58,11 @@ Known Issues:
 - The video will has a few frames at the begining that has very high contrast. Could be related to https://github.com/Wan-Video/Wan2.1/issues/369.
 - 
 
-Video compressed when export.
+Video compressed when export. All videos are generated with fixed seed 42.
 
 
 **Positive Prompt:** A chef cat and a chef dog with chef suit baking a cake together in a kitchen. The cat is carefully measuring flour, while the dog is stirring the batter with a wooden spoon.  
-**Negative Prompt:** -white dog
+**Negative Prompt:** white dog
 
 | Original | VSF |
 |----------|-----|
@@ -71,7 +71,7 @@ Video compressed when export.
 ---
 
 **Positive Prompt:** A cessna flying over a snowy mountain landscape, with a clear blue sky and fluffy white clouds. The plane is flying at a low altitude, casting a shadow on the snow-covered ground below. The mountains are rugged and steep, with patches of evergreen trees visible in the foreground.  
-**Negative Prompt:** --trees
+**Negative Prompt:** trees
 
 | Original | VSF |
 |----------|-----|
@@ -80,7 +80,7 @@ Video compressed when export.
 ---
 
 **Positive Prompt:** A cessna flying over a snowy mountain landscape, with a clear blue sky and fluffy white clouds. The plane is flying at a low altitude, casting a shadow on the snow-covered ground below.  
-**Negative Prompt:** -plane wings
+**Negative Prompt:** plane wings
 
 | Original | VSF |
 |----------|-----|
@@ -98,7 +98,7 @@ Video compressed when export.
 ---
 
 **Positive Prompt:** a boat in a stormy sea, the boat is a small fishing boat with a red and white striped sail, the waves are high and crashing against the boat, the sky is dark and cloudy  
-**Negative Prompt:** -sail
+**Negative Prompt:** sail
 
 | Original | VSF |
 |----------|-----|
@@ -107,12 +107,19 @@ Video compressed when export.
 ---
 
 **Positive Prompt:** a cat running in the field, the cat is wearing a red scarf and a blue hat, the field is full of flowers and the sky is clear  
-**Negative Prompt:** -camera motion
+**Negative Prompt:** camera motion
 
 | Original | VSF |
 |----------|-----|
 | ![](media/original_6.webp) | ![](media/vsf_6.webp) |
 
+---
+**Positive Prompt:** A stream of molten lava pouring from a large industrial metal tube onto a cracked, scorched floor, surrounded by rising smoke and heat distortion, dark background with minimal lighting 
+**Negative Prompt:** red hot, glowing
+
+| Original | VSF |
+|----------|-----|
+| ![](media/original_7.webp) | ![](media/vsf_7.webp) |
 
 ## Usage
 You can clone this repo into your working folder, and execute the following code. We subjectively find that SD3.5 version is better at following negative prompt while Flux Schnell version has better quality. It seems like our method did not work well on Flux Dev. 
