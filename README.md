@@ -6,11 +6,11 @@ This project introduces a new method called Value Sign Flip (VSF) that improves 
 
 Problem: Modern few-step text-to-image models often struggle to properly exclude concepts described in negative prompts. Existing methods (CFG) either don’t work well or require heavy changes to the model (NegationCLIP).
 
-Solution (VSF): We propose a lightweight technique that flips the value vector of negative prompt embeddings during attention. This cancels out unwanted features without retraining or needing access to classifier-free guidance.
+Solution (VSF): We propose a lightweight technique that flips the value vector of negative prompt embeddings during attention. This cancels out unwanted features without retraining or needing access to classifier-free ⚡️.
 
 Key Advantages:
 
-- ⚡ Works with few-step and even single-step generation models (currently only supports SD3.5, Flux, and Wan).
+- ⚡ Works with few-step and even single-step generation models (currently only supports SD3.5, Flux, and Wan), able to generate video with negative guidance in 30s. (480p, Wan 1.3B, 81 frames)
 - 🔧 Requires no model retraining.
 - 🚫 Avoids common issues like negative prompts being accidentally reinforcing the undesired concept.
 - 🎯 Includes attention masking and token duplication to isolate effects to only where needed.
