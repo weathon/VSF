@@ -52,8 +52,8 @@ class VSF:
                 "height": ("INT", {"default": 480}),
                 "width": ("INT", {"default": 832}),
                 "frames": ("INT", {"default": 81}),
-                "scale": ("FLOAT", {"default": 1.8}),
-                "offset": ("FLOAT", {"default": 0.1}),
+                "scale": ("FLOAT", {"default": 1.8, "min": 0.1, "max": 10.0, "step": 0.1}),
+                "offset": ("FLOAT", {"default": -0.1, "min": -1.0, "max": 0, "step": 0.01}),
                 "seed": ("INT", {"default": 42}),
             },
         }
