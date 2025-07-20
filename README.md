@@ -1,7 +1,7 @@
 # VSF: Simple, Efficient, and Effective Negative Guidance in Few-Step Image Generation Models By Value Sign Flip
 This project is experimental; please leave your feedback in issues or contact us. 
 Email: email@weasoft.com
-
+Wan 2.1 web demo [https://huggingface.co/spaces/weathon/VSF](https://huggingface.co/spaces/weathon/VSF)
 Paper and benchmark coming soon
 ## Introduction
 This project introduces a new method called Value Sign Flip (VSF) that improves how image generation models handle negative prompts.
