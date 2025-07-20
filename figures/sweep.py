@@ -10,9 +10,9 @@ pipe = VSFStableDiffusion3Pipeline.from_pretrained(
     torch_dtype=torch.bfloat16,
 ).to("cuda:2")
 os.makedirs("pngs", exist_ok=True)
-for scale in range(0,6):
-    for bias in np.arange(0, 0.6, 0.1):
-        prompt = "a cat making a cake in the kitchen, the cat is wearing a chef's hat and apron, the kitchen is modern and well-lit"
+for i, scale in enumerate(np.arange(0.5, 3, 0.5)):
+    for j, bias in enumerate(np.arange(0, 0.6, 0.2)):
+        prompt = "a cat making a cake in the kitchen, the cat is wearing a chef's apron, the kitchen is modern and well-lit. The cake is colorful and has a cherry on top, the cat is smiling and looks happy, the kitchen has a large window with sunlight coming in."
         image = pipe(
             prompt,
             negative_prompt="chef hat, apron",
@@ -23,4 +23,4 @@ for scale in range(0,6):
             offset=bias,
             generator=torch.Generator("cpu").manual_seed(19)
         ).images[0]
-        image.save(f"pngs/demo_{scale}_{bias}.png")
+        image.save(f"pngs/demo_{i}_{j}.png")
