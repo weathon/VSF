@@ -1,0 +1,7 @@
+Positive Prompt: A chef cat and a chef dog with chef suit baking a cake together in a kitchen. The cat is carefully measuring flour, while the dog is stirring the batter with a wooden spoon.
+Negative Prompt: white dog
+Guidance Scale: 1.5
+Bias: 0.1
+Steps: 10
+Frames: 81
+Seed: 0
