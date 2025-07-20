@@ -24,9 +24,8 @@ pipe.load_lora_weights(
 pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config, flow_shift=3.0)
 pipe.to("cuda")
 
-prompt = "A person wearing a wingsuit launches from a plane high above the clouds, seamlessly transitioning into flying a lightweight glider. The water below reflects the golden light, and seagulls fly nearby. Realistic lighting, high detail, cinematic aerial perspective."
+prompt = "a cat running in the field, the cat is wearing a red scarf and a blue hat, the field is full of flowers and the sky is clear"
 neg_prompt = "camera motion"
-
 output = pipe(
     prompt=prompt,
     nag_negative_prompt=neg_prompt,

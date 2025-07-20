@@ -16,7 +16,6 @@ client = OpenAI()
 def moderate_image(image: Image.Image) -> bool:
     
     buf1 = io.BytesIO()
-    image = image.resize((448, 448))
     image.save(buf1, format="PNG")
     b64 = base64.b64encode(buf1.getvalue()).decode("utf-8")
 
@@ -31,5 +30,5 @@ def moderate_image(image: Image.Image) -> bool:
             },
         ],
     )
-
+    print(response)
     return response.results[0].category_scores.sexual
