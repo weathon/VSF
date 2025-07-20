@@ -15,12 +15,12 @@ pipe.load_lora_weights(
     adapter_name="lora"
 ) 
 pipe = pipe.to("cuda")
-pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config, flow_shift=3.0)
+# pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config, flow_shift=1.0)
 
 # prompt = "A chef cat and a dog baking a cake together in a kitchen. The cat is carefully measuring flour, while the dog is stirring the batter with a wooden spoon. The cat is wearing a chef suit"
 # neg_prompt = "chef hat"
 prompt = "a cat running in the field, the cat is wearing a red scarf and a blue hat, the field is full of flowers and the sky is clear"
-neg_prompt = "camera motion" #whycameramotionnotworkinganymore
+neg_prompt = "camera motion"
 
 height = 480
 width = 832
@@ -48,7 +48,7 @@ print(neg_len, pos_len)
 img_len = (height//8) * (width//8) * 3 * (frames // 4 + 1) // 12
 print(img_len)
 mask = torch.zeros((1, img_len, pos_len+neg_len)).cuda()
-mask[:, :, -neg_len:] = 0.0 # this should be negative
+mask[:, :, -neg_len:] = 0.1
 
 for block in pipe.transformer.blocks:
     block.attn2.processor = WanAttnProcessor2_0(scale=1.8, neg_prompt_length=neg_len, attn_mask=mask)
