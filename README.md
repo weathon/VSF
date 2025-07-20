@@ -24,6 +24,7 @@ Key Advantages:
 - 🎯 Includes attention masking and token duplication to isolate effects to only where needed.
 
 ## News
+- 🤗 July 19, 2025: HuggingFace Space demo for Wan added
 - 📼 July 17, 2025: We now had experimental support for Wan 2.1
 - 🖼️ July 16, 2025: We now support Flux Dev and Flux Schnell
 - 🎨 July 15, 2025: We open sourced our repo and has support for SD3.5-large-turbo
