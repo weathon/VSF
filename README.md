@@ -58,6 +58,10 @@ You can clone this repo into your working folder, and execute the following code
 
 **Note: the CFG scale has to be set to 0 to use our method. **
 
+### Wan WEb Demo
+Clone the repo, and run `python3 app.py` will start a gradio interface for Wan.
+
+
 ### SD3.5-large-turbo
 ```python
 import torch
@@ -199,6 +203,7 @@ This to-do list will be listed in issues. If it is not assigned yet, feel free t
 - [x] Add support for SD3.5-large-turbo 
 - [x] Add support for Flux-Schnell
 - [x] Add Wan2.1 support
+- [x] Gradio Interface
 - [ ] Add full Wan 2.1 work (non experimental LoRA)
 - [ ] Make Flux-Dev work
 - [ ] Add Comfy-UI custom node
