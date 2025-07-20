@@ -52,6 +52,9 @@ class VSF:
                 "height": ("INT", {"default": 480}),
                 "width": ("INT", {"default": 832}),
                 "frames": ("INT", {"default": 81}),
+                "scale": ("FLOAT", {"default": 1.8}),
+                "offset": ("FLOAT", {"default": 0.1}),
+                "seed": ("INT", {"default": 42}),
             },
         }
     
@@ -60,7 +63,7 @@ class VSF:
 
     CATEGORY = "sampling"
 
-    def main(self, model_id, positive_prompt, negative_prompt, steps, height, width, frames):
+    def main(self, model_id, positive_prompt, negative_prompt, steps, height, width, frames, scale, offset, seed):
         model_id = "Wan-AI/Wan2.1-T2V-1.3B-Diffusers"
         vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", torch_dtype=torch.float32)
         pipe = WanPipeline.from_pretrained(model_id, vae=vae, torch_dtype=torch.bfloat16)
@@ -93,10 +96,10 @@ class VSF:
         img_len = (height//8) * (width//8) * 3 * (frames // 4 + 1) // 12
         print(img_len)
         mask = torch.zeros((1, img_len, pos_len+neg_len)).cuda()
-        mask[:, :, -neg_len:] = 0.1
+        mask[:, :, -neg_len:] = offset
 
         for block in pipe.transformer.blocks:
-            block.attn2.processor = WanAttnProcessor2_0(scale=1.8, neg_prompt_length=neg_len, attn_mask=mask)
+            block.attn2.processor = WanAttnProcessor2_0(scale=scale, neg_prompt_length=neg_len, attn_mask=mask)
 
         prompt_embeds = torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
 
@@ -107,7 +110,8 @@ class VSF:
             num_frames=frames,
             num_inference_steps=steps,
             guidance_scale=0.0, 
-            generator=torch.Generator(device="cuda").manual_seed(42),
+            generator=torch.Generator(device="cuda").manual_seed(seed),
+            output_type="pt",
         ).frames[0]
         return output
 
