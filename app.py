@@ -9,6 +9,14 @@ from vsfwan.processor import WanAttnProcessor2_0
 from diffusers import WanVACEPipeline
 from diffusers.utils import export_to_video
 import uuid
+try:
+    import spaces
+except ImportError:
+    class spaces:
+        @staticmethod
+        def GPU(fn):
+            return fn
+        
 
 model_id = "Wan-AI/Wan2.1-T2V-1.3B-Diffusers"
 vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", torch_dtype=torch.float32)
@@ -23,6 +31,8 @@ height = 480
 width = 832
 import os
 os.makedirs("videos", exist_ok=True)
+
+@spaces.GPU
 def generate_video(positive_prompt, negative_prompt, guidance_scale, bias, step, frames, seed, progress=gr.Progress(track_tqdm=False)):
     lambda total: progress.tqdm(range(total))
         
