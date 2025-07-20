@@ -52,18 +52,19 @@ class VSF:
                 "height": ("INT", {"default": 480}),
                 "width": ("INT", {"default": 832}),
                 "frames": ("INT", {"default": 81}),
-                "scale": ("FLOAT", {"default": 1.8, "min": 0.1, "max": 10.0, "step": 0.1}),
+                "scale": ("FLOAT", {"default": 1.5, "min": 0.1, "max": 10.0, "step": 0.1}),
                 "offset": ("FLOAT", {"default": -0.1, "min": -1.0, "max": 0, "step": 0.01}),
                 "seed": ("INT", {"default": 42}),
+                "cfg_lora_scale": ("FLOAT", {"default": 0.5, "min": 0.0, "max": 1.0, "step": 0.1}),
             },
         }
     
-    RETURN_TYPES = ("IMAGE",)
+    RETURN_TYPES = ("LATENT",)
     FUNCTION = "main"
 
     CATEGORY = "sampling"
 
-    def main(self, model_id, positive_prompt, negative_prompt, steps, height, width, frames, scale, offset, seed):
+    def main(self, model_id, positive_prompt, negative_prompt, steps, height, width, frames, scale, offset, seed, cfg_lora_scale):
         model_id = "Wan-AI/Wan2.1-T2V-1.3B-Diffusers"
         vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", torch_dtype=torch.float32)
         pipe = WanPipeline.from_pretrained(model_id, vae=vae, torch_dtype=torch.bfloat16)
@@ -85,7 +86,7 @@ class VSF:
             do_classifier_free_guidance=False, 
             max_sequence_length=512 - neg_prompt_embeds.shape[1],
         )
-        pipe.set_adapters("lora", 0.5)
+        pipe.set_adapters("lora", cfg_lora_scale)
 
 
 
@@ -111,9 +112,12 @@ class VSF:
             num_inference_steps=steps,
             guidance_scale=0.0, 
             generator=torch.Generator(device="cuda").manual_seed(seed),
-            output_type="pt",
-        ).frames[0]
-        return output
+            output_type="latent",
+        )
+        print(output.shape)
+        # output = output.permute(0, 2, 3, 1``)
+        return ({"samples": output},)
+        # return (output,)
 
 # A dictionary that contains all nodes you want to export with their names
 # NOTE: names should be globally unique
