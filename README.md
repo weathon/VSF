@@ -211,7 +211,7 @@ This to-do list will be listed in issues. If it is not assigned yet, feel free t
 - [x] Add support for Flux-Schnell
 - [x] Add Wan2.1 support
 - [x] Gradio Interface
-- [ ] Add full Wan 2.1 work (non experimental LoRA)
+- [ ] Add full Wan 2.1 work (non-experimental LoRA)
 - [ ] Make Flux-Dev work
 - [ ] Add Comfy-UI custom node
 - [ ] Add Web-UI demo
