@@ -1,8 +1,7 @@
 import sys
-sys.path.append("..")
+sys.path.append("../../")
 import torch
-from diffusers import AutoencoderKLWan, UniPCMultistepScheduler
-from vsfwan.pipeline import WanPipeline
+from diffusers import AutoencoderKLWan, UniPCMultistepScheduler, WanPipeline
 from vsfwan.processor import WanAttnProcessor2_0
 from diffusers.utils import export_to_video
 

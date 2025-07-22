@@ -4,10 +4,7 @@ import os
 import shutil
 import subprocess
 
-ds = load_dataset("KwaiVGI/VideoGen-RewardBench")
-random.seed(42)
-prompts = random.choices(list(set(ds["eval"]["prompt"])), k=100)
-os.makedirs("videos", exist_ok=True)
+
 
 ds = load_dataset("KwaiVGI/VideoGen-RewardBench")
 random.seed(42)
