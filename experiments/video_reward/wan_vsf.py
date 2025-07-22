@@ -31,7 +31,7 @@ neg_prompt = "low quality video, blurry, distorted, low resolution, weird motion
 
 height = 480
 width = 832
-frames = 81 
+frames = 33 
 
 neg_prompt_embeds, _ = pipe.encode_prompt(
     prompt=neg_prompt,
@@ -58,7 +58,7 @@ mask = torch.zeros((1, img_len, pos_len+neg_len)).cuda()
 mask[:, :, -neg_len:] = -0.1
 
 for block in pipe.transformer.blocks:
-    block.attn2.processor = WanAttnProcessor2_0(scale=1, neg_prompt_length=neg_len, attn_mask=mask)
+    block.attn2.processor = WanAttnProcessor2_0(scale=0.8, neg_prompt_length=neg_len, attn_mask=mask)
 
 prompt_embeds = torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
 

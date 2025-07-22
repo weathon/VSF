@@ -44,7 +44,7 @@ output = pipe(
     height=480,
     width=832,
     num_inference_steps=8,
-    num_frames=81,
+    num_frames=33,
     generator=torch.Generator("cuda").manual_seed(42),
 ).frames[0]
 export_to_video(output, f"videos/{args.video_id:03d}_nag.mp4", fps=15)

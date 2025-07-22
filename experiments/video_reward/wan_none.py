@@ -30,7 +30,7 @@ neg_prompt = "low quality video, blurry, distorted, low resolution, weird motion
 
 height = 480
 width = 832
-frames = 81
+frames = 33
 
 pipe.set_adapters("lora", 0.5)
 
@@ -39,7 +39,7 @@ output = pipe(
     height=height,
     width=width,
     num_frames=frames,
-    num_inference_steps=12,
+    num_inference_steps=8,
     guidance_scale=0.0, 
     generator=torch.Generator(device="cuda").manual_seed(42),
 ).frames[0]
