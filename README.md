@@ -2,7 +2,13 @@
 This project is experimental; please leave your feedback in issues or contact us. 
 Email: email@weasoft.com
 
+
 Paper and benchmark coming soon
+## Web Demo for Wan 2.1 VSF
+Wan 2.1 web demo [https://huggingface.co/spaces/weathon/VSF](https://huggingface.co/spaces/weathon/VSF)
+
+
+
 ## Introduction
 This project introduces a new method called Value Sign Flip (VSF) that improves how image generation models handle negative prompts.
 
@@ -18,6 +24,7 @@ Key Advantages:
 - 🎯 Includes attention masking and token duplication to isolate effects to only where needed.
 
 ## News
+- 🤗 July 19, 2025: HuggingFace Space demo for Wan added
 - 📼 July 17, 2025: We now had experimental support for Wan 2.1
 - 🖼️ July 16, 2025: We now support Flux Dev and Flux Schnell
 - 🎨 July 15, 2025: We open sourced our repo and has support for SD3.5-large-turbo
@@ -57,6 +64,10 @@ Scale: `4`
 You can clone this repo into your working folder, and execute the following code. We subjectively find that SD3.5 version is better at following negative prompt while Flux Schnell version has better quality. It seems like our method did not work well on Flux Dev. 
 
 **Note: the CFG scale has to be set to 0 to use our method. **
+
+### Wan WEb Demo
+Clone the repo, and run `python3 app.py` will start a gradio interface for Wan.
+
 
 ### SD3.5-large-turbo
 ```python
@@ -199,6 +210,7 @@ This to-do list will be listed in issues. If it is not assigned yet, feel free t
 - [x] Add support for SD3.5-large-turbo 
 - [x] Add support for Flux-Schnell
 - [x] Add Wan2.1 support
+- [x] Gradio Interface
 - [ ] Add full Wan 2.1 work (non experimental LoRA)
 - [ ] Make Flux-Dev work
 - [ ] Add Comfy-UI custom node
