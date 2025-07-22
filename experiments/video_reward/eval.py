@@ -8,7 +8,7 @@ import subprocess
 
 ds = load_dataset("KwaiVGI/VideoGen-RewardBench")
 random.seed(42)
-prompts = random.choices(list(set(ds["eval"]["prompt"])), k=100)
+prompts = random.choices(list(ds["eval"]["prompt"]), k=100)
 os.makedirs("videos", exist_ok=True)
 
 for i, prompt in enumerate(prompts):
