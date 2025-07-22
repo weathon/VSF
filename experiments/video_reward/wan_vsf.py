@@ -1,5 +1,5 @@
 import sys
-sys.path.append("..")
+sys.path.append("../../")
 import torch
 from diffusers import AutoencoderKLWan, UniPCMultistepScheduler
 from vsfwan.pipeline import WanPipeline
@@ -22,7 +22,7 @@ pipe.load_lora_weights(
     adapter_name="lora"
 ) 
 pipe = pipe.to("cuda")
-# pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config, flow_shift=1.0)
+pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config, flow_shift=3.0)
 
 # prompt = "A chef cat and a dog baking a cake together in a kitchen. The cat is carefully measuring flour, while the dog is stirring the batter with a wooden spoon. The cat is wearing a chef suit"
 # neg_prompt = "chef hat"

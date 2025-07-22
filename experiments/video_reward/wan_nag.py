@@ -26,7 +26,7 @@ pipe.load_lora_weights(
     weight_name="Wan21_CausVid_bidirect2_T2V_1_3B_lora_rank32.safetensors",
     adapter_name="lora"
 ) 
-# pipe.set_adapters("lora", 0.5)
+pipe.set_adapters("lora", 0.5)
 
 pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config, flow_shift=3.0)
 pipe.to("cuda")
@@ -38,7 +38,7 @@ output = pipe(
     prompt=prompt,
     nag_negative_prompt=neg_prompt,
     guidance_scale=0.0,
-    nag_scale=2.5,
+    nag_scale=4,
     nag_tau=2.5,
     nag_alpha=0.25,
     height=480,
