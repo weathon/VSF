@@ -7,7 +7,7 @@ Known Issues:
 - The video will has a few frames at the begining that has very high contrast. Could be related to https://github.com/Wan-Video/Wan2.1/issues/369.
 - 
 
-Video compressed when export. All videos are generated with fixed seed 42.
+Video compressed when export. All videos are generated with fixed seed 42. All videos are generated using 1.3B model, unless stated otherwise.
 
 ## Negative Items Avoiding Examples
 **Positive Prompt:** A chef cat and a chef dog with chef suit baking a cake together in a kitchen. The cat is carefully measuring flour, while the dog is stirring the batter with a wooden spoon.  
