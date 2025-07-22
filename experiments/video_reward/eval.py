@@ -12,6 +12,5 @@ prompts = random.choices(list(ds["eval"]["prompt"]), k=100)
 os.makedirs("videos", exist_ok=True)
 
 for i, prompt in enumerate(prompts):
-    subprocess.run(['python3', 'wan_nag.py', '--prompt', prompt, '--video_id', str(i)])
-    subprocess.run(['python3', 'wan_none.py', '--prompt', prompt, '--video_id', str(i)])
-    subprocess.run(['python3', 'wan_vsf.py', '--prompt', prompt, '--video_id', str(i)])
+    subprocess.run(['python3', 'wan14b.py', '--prompt', prompt, '--video_id', str(i)])
+    
