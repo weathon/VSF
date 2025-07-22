@@ -1,7 +1,7 @@
 # pip install ftfy
 import torch
 import sys
-sys.path.append("../")
+sys.path.append("../../")
 import numpy as np
 from diffusers import AutoModel, WanPipeline
 from diffusers.quantizers import PipelineQuantizationConfig
@@ -60,12 +60,12 @@ old_neg_prompt = "low quality video, blurry, distorted, low resolution, weird mo
 neg_prompt = "low quality, blurry, distorted, low resolution, nnatural motion, unnatural lighting"
 height = 480
 width = 832
-frames = 31 
+frames =81 
 
-prompt_len_ratio = len(pipeline.tokenizer.tokenize(prompt, padding=False, truncation=True, max_length=512))/len(pipeline.tokenizer.tokenize(neg_prompt, padding=False, truncation=True, max_length=512))
+prompt_len_ratio = len(pipeline.tokenizer.tokenize(neg_prompt, padding=False, truncation=True, max_length=512))/len(pipeline.tokenizer.tokenize(prompt, padding=False, truncation=True, max_length=512))
 # print(len(pipeline.tokenizer.tokenize(old_prompt, padding=False, truncation=True, max_length=512))/len(pipeline.tokenizer.tokenize(old_neg_prompt, padding=False, truncation=True, max_length=512)))
 # 5.18/2.04=2.54
-
+print("prompt_len_ratio", prompt_len_ratio)
 neg_prompt_embeds, _ = pipeline.encode_prompt(
     prompt=neg_prompt,
     padding=False,
@@ -76,8 +76,8 @@ pos_prompt_embeds, _ = pipeline.encode_prompt(
     prompt=prompt,
     do_classifier_free_guidance=False, 
     max_sequence_length=512 - neg_prompt_embeds.shape[1],
-)
-pipeline.set_adapters("lora", 0.4)
+) 
+pipeline.set_adapters("lora", 0.6)
 
 
 
@@ -90,8 +90,8 @@ print(img_len)
 mask = torch.zeros((1, img_len, pos_len+neg_len)).cuda()
 mask[:, :, -neg_len:] = -0.3
 
-for block in pipeline.transformer.blocks:
-    block.attn2.processor = WanAttnProcessor2_0(scale=0.3/prompt_len_ratio, neg_prompt_length=neg_len, attn_mask=mask)
+for block in pipeline.transformer.blocks: 
+    block.attn2.processor = WanAttnProcessor2_0(scale=0.01/prompt_len_ratio, neg_prompt_length=neg_len, attn_mask=mask)
 
 prompt_embeds = torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
 
@@ -101,19 +101,19 @@ output = pipeline(
     height=height,
     width=width,
     num_frames=frames,
-    num_inference_steps=6,
+    num_inference_steps=12,
     guidance_scale=0.0, 
-    generator=torch.Generator(device="cuda").manual_seed(8384),
+    generator=torch.Generator(device="cuda").manual_seed(video_id),
 ).frames[0]
-# save video with video_id 3 digits
-export_to_video(output[5:], f"video/14b_vsf_{video_id:03d}.mp4", fps=15)
+# save video with video_id 3 digits 
+export_to_video(output[5:], f"videos/14b_vsf_{video_id:03d}.mp4", fps=15)
 
 
 mask = torch.zeros((1, img_len, pos_len+neg_len)).cuda()
 mask[:, :, -neg_len:] = -torch.inf 
 
 for block in pipeline.transformer.blocks:
-    block.attn2.processor = WanAttnProcessor2_0(scale=0.8, neg_prompt_length=neg_len, attn_mask=mask)
+    block.attn2.processor = WanAttnProcessor2_0(scale=0, neg_prompt_length=neg_len, attn_mask=mask)
 
 prompt_embeds = torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
 
@@ -123,9 +123,9 @@ output = pipeline(
     height=height,
     width=width,
     num_frames=frames,
-    num_inference_steps=6,
+    num_inference_steps=12,
     guidance_scale=0.0, 
-    generator=torch.Generator(device="cuda").manual_seed(8384),
+    generator=torch.Generator(device="cuda").manual_seed(video_id),
 ).frames[0]
 # save video with video_id 3 digits
-export_to_video(output[5:], f"video/14b_original_{video_id:03d}.mp4", fps=15)
+export_to_video(output[5:], f"videos/14b_original_{video_id:03d}.mp4", fps=15)
