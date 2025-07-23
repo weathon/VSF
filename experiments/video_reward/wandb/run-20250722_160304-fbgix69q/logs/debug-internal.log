@@ -1,0 +1,7 @@
+{"time":"2025-07-22T16:03:04.615920192-07:00","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-07-22T16:03:04.918089207-07:00","level":"INFO","msg":"stream: created new stream","id":"fbgix69q"}
+{"time":"2025-07-22T16:03:04.918173383-07:00","level":"INFO","msg":"stream: started","id":"fbgix69q"}
+{"time":"2025-07-22T16:03:04.918215019-07:00","level":"INFO","msg":"handler: started","stream_id":"fbgix69q"}
+{"time":"2025-07-22T16:03:04.918206823-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"fbgix69q"}
+{"time":"2025-07-22T16:03:04.918325834-07:00","level":"INFO","msg":"sender: started","stream_id":"fbgix69q"}
+{"time":"2025-07-22T17:41:51.299926195-07:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/3dsmile/wan14b-videos/fbgix69q/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}

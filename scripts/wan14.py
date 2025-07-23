@@ -59,7 +59,8 @@ height = 480
 width = 832
 frames = 31 
 
-prompt_len_ratio = len(pipeline.tokenizer.tokenize(prompt, padding=False, truncation=True, max_length=512))/len(pipeline.tokenizer.tokenize(neg_prompt, padding=False, truncation=True, max_length=512))
+prompt_len_ratio = len(pipeline.tokenizer.tokenize(neg_prompt, padding=False, truncation=True, max_length=512))/len(pipeline.tokenizer.tokenize(prompt, padding=False, truncation=True, max_length=512))
+print("prompt_len_ratio", prompt_len_ratio)
 # print(len(pipeline.tokenizer.tokenize(old_prompt, padding=False, truncation=True, max_length=512))/len(pipeline.tokenizer.tokenize(old_neg_prompt, padding=False, truncation=True, max_length=512)))
 # 5.18/2.04=2.54
 
@@ -88,7 +89,7 @@ mask = torch.zeros((1, img_len, pos_len+neg_len)).cuda()
 mask[:, :, -neg_len:] = -0.3
 
 for block in pipeline.transformer.blocks:
-    block.attn2.processor = WanAttnProcessor2_0(scale=0.3/prompt_len_ratio, neg_prompt_length=neg_len, attn_mask=mask)
+    block.attn2.processor = WanAttnProcessor2_0(scale=0.1/prompt_len_ratio, neg_prompt_length=neg_len, attn_mask=mask)
 
 prompt_embeds = torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
 
