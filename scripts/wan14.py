@@ -54,7 +54,7 @@ prompt = (
 )
 
 old_neg_prompt = "low quality video, blurry, distorted, low resolution, weird motion"
-neg_prompt = "low quality, blurry, distorted, low resolution, nnatural motion, unnatural lighting"
+neg_prompt = "stars, low quality, blurry, distorted, low resolution, nnatural motion, unnatural lighting"
 height = 480
 width = 832
 frames = 31 
