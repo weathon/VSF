@@ -96,3 +96,77 @@ Fuck, prompt too short!
 [34m[1mwandb[0m: [33mWARNING[0m `format` argument was not provided, defaulting to `gif`. This parameter will be required in v0.20.0, please specify the format explicitly.
 [34m[1mwandb[0m: [33mWARNING[0m `format` argument was not provided, defaulting to `gif`. This parameter will be required in v0.20.0, please specify the format explicitly.
 [34m[1mwandb[0m: [33mWARNING[0m `format` argument was not provided, defaulting to `gif`. This parameter will be required in v0.20.0, please specify the format explicitly.
+[34m[1mwandb[0m: [33mWARNING[0m `format` argument was not provided, defaulting to `gif`. This parameter will be required in v0.20.0, please specify the format explicitly.
+[34m[1mwandb[0m: [33mWARNING[0m `format` argument was not provided, defaulting to `gif`. This parameter will be required in v0.20.0, please specify the format explicitly.
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+[34m[1mwandb[0m: [33mWARNING[0m `format` argument was not provided, defaulting to `gif`. This parameter will be required in v0.20.0, please specify the format explicitly.
+[34m[1mwandb[0m: [33mWARNING[0m `format` argument was not provided, defaulting to `gif`. This parameter will be required in v0.20.0, please specify the format explicitly.
+Fuck, prompt too short!
+[34m[1mwandb[0m: [33mWARNING[0m `format` argument was not provided, defaulting to `gif`. This parameter will be required in v0.20.0, please specify the format explicitly.
+[34m[1mwandb[0m: [33mWARNING[0m `format` argument was not provided, defaulting to `gif`. This parameter will be required in v0.20.0, please specify the format explicitly.
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+[34m[1mwandb[0m: [33mWARNING[0m `format` argument was not provided, defaulting to `gif`. This parameter will be required in v0.20.0, please specify the format explicitly.
+[34m[1mwandb[0m: [33mWARNING[0m `format` argument was not provided, defaulting to `gif`. This parameter will be required in v0.20.0, please specify the format explicitly.
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+[34m[1mwandb[0m: [33mWARNING[0m `format` argument was not provided, defaulting to `gif`. This parameter will be required in v0.20.0, please specify the format explicitly.
+[34m[1mwandb[0m: [33mWARNING[0m `format` argument was not provided, defaulting to `gif`. This parameter will be required in v0.20.0, please specify the format explicitly.
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+Fuck, prompt too short!
+[34m[1mwandb[0m: [33mWARNING[0m `format` argument was not provided, defaulting to `gif`. This parameter will be required in v0.20.0, please specify the format explicitly.
+Traceback (most recent call last):
+  File "/home/wg25r/turbo/VSF/experiments/video_reward/eval.py", line 21, in <module>
+    wandb.log({"vsf": wandb.Video(f"videos/14b_vsf_{i:03d}.mp4", caption=prompt),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/data_types/video.py", line 158, in __init__
+    self._set_file(data_or_path, is_tmp=False)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/data_types/base_types/media.py", line 134, in _set_file
+    with open(self._path, "rb") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'videos/14b_vsf_132.mp4'
+Traceback (most recent call last):
+  File "/home/wg25r/turbo/VSF/experiments/video_reward/eval.py", line 21, in <module>
+    wandb.log({"vsf": wandb.Video(f"videos/14b_vsf_{i:03d}.mp4", caption=prompt),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/data_types/video.py", line 158, in __init__
+    self._set_file(data_or_path, is_tmp=False)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/data_types/base_types/media.py", line 134, in _set_file
+    with open(self._path, "rb") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'videos/14b_vsf_132.mp4'
