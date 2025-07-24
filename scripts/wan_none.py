@@ -6,12 +6,6 @@ from vsfwan.processor import WanAttnProcessor2_0
 from diffusers.utils import export_to_video
 
 import argparse
-parser = argparse.ArgumentParser(description="Run NAG Wan Video Generation")
-parser.add_argument("--prompt", type=str, default="A group of Caribbean dancers performing at a carnival, wearing colorful costumes with feathers and sequins. The camera follows their energetic dance moves and the lively music.")
-parser.add_argument("--neg_prompt", type=str, default="low quality, blurry, distorted, low resolution, nnatural motion, unnatural lighting")
-parser.add_argument("--video_id", type=int, default=0, help="Video ID for saving the output video")
-
-args = parser.parse_args()
 
 model_id = "Wan-AI/Wan2.1-T2V-1.3B-Diffusers"
 vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", torch_dtype=torch.float32)
@@ -26,22 +20,32 @@ pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config, flow
 
 # prompt = "A chef cat and a dog baking a cake together in a kitchen. The cat is carefully measuring flour, while the dog is stirring the batter with a wooden spoon. The cat is wearing a chef suit"
 # neg_prompt = "chef hat"
-prompt = args.prompt
-neg_prompt = args.neg_prompt
+prompts = [
+    "A lava river flowing through a volcanic landscape, dark rocky terrain. The camera captures the the flow of lava. The sky is dark with ash clouds.",
+    "A plane flying over a snowy mountain range, with the sun setting in the background. The camera captures the plane's silhouette against the colorful sky and the snow-covered peaks below.",
+    "A machine learning scientist working in a lab, analyzing data on a computer screen. The camera captures the scientist's focused expression and the complex algorithms displayed on the screen.",
+    "A pet running through a field of flowers, with the sun shining brightly. The camera captures the pet's joyful expression and the vibrant colors of the flowers.",
+]
+neg_prompts = [
+    "red hot, bright, glow, low quality, blurry, low resolution, weird motion",
+    "wings, low quality, blurry, low resolution, weird motion",
+    "male with glasses, low quality, blurry, low resolution, weird motion",
+    "dog, low quality, blurry, low resolution, weird motion",
+]
+for video_id, (prompt, neg_prompt) in enumerate(zip(prompts, neg_prompts)):
+    height = 480
+    width = 832
+    frames = 81
 
-height = 480
-width = 832
-frames = 81
+    pipe.set_adapters("lora", 0.5)
 
-pipe.set_adapters("lora", 0.5)
-
-output = pipe(
-    prompt=prompt,
-    height=height,
-    width=width,
-    num_frames=frames,
-    num_inference_steps=12,
-    guidance_scale=0.0, 
-    generator=torch.Generator(device="cuda").manual_seed(42),
-).frames[0]
-export_to_video(output[5:], f"videos/{args.video_id:03d}_none.mp4", fps=15)
+    output = pipe(
+        prompt=prompt,
+        height=height,
+        width=width,
+        num_frames=frames,
+        num_inference_steps=12,
+        guidance_scale=0.0, 
+        generator=torch.Generator(device="cuda").manual_seed(42),
+    ).frames[0]
+    export_to_video(output[5:], f"videos/{video_id:03d}_none.mp4", fps=15)
