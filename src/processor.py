@@ -198,8 +198,8 @@ class FluxAttnProcessor2_0:
         if self.image_rotary_emb is not None:
             from diffusers.models.embeddings import apply_rotary_emb
             # print(query.shape, self.image_rotary_emb[0].shape)
-            query = apply_rotary_emb(query, self.image_rotary_emb)
-            key = apply_rotary_emb(key, self.image_rotary_emb)
+            query[:,:,:-self.neg_prompt_length] = apply_rotary_emb(query[:,:,:-self.neg_prompt_length], image_rotary_emb)
+            key[:,:,:-self.neg_prompt_length] = apply_rotary_emb(key[:,:,:-self.neg_prompt_length], image_rotary_emb)
             query = query[:,:,:-self.neg_prompt_length]
             
         if self.attn_mask is not None:

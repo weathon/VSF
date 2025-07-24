@@ -1,0 +1,6 @@
+{"time":"2025-07-22T23:12:46.520295399-07:00","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-07-22T23:12:46.790777508-07:00","level":"INFO","msg":"stream: created new stream","id":"anl6olba"}
+{"time":"2025-07-22T23:12:46.790917113-07:00","level":"INFO","msg":"stream: started","id":"anl6olba"}
+{"time":"2025-07-22T23:12:46.790942657-07:00","level":"INFO","msg":"handler: started","stream_id":"anl6olba"}
+{"time":"2025-07-22T23:12:46.790965237-07:00","level":"INFO","msg":"sender: started","stream_id":"anl6olba"}
+{"time":"2025-07-22T23:12:46.790988184-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"anl6olba"}
