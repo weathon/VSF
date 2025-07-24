@@ -194,12 +194,11 @@ class FluxAttnProcessor2_0:
             key = torch.cat([key, key[:,:,self.total_length-self.neg_prompt_length:self.total_length]], dim=2)            
             value = torch.cat([value, value[:,:,self.total_length-self.neg_prompt_length:self.total_length]], dim=2)   
             value[:,:,-self.neg_prompt_length:] *= -self.scale  # negative prompt
-                     
         if self.image_rotary_emb is not None:
             from diffusers.models.embeddings import apply_rotary_emb
             # print(query.shape, self.image_rotary_emb[0].shape)
-            query[:,:,:-self.neg_prompt_length] = apply_rotary_emb(query[:,:,:-self.neg_prompt_length], image_rotary_emb)
-            key[:,:,:-self.neg_prompt_length] = apply_rotary_emb(key[:,:,:-self.neg_prompt_length], image_rotary_emb)
+            query = apply_rotary_emb(query, self.image_rotary_emb)
+            key = apply_rotary_emb(key, self.image_rotary_emb)
             query = query[:,:,:-self.neg_prompt_length]
             
         if self.attn_mask is not None:
