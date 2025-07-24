@@ -11,17 +11,29 @@ import argparse
 # parser.add_argument("--neg_prompt", type=str, default="low quality, blurry, distorted, low resolution, nnatural motion, unnatural lighting")
 # parser.add_argument("--video_id", type=int, default=0, help="Video ID for saving the output video")
 # args = parser.parse_args()
+# prompts = [
+#     "A knief cutting a tomato on a cutting board, the camera captures the knife's sharp edge slicing through the tomato's skin, revealing its juicy interior.",
+#     "A lava river flowing through a volcanic landscape, dark rocky terrain. The camera captures the the flow of lava. The sky is dark with ash clouds.",
+#     "A plane flying over a snowy mountain range, with the sun setting in the background. The camera captures the plane's silhouette against the colorful sky and the snow-covered peaks below.",
+#     "A machine learning scientist working in a lab, analyzing data on a computer screen. The camera captures the scientist's focused expression and the complex algorithms displayed on the screen.",
+#     "A pet running through a field of flowers, with the sun shining brightly. The camera captures the pet's joyful expression and the vibrant colors of the flowers.",
+# ]
+# neg_prompts = [
+#     "wooden board, low quality, blurry, low resolution, weird motion",
+#     "red hot, bright, glow, low quality, blurry, low resolution, weird motion",
+#     "wings, low quality, blurry, low resolution, weird motion",
+#     "male with glasses, low quality, blurry, low resolution, weird motion",
+#     "dog, low quality, blurry, low resolution, weird motion",
+# ]
+# using longer neg prompt
 prompts = [
-    "A lava river flowing through a volcanic landscape, dark rocky terrain. The camera captures the the flow of lava. The sky is dark with ash clouds.",
-    "A plane flying over a snowy mountain range, with the sun setting in the background. The camera captures the plane's silhouette against the colorful sky and the snow-covered peaks below.",
-    "A machine learning scientist working in a lab, analyzing data on a computer screen. The camera captures the scientist's focused expression and the complex algorithms displayed on the screen.",
-    "A pet running through a field of flowers, with the sun shining brightly. The camera captures the pet's joyful expression and the vibrant colors of the flowers.",
+    "A cat chef is cooking a delicious meal in a cozy kitchen, with the camera capturing the cat's focused expression and the vibrant colors of the ingredients. The pan is sizzling on the stove, and the cat is carefully adding spices to the dish.",
+    "A laptop is on the table, playing a video of a cat. The laptop is silver and sleek, with a high-resolution screen. There are also some books and a cup of coffee on the table.",
 ]
+
 neg_prompts = [
-    "red hot, bright, glow, low quality, blurry, low resolution, weird motion",
-    "wings, low quality, blurry, low resolution, weird motion",
-    "male with glasses, low quality, blurry, low resolution, weird motion",
-    "dog, low quality, blurry, low resolution, weird motion",
+    "window, low quality, blurry, low resolution, weird motion",
+    "keyboard, low quality, blurry, low resolution, weird motion"
 ]
 for video_id, (prompt, neg_prompt) in enumerate(zip(prompts, neg_prompts)):
     model_id = "Wan-AI/Wan2.1-T2V-1.3B-Diffusers"

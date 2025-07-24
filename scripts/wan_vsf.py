@@ -27,17 +27,28 @@ pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config, flow
 
 # prompt = "A chef cat and a dog baking a cake together in a kitchen. The cat is carefully measuring flour, while the dog is stirring the batter with a wooden spoon. The cat is wearing a chef suit"
 # neg_prompt = "chef hat"
+# prompts = [
+#     "A knief cutting a tomato on a cutting board, the camera captures the knife's sharp edge slicing through the tomato's skin, revealing its juicy interior.",
+#     "A lava river flowing through a volcanic landscape, dark rocky terrain. The camera captures the the flow of lava. The sky is dark with ash clouds.",
+#     "A plane flying over a snowy mountain range, with the sun setting in the background. The camera captures the plane's silhouette against the colorful sky and the snow-covered peaks below.",
+#     "A machine learning scientist working in a lab, analyzing data on a computer screen. The camera captures the scientist's focused expression and the complex algorithms displayed on the screen.",
+#     "A pet running through a field of flowers, with the sun shining brightly. The camera captures the pet's joyful expression and the vibrant colors of the flowers.",
+# ]
+# neg_prompts = [
+#     "wooden board, low quality, blurry, low resolution, weird motion",
+#     "red hot, bright, glow, low quality, blurry, low resolution, weird motion",
+#     "wings, low quality, blurry, low resolution, weird motion",
+#     "male with glasses, low quality, blurry, low resolution, weird motion",
+#     "dog, low quality, blurry, low resolution, weird motion",
+# ]
 prompts = [
-    "A lava river flowing through a volcanic landscape, dark rocky terrain. The camera captures the the flow of lava. The sky is dark with ash clouds.",
-    "A plane flying over a snowy mountain range, with the sun setting in the background. The camera captures the plane's silhouette against the colorful sky and the snow-covered peaks below.",
-    "A machine learning scientist working in a lab, analyzing data on a computer screen. The camera captures the scientist's focused expression and the complex algorithms displayed on the screen.",
-    "A pet running through a field of flowers, with the sun shining brightly. The camera captures the pet's joyful expression and the vibrant colors of the flowers.",
+    "A cat chef is cooking a delicious meal in a cozy kitchen, with the camera capturing the cat's focused expression and the vibrant colors of the ingredients. The pan is sizzling on the stove, and the cat is carefully adding spices to the dish.",
+    "A laptop is on the table, playing a video of a cat. The laptop is silver and sleek, with a high-resolution screen. There are also some books and a cup of coffee on the table.",
 ]
+
 neg_prompts = [
-    "red hot, bright, glow, low quality, blurry, low resolution, weird motion",
-    "wings, low quality, blurry, low resolution, weird motion",
-    "male with glasses, low quality, blurry, low resolution, weird motion",
-    "dog, low quality, blurry, low resolution, weird motion",
+    "window, low quality, blurry, low resolution, weird motion",
+    "keyboard, low quality, blurry, low resolution, weird motion"
 ]
 for video_id, (prompt, neg_prompt) in enumerate(zip(prompts, neg_prompts)):
     height = 480
@@ -67,7 +78,7 @@ for video_id, (prompt, neg_prompt) in enumerate(zip(prompts, neg_prompts)):
     mask[:, :, -neg_len:] = -0.2
 
     for block in pipe.transformer.blocks:
-        block.attn2.processor = WanAttnProcessor2_0(scale=1.4, neg_prompt_length=neg_len, attn_mask=mask)
+        block.attn2.processor = WanAttnProcessor2_0(scale=1.2, neg_prompt_length=neg_len, attn_mask=mask)
 
     prompt_embeds = torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
 
