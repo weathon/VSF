@@ -38,7 +38,7 @@ neg_prompt = args.neg_prompt
 
 height = 480
 width = 832
-frames = 33
+frames = 81
 
 neg_prompt_embeds, _ = pipe.encode_prompt(
     prompt=neg_prompt,
@@ -62,10 +62,10 @@ print(neg_len, pos_len)
 img_len = (height//8) * (width//8) * 3 * (frames // 4 + 1) // 12
 print(img_len)
 mask = torch.zeros((1, img_len, pos_len+neg_len)).cuda()
-mask[:, :, -neg_len:] = -0.10
+mask[:, :, -neg_len:] = -0.2
 
 for block in pipe.transformer.blocks:
-    block.attn2.processor = WanAttnProcessor2_0(scale=2.2, neg_prompt_length=neg_len, attn_mask=mask)
+    block.attn2.processor = WanAttnProcessor2_0(scale=1.9, neg_prompt_length=neg_len, attn_mask=mask)
 
 prompt_embeds = torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
 

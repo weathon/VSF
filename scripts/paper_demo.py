@@ -18,6 +18,6 @@ neg_prompts = [
 import wandb
 wandb.init(project="wan14b-videos", name="wan14b-vsf")
 for i, prompt in enumerate(prompts):
-    subprocess.run(['python3', 'wan_vsf.py', '--prompt', prompts[i], '--neg_prompt', neg_prompts[i], '--video_id', str(i)])
     subprocess.run(['python3', 'wan_nag.py', '--prompt', prompts[i], '--neg_prompt', neg_prompts[i], '--video_id', str(i)])
+    subprocess.run(['python3', 'wan_vsf.py', '--prompt', prompts[i], '--neg_prompt', neg_prompts[i], '--video_id', str(i)])
     subprocess.run(['python3', 'wan_none.py', '--prompt', prompts[i], '--neg_prompt', neg_prompts[i], '--video_id', str(i)])
