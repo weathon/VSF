@@ -37,12 +37,13 @@ else:
 class JointAttnProcessor2_0:
     """Attention processor used typically in processing the SD3-like self-attention projections."""
 
-    def __init__(self, scale=4, attn_mask=None, neg_prompt_length=0):
+    def __init__(self, scale=4, attn_mask=None, neg_prompt_length=0, total_length=0):
         if not hasattr(F, "scaled_dot_product_attention"):
             raise ImportError("JointAttnProcessor2_0 requires PyTorch 2.0, to use it, please upgrade PyTorch to 2.0.")
         self.attn_mask = attn_mask
         self.neg_prompt_length = neg_prompt_length
         self.scale = scale
+        self.total_length = total_length
 
     def __call__(
         self,
@@ -124,12 +125,13 @@ class JointAttnProcessor2_0:
 class FluxAttnProcessor2_0:
     """Attention processor used typically in processing the SD3-like self-attention projections."""
 
-    def __init__(self, scale=4, attn_mask=None, neg_prompt_length=0):
+    def __init__(self, scale=4, attn_mask=None, neg_prompt_length=0, total_length=0):
         if not hasattr(F, "scaled_dot_product_attention"):
             raise ImportError("FluxAttnProcessor2_0 requires PyTorch 2.0, to use it, please upgrade PyTorch to 2.0.")
         self.attn_mask = attn_mask
         self.neg_prompt_length = neg_prompt_length
         self.scale = scale
+        self.total_length = total_length
         
     def __call__(
         self,
@@ -182,34 +184,39 @@ class FluxAttnProcessor2_0:
 
             # print(encoder_hidden_states_key_proj.shape, encoder_hidden_states_value_proj.shape, encoder_hidden_states_query_proj.shape)
             # attention
-            query = torch.cat([query, encoder_hidden_states_query_proj, encoder_hidden_states_query_proj[:,:,-self.neg_prompt_length:]], dim=2)
-            key = torch.cat([key, encoder_hidden_states_key_proj, encoder_hidden_states_key_proj[:,:,-self.neg_prompt_length:]], dim=2)
-            value = torch.cat([value, encoder_hidden_states_value_proj, encoder_hidden_states_value_proj[:,:,-self.neg_prompt_length:]], dim=2)
+            # P, N0, I, N1
+            query = torch.cat([encoder_hidden_states_query_proj, query, encoder_hidden_states_query_proj[:,:,-self.neg_prompt_length:]], dim=2)
+            key = torch.cat([encoder_hidden_states_key_proj, key, encoder_hidden_states_key_proj[:,:,-self.neg_prompt_length:]], dim=2)
+            value = torch.cat([encoder_hidden_states_value_proj, value, encoder_hidden_states_value_proj[:,:,-self.neg_prompt_length:]], dim=2)
             value[:,:,-self.neg_prompt_length:] *= -self.scale  # negative prompt
-
+        else:
+            query = torch.cat([query, query[:,:,self.total_length-self.neg_prompt_length:self.total_length]], dim=2)            
+            key = torch.cat([key, key[:,:,self.total_length-self.neg_prompt_length:self.total_length]], dim=2)            
+            value = torch.cat([value, value[:,:,self.total_length-self.neg_prompt_length:self.total_length]], dim=2)   
+            value[:,:,-self.neg_prompt_length:] *= -self.scale  # negative prompt
+                     
         if self.image_rotary_emb is not None:
             from diffusers.models.embeddings import apply_rotary_emb
             # print(query.shape, self.image_rotary_emb[0].shape)
             query = apply_rotary_emb(query, self.image_rotary_emb)
             key = apply_rotary_emb(key, self.image_rotary_emb)
-            if encoder_hidden_states is not None:
-                query = query[:,:,:-self.neg_prompt_length]
+            query = query[:,:,:-self.neg_prompt_length]
             
         if self.attn_mask is not None:
             self.attn_mask = self.attn_mask.to(query.dtype)
-        
+            
         # print(query.device, key.device, value.device, self.attn_mask.device if self.attn_mask is not None else None)
         hidden_states = F.scaled_dot_product_attention(
             query, key, value, attn_mask=self.attn_mask, dropout_p=0.0, is_causal=False
         )
-        
+            
         hidden_states = hidden_states.transpose(1, 2).reshape(batch_size, -1, attn.heads * head_dim)
         hidden_states = hidden_states.to(query.dtype)
         
         if encoder_hidden_states is not None:
             encoder_hidden_states, hidden_states = (
-                hidden_states[:,-encoder_hidden_states.shape[1]:],
-                hidden_states[:,:-encoder_hidden_states.shape[1]],
+                hidden_states[:,:encoder_hidden_states.shape[1]],
+                hidden_states[:,encoder_hidden_states.shape[1]:],
             )
 
             # linear proj

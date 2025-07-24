@@ -521,10 +521,11 @@ class VSFFluxPipeline(FluxPipeline):
         # attn_mask[:,:-img_len:, pos_len:pos_len+neg_len] = -torch.inf
         # attn_mask[:,:pos_len+neg_len,pos_len+neg_len:pos_len+neg_len+neg_len] = -torch.inf
         attn_mask = torch.zeros((1, img_len + prompt_embeds.shape[1], img_len + prompt_embeds.shape[1] + neg_len))
-        attn_mask[:,-neg_len-pos_len:,-neg_len:] = -torch.inf #prompts cannot see -neg 
-        attn_mask[:,:-neg_len,-2*neg_len:-neg_len] = -torch.inf # image and positive prompt cannot see neg
-        attn_mask[:,-neg_len:,img_len:img_len+pos_len] = -torch.inf # neg cannot see positive prompt
-        attn_mask[:,:img_len,-neg_len:] -= offset # 0.08 image seeing less -neg
+        attn_mask[:,pos_len:pos_len+neg_len,:pos_len] = -torch.inf
+        attn_mask[:,:pos_len,pos_len:pos_len+neg_len] = -torch.inf
+        attn_mask[:,pos_len+neg_len:,pos_len:pos_len+neg_len] = -torch.inf
+        attn_mask[:,:pos_len+neg_len,-neg_len:] = -torch.inf
+        attn_mask[:,pos_len+neg_len:,-pos_len:] = -offset
         
         attn_mask = attn_mask.to(device=device, dtype=prompt_embeds.dtype)
         # attn_mask = None
@@ -533,8 +534,15 @@ class VSFFluxPipeline(FluxPipeline):
 
         for block in self.transformer.transformer_blocks:
             processors_backup.append(block.attn.processor)
-            block.attn.processor = FluxAttnProcessor2_0(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len)
+            block.attn.processor = FluxAttnProcessor2_0(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len, total_length=pos_len + neg_len)
             block.attn.processor.image_rotary_emb = self.transformer.pos_embed(torch.cat([latent_image_ids, pos_text_ids, neg_text_ids, neg_text_ids], dim=0))
+        
+        single_processors_backup = []
+        for block in self.transformer.single_transformer_blocks:
+            single_processors_backup.append(block.attn.processor)
+            block.attn.processor = FluxAttnProcessor2_0(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len, total_length=pos_len + neg_len)
+            block.attn.processor.image_rotary_emb = self.transformer.pos_embed(torch.cat([latent_image_ids, pos_text_ids, neg_text_ids, neg_text_ids], dim=0))
+
 
         # 5. Prepare timesteps
         sigmas = np.linspace(1.0, 1 / num_inference_steps, num_inference_steps) if sigmas is None else sigmas
@@ -689,4 +697,7 @@ class VSFFluxPipeline(FluxPipeline):
         for i, block in enumerate(self.transformer.transformer_blocks):
             block.attn.processor = processors_backup[i]
 
+        for i, block in enumerate(self.transformer.single_transformer_blocks):
+            block.attn.processor = single_processors_backup[i]
+            
         return FluxPipelineOutput(images=image)

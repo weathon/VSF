@@ -10,9 +10,9 @@ prompts = [
     "A machine learning scientist working in a lab, analyzing data on a computer screen. The camera captures the scientist's focused expression and the complex algorithms displayed on the screen.",
 ]
 neg_prompts = [
-    "red hot, bright, glow",
-    "wings",
+    "plane wings",
     "male with glasses"
+    "red hot, bright, glow",
 ]
 
 import wandb

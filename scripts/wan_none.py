@@ -31,7 +31,7 @@ neg_prompt = args.neg_prompt
 
 height = 480
 width = 832
-frames = 33
+frames = 81
 
 pipe.set_adapters("lora", 0.5)
 

@@ -39,13 +39,13 @@ output = pipe(
     prompt=prompt,
     nag_negative_prompt=neg_prompt,
     guidance_scale=0.0,
-    nag_scale=14,
-    nag_tau=6,
-    nag_alpha=0.9,
+    nag_scale=12,
+    nag_tau=5,
+    nag_alpha=0.7,
     height=480,
     width=832,
     num_inference_steps=12,
-    num_frames=33,
+    num_frames=81,
     generator=torch.Generator("cuda").manual_seed(42),
 ).frames[0]
 export_to_video(output, f"videos/{args.video_id:03d}_nag.mp4", fps=15)

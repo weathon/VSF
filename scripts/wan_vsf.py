@@ -38,7 +38,7 @@ neg_prompt = args.neg_prompt
 
 height = 480
 width = 832
-frames = 33
+frames = 81
 
 neg_prompt_embeds, _ = pipe.encode_prompt(
     prompt=neg_prompt,
@@ -55,7 +55,7 @@ pipe.set_adapters("lora", 0.5)
 
 
 
-neg_len = neg_prompt_embeds.shape[1]
+neg_len = neg_prompt_embeds.shape[1] 
 pos_len = pos_prompt_embeds.shape[1]
 print(neg_len, pos_len)
 
@@ -65,8 +65,8 @@ mask = torch.zeros((1, img_len, pos_len+neg_len)).cuda()
 mask[:, :, -neg_len:] = -0.10
 
 for block in pipe.transformer.blocks:
-    block.attn2.processor = WanAttnProcessor2_0(scale=2.2, neg_prompt_length=neg_len, attn_mask=mask)
-
+    block.attn2.processor = WanAttnProcessor2_0(scale=1.7, neg_prompt_length=neg_len, attn_mask=mask)
+# 1.7 no lava 1.8 lava why
 prompt_embeds = torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
 
 output = pipe(
