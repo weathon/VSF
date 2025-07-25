@@ -26,23 +26,20 @@ import time
 total_time = 0
 count = 0
 wandb.init(project="compute", name="vsf_sd3")
-def run(scale, offset): 
-    for seed in range(1):
-        for i in dev_prompts:
-            time_start = time.time()
-            image = pipe(
-                i["prompt"],
-                negative_prompt=i["missing_element"],
-                guidance_scale=0.,
-                scale=scale,
-                offset=offset,
-                num_inference_steps=8,
-                generator=torch.Generator("cuda").manual_seed(seed),
-            ).images[0]
-            time_end = time.time()
-            total_time += (time_end - time_start)
-            count += 1
-            wandb.log({"time_per_image": total_time / count})
+for i in dev_prompts[:25]:
+    time_start = time.time()
+    image = pipe(
+        i["prompt"],
+        negative_prompt=i["missing_element"],
+        guidance_scale=0.,
+        scale=3.8,
+        offset=0.1,
+        num_inference_steps=8,
+        generator=torch.Generator("cuda").manual_seed(0),
+    ).images[0]
+    time_end = time.time()
+    total_time += (time_end - time_start)
+    count += 1
+    wandb.log({"time_per_image": total_time / count})
 
 wandb.log({"peak_memory": torch.cuda.max_memory_allocated() / (1024 ** 3)})
-run(4.5, 0.2)
