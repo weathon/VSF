@@ -25,23 +25,20 @@ total_time = 0
 count = 0
 wandb.init(project="compute", name="nag_sd3")
 for i in dev_prompts[:25]:
-    score = np.array([0, 0], dtype=int)
-    total = 0
-    for i in dev_prompts[:25]:
-        time_start = time.time()
-        image = pipe(
-            i["prompt"],
-            nag_negative_prompt=i["missing_element"],
-            guidance_scale=0.,
-            nag_scale=10,
-            nag_alpha=0.5,
-            nag_tau=5,
-            num_inference_steps=8,
-            generator=torch.Generator("cuda").manual_seed(0),
-        ).images[0]
-        time_end = time.time()
-        total_time += (time_end - time_start)
-        count += 1
-        wandb.log({"time_per_image": total_time / count})
+    time_start = time.time()
+    image = pipe(
+        i["prompt"],
+        nag_negative_prompt=i["missing_element"],
+        guidance_scale=0.,
+        nag_scale=10,
+        nag_alpha=0.5,
+        nag_tau=5,
+        num_inference_steps=8,
+        generator=torch.Generator("cuda").manual_seed(0),
+    ).images[0]
+    time_end = time.time()
+    total_time += (time_end - time_start)
+    count += 1
+    wandb.log({"time_per_image": total_time / count})
 wandb.log({"peak_memory": torch.cuda.max_memory_allocated() / (1024 ** 3)})
 
