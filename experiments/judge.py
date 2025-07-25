@@ -82,4 +82,4 @@ def vqa(image1: Image.Image, question1: str, question2: str) -> np.ndarray:
 
     answer = completion.choices[0].message.parsed
 
-    return np.array([answer.answer_1, answer.answer_2, answer.quality], dtype=int)
+    return np.array([answer.answer_1, answer.answer_2, answer.quality], dtype=float)
