@@ -45,7 +45,7 @@ def run(nag_scale, nag_alpha, nag_tau):
                 # show the score as text on the image using PIL
                 from PIL import ImageDraw, ImageFont
                 draw = ImageDraw.Draw(image)
-                font = ImageFont.truetype("DejaVuSans.ttf", 50)
+                font = ImageFont.truetype(size=50)
                 text = f"{delta}, -: {i['missing_element']}"
                 draw.text((10, 10), text, fill="white", font=font)
 
