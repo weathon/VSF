@@ -45,9 +45,8 @@ def run(scale, offset):
                 total += 1
                 from PIL import ImageDraw, ImageFont
                 draw = ImageDraw.Draw(image)
-                font = ImageFont.truetype(size=50)
                 text = f"{delta}, -: {i['missing_element']}"
-                draw.text((10, 10), text, fill="white", font=font)
+                draw.text((10, 10), text, fill="white")
 
                 wandb.log({"pos_score":score[0]/total, "neg_score":score[1]/total, "quality_score": score[2]/total,"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
             else:

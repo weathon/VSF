@@ -43,10 +43,9 @@ def run(nag_scale, nag_alpha, nag_tau):
                 score += delta
                 total += 1
                 # show the score as text on the image using PIL
-                from PIL import ImageDraw, ImageFont
                 wandb.log({"pos_score":score[0]/total, "neg_score":score[1]/total, "quality_score": score[2]/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
-run(9, 0.5, 5)
-# run(4, 0.125, 2.5)
+# run(9, 0.5, 5)
+run(4, 0.125, 2.5)
