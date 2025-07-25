@@ -3,7 +3,6 @@ import sys
 sys.path.append("..")
 from src.sd3_pipeline import VSFStableDiffusion3Pipeline
 import json
-import judge
 import wandb
 import numpy as np
 import dotenv

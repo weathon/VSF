@@ -2,7 +2,6 @@ import torch
 import sys
 from diffusers import StableDiffusion3Pipeline
 import json
-import judge
 import wandb
 import numpy as np
 import os
