@@ -23,6 +23,8 @@ with open("../prompts/test_prompts.json.new", "r") as f:
 import time
 total_time = 0
 count = 0
+torch.reset_peak_memory_stats()
+
 wandb.init(project="compute", name="nag_sd3")
 for i in dev_prompts[:25]:
     time_start = time.time()

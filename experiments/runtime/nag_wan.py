@@ -28,6 +28,7 @@ total_time = 0
 count = 0
 import wandb
 wandb.init(project="compute", name="nag_wan")
+torch.reset_peak_memory_stats()
 pipe.scheduler = UniPCMultistepScheduler.from_config(pipe.scheduler.config, flow_shift=3.0)
 pipe.to("cuda")
 for i in dev_prompts[:25]:
