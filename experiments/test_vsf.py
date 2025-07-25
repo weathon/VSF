@@ -43,11 +43,6 @@ def run(scale, offset):
                 delta = judge.vqa(image, i["question_1"], i["question_2"])
                 score += delta
                 total += 1
-                from PIL import ImageDraw, ImageFont
-                draw = ImageDraw.Draw(image)
-                text = f"{delta}, -: {i['missing_element']}"
-                draw.text((10, 10), text, fill="white")
-
                 wandb.log({"pos_score":score[0]/total, "neg_score":score[1]/total, "quality_score": score[2]/total,"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
