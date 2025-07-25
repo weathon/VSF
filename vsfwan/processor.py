@@ -88,6 +88,7 @@ class WanAttnProcessor2_0:
             
         if self.attn_mask is not None: 
             self.attn_mask = self.attn_mask.to(query.dtype)
+            
         if not self.pos:
             hidden_states = F.scaled_dot_product_attention(
                 query, key, value, dropout_p=0.0, is_causal=False

@@ -18,7 +18,7 @@ wandb.init(project="compute", name="none_wan")
 total_time = 0
 count = 0
 
-torch.reset_peak_memory_stats()
+torch.cuda.reset_peak_memory_stats()
 
 model_id = "Wan-AI/Wan2.1-T2V-1.3B-Diffusers"
 vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", torch_dtype=torch.float32)

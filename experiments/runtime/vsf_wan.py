@@ -23,7 +23,8 @@ total_time = 0
 count = 0
 import wandb
 wandb.init(project="compute", name="vsf_wan")
-torch.reset_peak_memory_stats()
+torch.cuda.reset_peak_memory_stats()
+
 
 for i in dev_prompts[:25]:
     prompt = i["prompt"]
@@ -33,17 +34,18 @@ for i in dev_prompts[:25]:
     width = 832
     frames = 81 
 
-    neg_prompt_embeds, _ = pipe.encode_prompt(
-        prompt=neg_prompt,
-        padding=False,
-        do_classifier_free_guidance=False,
-    )
+    with torch.no_grad():
+        neg_prompt_embeds, _ = pipe.encode_prompt(
+            prompt=neg_prompt,
+            padding=False,
+            do_classifier_free_guidance=False,
+        )
 
-    pos_prompt_embeds, _ = pipe.encode_prompt( 
-        prompt=prompt,
-        do_classifier_free_guidance=False, 
-        max_sequence_length=512 - neg_prompt_embeds.shape[1],
-    )
+        pos_prompt_embeds, _ = pipe.encode_prompt( 
+            prompt=prompt,
+            do_classifier_free_guidance=False, 
+            max_sequence_length=512 - neg_prompt_embeds.shape[1],
+        )
     pipe.set_adapters("lora", 0.5)
 
 
