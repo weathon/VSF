@@ -23,6 +23,8 @@ total_time = 0
 count = 0
 import wandb
 wandb.init(project="compute", name="vsf_wan")
+torch.reset_peak_memory_stats()
+
 for i in dev_prompts[:25]:
     prompt = i["prompt"]
     neg_prompt = i["missing_element"]

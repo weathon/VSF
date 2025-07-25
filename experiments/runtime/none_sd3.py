@@ -24,6 +24,7 @@ import time
 total_time = 0
 count = 0
 wandb.init(project="compute", name="none_sd3")
+torch.reset_peak_memory_stats()
 
 for i in dev_prompts[:25]:
     time_start = time.time()
