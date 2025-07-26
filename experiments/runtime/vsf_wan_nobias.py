@@ -33,6 +33,9 @@ for i in dev_prompts[:25]:
     height = 480
     width = 832
     frames = 81 
+    # not using no grad will cause very high memory usage but flatten at the end, but seems like only in nobias settings? No it doesn't matter, it already has no grad in declarator
+    # but why last time I run it it used so much RAMs? that was after I ran everything else, when program starts it already used 24GB, so it was uncleaned? but look at nvidia it is cleaned that is after restart is everything else correct? did not run that sperately so yes likely
+    # wait it is 36 again. still about the no grad just saving differences? I think still about no grad, but why only in None?
     with torch.no_grad():
         neg_prompt_embeds, _ = pipe.encode_prompt(
             prompt=neg_prompt,
