@@ -2,8 +2,9 @@
 This project is experimental; please leave your feedback in issues or contact us. 
 Email: email@weasoft.com
 
+## Preprint
+[ResearchGate](https://www.researchgate.net/publication/394032960)
 
-Paper and benchmark coming soon
 ## Web Demo for Wan 2.1 VSF
 Wan 2.1 web demo [https://huggingface.co/spaces/weathon/VSF](https://huggingface.co/spaces/weathon/VSF)
 
@@ -24,6 +25,7 @@ Key Advantages:
 - 🎯 Includes attention masking and token duplication to isolate effects to only where needed.
 
 ## News
+- 📄 July 26, 2025: Preprint uploaded
 - 🤗 July 19, 2025: HuggingFace Space demo for Wan added
 - 📼 July 17, 2025: We now had experimental support for Wan 2.1
 - 🖼️ July 16, 2025: We now support Flux Dev and Flux Schnell
