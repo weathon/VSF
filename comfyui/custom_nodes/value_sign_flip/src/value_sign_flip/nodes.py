@@ -6,6 +6,9 @@ from .pipeline import WanPipeline
 from .processor import WanAttnProcessor2_0
 from diffusers.utils import export_to_video
 import folder_paths
+from transformers import AutoConfig
+from safetensors.torch import load_file
+from diffusers.hooks.group_offloading import apply_group_offloading
 
 class VSF:
     """
@@ -43,8 +46,10 @@ class VSF:
     def INPUT_TYPES(s):
         return {
             "required": {
-                # "clip": (folder_paths.get_filename_list("text_encoders"),),
-                # "wan": (folder_paths.get_filename_list("diffusion_models"),),
+                "clip": (folder_paths.get_filename_list("text_encoders"),),
+                "wan": (folder_paths.get_filename_list("diffusion_models"),),
+                "vae": (folder_paths.get_filename_list("vae"),),
+                "cfg_lora": (folder_paths.get_filename_list("loras"),),
                 "model_id": ("STRING", {"default": "Wan-AI/Wan2.1-T2V-1.3B-Diffusers"}),
                 "positive_prompt": ("STRING", {"default": "A cessna flying over a snowy mountain landscape, with a clear blue sky and fluffy white clouds. The plane is flying at a low altitude, casting a shadow on the snow-covered ground below.", "multiline": True}),
                 "negative_prompt": ("STRING", {"default": "wings", "multiline": True}),                
@@ -54,27 +59,79 @@ class VSF:
                 "frames": ("INT", {"default": 81}),
                 "scale": ("FLOAT", {"default": 1.5, "min": 0.1, "max": 10.0, "step": 0.1}),
                 "offset": ("FLOAT", {"default": -0.1, "min": -1.0, "max": 0, "step": 0.01}),
+                "shift": ("FLOAT", {"default": 3.0, "min": 0.0, "max": 5.0, "step": 0.1}),
                 "seed": ("INT", {"default": 42}),
                 "cfg_lora_scale": ("FLOAT", {"default": 0.5, "min": 0.0, "max": 1.0, "step": 0.1}),
+                # "cpu_offload": ("BOOLEAN", {"default": True, "label": "CPU Offload"}),
             },
         }
     
-    RETURN_TYPES = ("LATENT",)
+    RETURN_TYPES = ("IMAGE",)
     FUNCTION = "main"
 
     CATEGORY = "sampling"
 
-    def main(self, model_id, positive_prompt, negative_prompt, steps, height, width, frames, scale, offset, seed, cfg_lora_scale):
+    def main(self, clip, wan, cfg_lora, vae, model_id, positive_prompt, shift, negative_prompt, steps, height, width, frames, scale, offset, seed, cfg_lora_scale):
         model_id = "Wan-AI/Wan2.1-T2V-1.3B-Diffusers"
-        vae = AutoencoderKLWan.from_pretrained(model_id, subfolder="vae", torch_dtype=torch.float32)
-        pipe = WanPipeline.from_pretrained(model_id, vae=vae, torch_dtype=torch.bfloat16)
-        
+        vae = AutoencoderKLWan.from_single_file(
+            folder_paths.get_full_path("vae", vae),
+            local_files_only=True,
+            torch_dtype=torch.float32,
+        )
+        transformer = WanTransformer3DModel.from_single_file(
+            folder_paths.get_full_path("diffusion_models", wan),
+            local_files_only=True,
+            torch_dtype=torch.bfloat16,
+        )
+        tokenizer = AutoTokenizer.from_pretrained(model_id, subfolder="tokenizer")
+        text_encoder_state = load_file(
+            folder_paths.get_full_path("text_encoders", clip),
+            device="cpu", 
+        )
+
+        text_encoder = T5EncoderModel.from_pretrained(
+            pretrained_model_name_or_path=None,
+            config=AutoConfig.from_pretrained(model_id, subfolder="text_encoder"),
+            state_dict=text_encoder_state,
+            torch_dtype=torch.bfloat16,
+        )
+        # text_encoder = T5EncoderModel.from_pretrained(
+        #     pretrained_model_name_or_path=model_id,
+        #     subfolder="text_encoder",
+        # )
+        # if cpu_offload:
+        #     onload_device = torch.device("cuda")
+        #     offload_device = torch.device("cpu")
+        #     apply_group_offloading(text_encoder,
+        #         onload_device=onload_device,
+        #         offload_device=offload_device,
+        #         offload_type="block_level",
+        #         num_blocks_per_group=4
+        #     )
+        #     transformer.enable_group_offload(
+        #         onload_device=onload_device,
+        #         offload_device=offload_device,
+        #         offload_type="leaf_level",
+        #         use_stream=True
+        #     )
+
+        pipe = WanPipeline(
+            vae=vae,
+            transformer=transformer,
+            text_encoder=text_encoder,
+            tokenizer=tokenizer,
+            scheduler=UniPCMultistepScheduler.from_pretrained(
+                model_id, subfolder="scheduler", flow_shift=shift, 
+            ),
+        )
+        lora_path = folder_paths.get_full_path("loras", cfg_lora)
         pipe.load_lora_weights(
-            "Kijai/WanVideo_comfy",
-            weight_name="Wan21_CausVid_bidirect2_T2V_1_3B_lora_rank32.safetensors",
-            adapter_name="lora"
+            lora_path,
+            adapter_name="lora",
         ) 
-        pipe.to("cuda")
+
+        pipe.to(device="cuda", dtype=torch.bfloat16)
+
         neg_prompt_embeds, _ = pipe.encode_prompt(
             prompt=negative_prompt,
             padding=False,
@@ -109,18 +166,15 @@ class VSF:
             height=height,
             width=width,
             num_frames=frames,
-            num_inference_steps=steps,
+            num_inference_steps=steps, 
             guidance_scale=0.0, 
             generator=torch.Generator(device="cuda").manual_seed(seed),
-            output_type="latent",
-        )
+            output_type="pt",
+        )[0].float()[0].permute(0, 2, 3, 1).contiguous()
         print(output.shape)
-        # output = output.permute(0, 2, 3, 1``)
-        return ({"samples": output},)
-        # return (output,)
+        
+        return (output, )
 
-# A dictionary that contains all nodes you want to export with their names
-# NOTE: names should be globally unique
 NODE_CLASS_MAPPINGS = {
     "Example": VSF
 }
