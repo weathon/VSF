@@ -7,6 +7,7 @@ This node implements **Value Sign Flip (VSF)** for **negative guidance without C
 
 
 Example (generated using 1.3B, thus lower quality):
+<img width="1502" height="850" alt="image" src="https://github.com/user-attachments/assets/575fe78a-a7e2-47cd-9cc9-3897ba59b54d" />
 
 ---
 
