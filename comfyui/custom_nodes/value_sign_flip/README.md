@@ -3,7 +3,8 @@
 
 ## Purpose
 
-This node implements **Value Sign Flip (VSF)** for **negative guidance without CFG** in ComfyUI. It is designed for object removal in video generation (e.g., removing bike wheels), **not for quality improvement**. Avoid using prompts like "low quality" as negative—they may degrade results.
+This node implements **Value Sign Flip (VSF)** for **negative guidance without CFG** in ComfyUI. It is designed for object removal in video generation (e.g., removing bike wheels), **not for quality improvement**. Using prompts like "low quality" as negative could increase quality, but could also decrease it. 
+
 
 
 Example (generated using 1.3B, thus lower quality):
