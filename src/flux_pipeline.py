@@ -480,7 +480,7 @@ class VSFFluxPipeline(FluxPipeline):
         # print(prompt_embeds.shape)
         neg_len = neg_prompt_embeds.shape[1]
         pos_len = prompt_embeds.shape[1]
-        pos_pooled_prompt_embeds = neg_pooled_prompt_embeds + 1.1 * (pos_pooled_prompt_embeds - neg_pooled_prompt_embeds) 
+        pos_pooled_prompt_embeds = neg_pooled_prompt_embeds# + 1.1 * (pos_pooled_prompt_embeds - neg_pooled_prompt_embeds) 
 
 
         # processors_backup = []
@@ -515,11 +515,17 @@ class VSFFluxPipeline(FluxPipeline):
         )
         
         img_len = len(latent_image_ids)
+        # attn_mask = torch.zeros((1, img_len + prompt_embeds.shape[1], img_len + prompt_embeds.shape[1] + neg_len))
+        # attn_mask[:,-img_len-neg_len:-img_len,:pos_len] = -torch.inf
+        # attn_mask[:,:pos_len, pos_len:pos_len+neg_len] = -torch.inf
+        # attn_mask[:,:-img_len:, pos_len:pos_len+neg_len] = -torch.inf
+        # attn_mask[:,:pos_len+neg_len,pos_len+neg_len:pos_len+neg_len+neg_len] = -torch.inf
         attn_mask = torch.zeros((1, img_len + prompt_embeds.shape[1], img_len + prompt_embeds.shape[1] + neg_len))
-        attn_mask[:,-img_len-neg_len:-img_len,:pos_len] = -torch.inf
-        attn_mask[:,:pos_len, pos_len:pos_len+neg_len] = -torch.inf
-        attn_mask[:,:-img_len:, pos_len:pos_len+neg_len] = -torch.inf
-        attn_mask[:,:pos_len+neg_len,pos_len+neg_len:pos_len+neg_len+neg_len] = -torch.inf
+        attn_mask[:,-neg_len-pos_len:,-neg_len:] = -torch.inf #prompts cannot see -neg 
+        attn_mask[:,:-neg_len,-2*neg_len:-neg_len] = -torch.inf # image and positive prompt cannot see neg
+        attn_mask[:,-neg_len:,img_len:img_len+pos_len] = -torch.inf # neg cannot see positive prompt
+        attn_mask[:,:img_len,-neg_len:] -= offset # 0.08 image seeing less -neg
+        
         attn_mask = attn_mask.to(device=device, dtype=prompt_embeds.dtype)
         # attn_mask = None
         

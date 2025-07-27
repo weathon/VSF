@@ -1,0 +1,30 @@
+2025-07-22 03:28:06,058 INFO    MainThread:1234644 [wandb_setup.py:_flush():80] Current SDK version is 0.21.0
+2025-07-22 03:28:06,058 INFO    MainThread:1234644 [wandb_setup.py:_flush():80] Configure stats pid to 1234644
+2025-07-22 03:28:06,058 INFO    MainThread:1234644 [wandb_setup.py:_flush():80] Loading settings from /home/wg25r/.config/wandb/settings
+2025-07-22 03:28:06,058 INFO    MainThread:1234644 [wandb_setup.py:_flush():80] Loading settings from /home/wg25r/turbo/VSF/experiments/video_reward/wandb/settings
+2025-07-22 03:28:06,058 INFO    MainThread:1234644 [wandb_setup.py:_flush():80] Loading settings from environment variables
+2025-07-22 03:28:06,058 INFO    MainThread:1234644 [wandb_init.py:setup_run_log_directory():703] Logging user logs to /home/wg25r/turbo/VSF/experiments/video_reward/wandb/run-20250722_032806-01z84kph/logs/debug.log
+2025-07-22 03:28:06,058 INFO    MainThread:1234644 [wandb_init.py:setup_run_log_directory():704] Logging internal logs to /home/wg25r/turbo/VSF/experiments/video_reward/wandb/run-20250722_032806-01z84kph/logs/debug-internal.log
+2025-07-22 03:28:06,058 INFO    MainThread:1234644 [wandb_init.py:init():830] calling init triggers
+2025-07-22 03:28:06,058 INFO    MainThread:1234644 [wandb_init.py:init():835] wandb.init called with sweep_config: {}
+config: {'_wandb': {}}
+2025-07-22 03:28:06,058 INFO    MainThread:1234644 [wandb_init.py:init():871] starting backend
+2025-07-22 03:28:06,173 WARNING MainThread:1234644 [wandb_init.py:init():1610] [no run ID] interrupted
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_init.py", line 1606, in init
+    return wi.init(run_settings, run_config, run_printer)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_init.py", line 873, in init
+    service = self._wl.ensure_service()
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_setup.py", line 325, in ensure_service
+    self._connection = service_connection.connect_to_service(self._settings)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/service/service_connection.py", line 33, in connect_to_service
+    return _start_and_connect_service(settings)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/service/service_connection.py", line 45, in _start_and_connect_service
+    proc = service_process.start(settings)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/service/service_process.py", line 33, in start
+    return _launch_server(settings)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/service/service_process.py", line 105, in _launch_server
+    token = service_port_file.poll_for_token(
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/service/service_port_file.py", line 61, in poll_for_token
+    _SLEEP(max(0, min(0.2, end_time - _MONOTONIC())))
+KeyboardInterrupt

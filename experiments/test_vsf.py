@@ -28,7 +28,7 @@ def run(scale, offset):
     wandb.init(project="vsf-sweep")
     score = np.array([0, 0], dtype=int)
     total = 0
-    for seed in range(5):
+    for seed in range(1):
         for i in dev_prompts:
             image = pipe(
                 i["prompt"],
