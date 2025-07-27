@@ -24,8 +24,12 @@ Key Advantages:
 - 🚫 Avoids common issues like negative prompts being accidentally reinforcing the undesired concept.
 - 🎯 Includes attention masking and token duplication to isolate effects to only where needed.
 
+## ComfyUI
+ComfyUI custom node is available at [comfyui](comfyui/), make sure you have the diffusers installed in your Comfy envirement
+
 ## News
 - 📄 July 26, 2025: Preprint uploaded
+- 🎇 July 26, 2025: First version of ComfyUI node added
 - 🤗 July 19, 2025: HuggingFace Space demo for Wan added
 - 📼 July 17, 2025: We now had experimental support for Wan 2.1
 - 🖼️ July 16, 2025: We now support Flux Dev and Flux Schnell
