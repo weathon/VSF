@@ -9,13 +9,16 @@ Problem: Modern few-step text-to-image models often struggle to properly exclude
 Solution (VSF): We propose a lightweight technique that flips the value vector of negative prompt embeddings during attention. This cancels out unwanted features without retraining or needing access to classifier-free guidance.
 
 Key Advantages:
-
 - ⚡ Works with few-step and even single-step generation models (currently only supports SD3.5 and Flux).
 - 🔧 Requires no model retraining.
 - 🚫 Avoids common issues like negative prompts being accidentally reinforcing the undesired concept.
 - 🎯 Includes attention masking and token duplication to isolate effects to only where needed.
 
+## ComfyUI
+ComfyUI custom node is available at [comfyui](comfyui/), make sure you have the diffusers installed in your Comfy envirement
+
 ## News
+- 🎇 July 26, 2025: First version of ComfyUI node added
 - 🖼️ July 16, 2025: We now support Flux Dev and Flux Schnell
 - 🎨 July 15, 2025: We open sourced our repo and has support for SD3.5-large-turbo
 
