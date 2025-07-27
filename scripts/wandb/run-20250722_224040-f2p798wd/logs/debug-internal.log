@@ -1,0 +1,6 @@
+{"time":"2025-07-22T22:40:40.429146181-07:00","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-07-22T22:40:40.715851687-07:00","level":"INFO","msg":"stream: created new stream","id":"f2p798wd"}
+{"time":"2025-07-22T22:40:40.71593865-07:00","level":"INFO","msg":"stream: started","id":"f2p798wd"}
+{"time":"2025-07-22T22:40:40.715974332-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"f2p798wd"}
+{"time":"2025-07-22T22:40:40.715988365-07:00","level":"INFO","msg":"handler: started","stream_id":"f2p798wd"}
+{"time":"2025-07-22T22:40:40.716071454-07:00","level":"INFO","msg":"sender: started","stream_id":"f2p798wd"}

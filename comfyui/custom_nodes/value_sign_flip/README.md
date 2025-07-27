@@ -31,7 +31,6 @@ No example workflow is provided due to the simplicity of the setup.
 * **offset**: Lower (more negative) values decrease the impact of the negative prompt outside the target area.
 * **shift**: Flow shift during sampling.
 * **cfg\_lora\_scale**: Scale of the CFG LoRA. Recommended: `0.4`–`0.7`.
-g\_lora\_scale**: Strength of the LoRA. Recommended: `0.4`–`0.7`.
 
 ---
 

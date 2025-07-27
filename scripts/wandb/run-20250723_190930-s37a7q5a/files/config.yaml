@@ -1,0 +1,65 @@
+_wandb:
+    value:
+        cli_version: 0.21.0
+        e:
+            0l12r7n4xqw2zb982sl2e1w489cancpy:
+                codePath: scripts/paper_demo.py
+                codePathLocal: paper_demo.py
+                cpu_count: 56
+                cpu_count_logical: 112
+                cudaVersion: "12.4"
+                disk:
+                    /:
+                        total: "2005769203712"
+                        used: "1693417824256"
+                email: wguo6358@gmail.com
+                executable: /home/wg25r/miniconda/envs/neg/bin/python3
+                git:
+                    commit: 7b36929d36803f97ad20f1d1df33263c6da7b758
+                    remote: https://github.com/weathon/VSF.git
+                gpu: NVIDIA RTX A6000
+                gpu_count: 3
+                gpu_nvidia:
+                    - architecture: Ampere
+                      cudaCores: 10752
+                      memoryTotal: "51527024640"
+                      name: NVIDIA RTX A6000
+                      uuid: GPU-058c2ff8-0e0d-ba79-96b8-99c5bdc85e8e
+                    - architecture: Ampere
+                      cudaCores: 10752
+                      memoryTotal: "51527024640"
+                      name: NVIDIA RTX A6000
+                      uuid: GPU-223f1d69-b595-dd22-d112-fae575ae6ef4
+                    - architecture: Ampere
+                      cudaCores: 10752
+                      memoryTotal: "51527024640"
+                      name: NVIDIA RTX A6000
+                      uuid: GPU-292c05d7-cef3-261e-b438-24530c206940
+                host: shandu.ws.ok.ubc.ca
+                memory:
+                    total: "810116677632"
+                os: Linux-6.8.0-57-generic-x86_64-with-glibc2.35
+                program: /home/wg25r/turbo/VSF/scripts/paper_demo.py
+                python: CPython 3.10.17
+                root: /home/wg25r/turbo/VSF/scripts
+                startedAt: "2025-07-24T02:09:30.286150Z"
+                writerId: 0l12r7n4xqw2zb982sl2e1w489cancpy
+        m: []
+        python_version: 3.10.17
+        t:
+            "1":
+                - 15
+                - 49
+                - 51
+                - 105
+            "2":
+                - 15
+                - 49
+                - 51
+                - 105
+            "3":
+                - 13
+            "4": 3.10.17
+            "5": 0.21.0
+            "12": 0.21.0
+            "13": linux-x86_64

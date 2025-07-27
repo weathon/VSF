@@ -1,21 +1,33 @@
 # VSF: Simple, Efficient, and Effective Negative Guidance in Few-Step Image Generation Models By Value Sign Flip
+This project is experimental; please leave your feedback in issues or contact us. 
+Email: email@weasoft.com
 
-Paper and benchmark coming soon
+## Preprint
+[ResearchGate](https://www.researchgate.net/publication/394032960)
+
+## Web Demo for Wan 2.1 VSF
+Wan 2.1 web demo [https://huggingface.co/spaces/weathon/VSF](https://huggingface.co/spaces/weathon/VSF)
+
+
+
 ## Introduction
 This project introduces a new method called Value Sign Flip (VSF) that improves how image generation models handle negative prompts.
 
 Problem: Modern few-step text-to-image models often struggle to properly exclude concepts described in negative prompts. Existing methods (CFG) either don’t work well or require heavy changes to the model (NegationCLIP).
 
-Solution (VSF): We propose a lightweight technique that flips the value vector of negative prompt embeddings during attention. This cancels out unwanted features without retraining or needing access to classifier-free guidance.
+Solution (VSF): We propose a lightweight technique that flips the value vector of negative prompt embeddings during attention. This cancels out unwanted features without retraining or needing access to classifier-free ⚡️.
 
 Key Advantages:
 
-- ⚡ Works with few-step and even single-step generation models (currently only supports SD3.5 and Flux).
+- ⚡ Works with few-step and even single-step generation models (currently only supports SD3.5, Flux, and Wan), able to generate video with negative guidance in 30s. (480p, Wan 1.3B, 81 frames)
 - 🔧 Requires no model retraining.
 - 🚫 Avoids common issues like negative prompts being accidentally reinforcing the undesired concept.
 - 🎯 Includes attention masking and token duplication to isolate effects to only where needed.
 
 ## News
+- 📄 July 26, 2025: Preprint uploaded
+- 🤗 July 19, 2025: HuggingFace Space demo for Wan added
+- 📼 July 17, 2025: We now had experimental support for Wan 2.1
 - 🖼️ July 16, 2025: We now support Flux Dev and Flux Schnell
 - 🎨 July 15, 2025: We open sourced our repo and has support for SD3.5-large-turbo
 
@@ -48,25 +60,16 @@ Scale: `4`
 <!-- <video src="media/flux_demo.mp4" controls preload></video> -->
 
 ### Wan 2.1
-This is experimental, video quality is not ideal and negative prompt following is not as good as SD-3.5.
-The support of Wan 2.1 is thanks to @MeiYi-dev's suggestion of [CausVid LoRA](https://huggingface.co/Kijai/WanVideo_comfy/blob/main/Wan21_CausVid_bidirect2_T2V_1_3B_lora_rank32.safetensors).  
+**Our WAN examples are very exciting; however, due to file size, we put the examples in a separate file.** [wan.md](wan.md)
 
-We are looking for CFG-free video generation that can work in HuggingFace Diffusers, this current LoRA cannot provide the best quality. 
-
-Known Issues:
-- The video will has a few frames at the begining that has very high contrast 
-
-Video compressed when export, see original video file in `media` folder.
-| Original    | VSF |
-| -------- | ------- |
-| ![](media/original_1.webp)  | ![](media/vsf_1.webp)    |
-| A chef cat and a chef dog with chef suit baking a cake together in a kitchen. The cat is carefully measuring flour, while the dog is stirring the batter with a wooden spoon. | -white dog |
-|![](media/original_2.webp)|![](media/vsf_2.webp) |
-|A cessna flying over a snowy mountain landscape, with a clear blue sky and fluffy white clouds. The plane is flying at a low altitude, casting a shadow on the snow-covered ground below. The mountains are rugged and steep, with patches of evergreen trees visible in the foreground.| -trees|
 ## Usage
 You can clone this repo into your working folder, and execute the following code. We subjectively find that SD3.5 version is better at following negative prompt while Flux Schnell version has better quality. It seems like our method did not work well on Flux Dev. 
 
 **Note: the CFG scale has to be set to 0 to use our method. **
+
+### Wan WEb Demo
+Clone the repo, and run `python3 app.py` will start a gradio interface for Wan.
+
 
 ### SD3.5-large-turbo
 ```python
@@ -209,7 +212,12 @@ This to-do list will be listed in issues. If it is not assigned yet, feel free t
 - [x] Add support for SD3.5-large-turbo 
 - [x] Add support for Flux-Schnell
 - [x] Add Wan2.1 support
-- [ ] Add full Wan 2.1 work (non experimental LoRA)
+- [x] Gradio Interface
+- [ ] Add full Wan 2.1 work (non-experimental LoRA)
 - [ ] Make Flux-Dev work
 - [ ] Add Comfy-UI custom node
 - [ ] Add Web-UI demo
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=weathon/VSF&type=Timeline)](https://www.star-history.com/#weathon/VSF&Timeline)

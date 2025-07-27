@@ -37,12 +37,13 @@ else:
 class JointAttnProcessor2_0:
     """Attention processor used typically in processing the SD3-like self-attention projections."""
 
-    def __init__(self, scale=4, attn_mask=None, neg_prompt_length=0):
+    def __init__(self, scale=4, attn_mask=None, neg_prompt_length=0, maps=None):
         if not hasattr(F, "scaled_dot_product_attention"):
             raise ImportError("JointAttnProcessor2_0 requires PyTorch 2.0, to use it, please upgrade PyTorch to 2.0.")
         self.attn_mask = attn_mask
         self.neg_prompt_length = neg_prompt_length
         self.scale = scale
+        self.maps = maps
 
     def __call__(
         self,
@@ -97,6 +98,11 @@ class JointAttnProcessor2_0:
             key = torch.cat([key, encoder_hidden_states_key_proj, encoder_hidden_states_key_proj[:,:,-self.neg_prompt_length:]], dim=2)
             value = torch.cat([value, encoder_hidden_states_value_proj, encoder_hidden_states_value_proj[:,:,-self.neg_prompt_length:]], dim=2)
             value[:,:,-self.neg_prompt_length:] *= -self.scale  
+            
+            # pos_map = torch.einsum('bhqd,bhkd->bhqk', query[:,:,:-encoder_hidden_states.shape[1]], key[:,:,-encoder_hidden_states.shape[1]-self.neg_prompt_length:-self.neg_prompt_length])
+            # neg_map = torch.einsum('bhqd,bhkd->bhqk', query[:,:,:-encoder_hidden_states.shape[1]], key[:,:,-self.neg_prompt_length:])
+            
+            # self.maps.append([pos_map.detach().cpu(), neg_map.detach().cpu()])
             
         hidden_states = F.scaled_dot_product_attention(query, key, value, dropout_p=0.0, is_causal=False, attn_mask=self.attn_mask.to(query.dtype))
         hidden_states = hidden_states.transpose(1, 2).reshape(batch_size, -1, attn.heads * head_dim)
@@ -199,6 +205,7 @@ class FluxAttnProcessor2_0:
             self.attn_mask = self.attn_mask.to(query.dtype)
         
         # print(query.device, key.device, value.device, self.attn_mask.device if self.attn_mask is not None else None)
+        
         hidden_states = F.scaled_dot_product_attention(
             query, key, value, attn_mask=self.attn_mask, dropout_p=0.0, is_causal=False
         )
