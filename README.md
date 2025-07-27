@@ -2,6 +2,7 @@
 This project is experimental; please leave your feedback in issues or contact us. 
 Email: email@weasoft.com
 
+[Web Page](https://vsf.weasoft.com/)
 ## Preprint
 [ResearchGate](https://www.researchgate.net/publication/394032960)
 
@@ -64,8 +65,7 @@ Scale: `4`
 <!-- <video src="media/flux_demo.mp4" controls preload></video> -->
 
 ### Wan 2.1
-**Our WAN examples are very exciting; however, due to file size, we put the examples in a separate file.** [wan.md](wan.md)
-
+Please checkout our examples in [https://vsf.weasoft.com/](https://vsf.weasoft.com/).
 ## Usage
 You can clone this repo into your working folder, and execute the following code. We subjectively find that SD3.5 version is better at following negative prompt while Flux Schnell version has better quality. It seems like our method did not work well on Flux Dev. 
 
