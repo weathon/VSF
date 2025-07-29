@@ -1,0 +1,6 @@
+{"time":"2025-07-22T03:32:21.475666504-07:00","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-07-22T03:32:21.755971904-07:00","level":"INFO","msg":"stream: created new stream","id":"ymuska60"}
+{"time":"2025-07-22T03:32:21.756024426-07:00","level":"INFO","msg":"stream: started","id":"ymuska60"}
+{"time":"2025-07-22T03:32:21.756058111-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"ymuska60"}
+{"time":"2025-07-22T03:32:21.756071169-07:00","level":"INFO","msg":"sender: started","stream_id":"ymuska60"}
+{"time":"2025-07-22T03:32:21.756156587-07:00","level":"INFO","msg":"handler: started","stream_id":"ymuska60"}

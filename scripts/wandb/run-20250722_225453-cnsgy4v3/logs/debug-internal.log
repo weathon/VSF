@@ -1,0 +1,6 @@
+{"time":"2025-07-22T22:54:53.350763556-07:00","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-07-22T22:54:53.62586338-07:00","level":"INFO","msg":"stream: created new stream","id":"cnsgy4v3"}
+{"time":"2025-07-22T22:54:53.625918016-07:00","level":"INFO","msg":"stream: started","id":"cnsgy4v3"}
+{"time":"2025-07-22T22:54:53.625946786-07:00","level":"INFO","msg":"handler: started","stream_id":"cnsgy4v3"}
+{"time":"2025-07-22T22:54:53.625976827-07:00","level":"INFO","msg":"sender: started","stream_id":"cnsgy4v3"}
+{"time":"2025-07-22T22:54:53.625951279-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"cnsgy4v3"}
