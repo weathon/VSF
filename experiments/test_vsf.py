@@ -26,7 +26,7 @@ with open("../prompts/test_prompts.json.new", "r") as f:
 
 def run(scale, offset):
     wandb.init(project="vsf-sweep")
-    score = np.array([0, 0], dtype=int)
+    score = np.array([0, 0, 0], dtype=float)
     total = 0
     for seed in range(5):
         for i in dev_prompts:
@@ -43,12 +43,8 @@ def run(scale, offset):
                 delta = judge.vqa(image, i["question_1"], i["question_2"])
                 score += delta
                 total += 1
-                from PIL import ImageDraw, ImageFont
-                draw = ImageDraw.Draw(image)
-                text = f"{delta[0]}, {delta[1]}, -: {i['missing_element']}"
-                draw.text((10, 10), text, fill="white")
-                wandb.log({"pos_score":score[0]/total, "neg_score":score[1]/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
+                wandb.log({"pos_score":score[0]/total, "neg_score":score[1]/total, "quality_score": score[2]/total,"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
-run(4.5, 0.2)
+run(3.8, 0.2)
