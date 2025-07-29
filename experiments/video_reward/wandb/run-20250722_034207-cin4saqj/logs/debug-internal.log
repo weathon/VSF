@@ -1,0 +1,15 @@
+{"time":"2025-07-22T03:42:08.213254843-07:00","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-07-22T03:42:08.503673668-07:00","level":"INFO","msg":"stream: created new stream","id":"cin4saqj"}
+{"time":"2025-07-22T03:42:08.503749678-07:00","level":"INFO","msg":"stream: started","id":"cin4saqj"}
+{"time":"2025-07-22T03:42:08.503781997-07:00","level":"INFO","msg":"writer: Do: started","stream_id":"cin4saqj"}
+{"time":"2025-07-22T03:42:08.503804278-07:00","level":"INFO","msg":"handler: started","stream_id":"cin4saqj"}
+{"time":"2025-07-22T03:42:08.503823062-07:00","level":"INFO","msg":"sender: started","stream_id":"cin4saqj"}
+{"time":"2025-07-22T13:00:24.142521568-07:00","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/3dsmile/wan14b-videos/cin4saqj/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-07-22T13:57:54.592870717-07:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-07-22T14:02:24.597014646-07:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded"}
+{"time":"2025-07-22T14:08:24.605869694-07:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded"}
+{"time":"2025-07-22T14:08:38.617362478-07:00","level":"INFO","msg":"api: retrying HTTP error","status":429,"url":"https://api.wandb.ai/files/3dsmile/wan14b-videos/cin4saqj/file_stream","body":"{\"error\":\"rate limit exceeded\"}"}
+{"time":"2025-07-22T14:09:24.606765127-07:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-07-22T14:21:54.620774093-07:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": net/http: request canceled (Client.Timeout exceeded while awaiting headers)"}
+{"time":"2025-07-22T14:33:09.630158374-07:00","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded"}
+{"time":"2025-07-22T14:33:34.688700984-07:00","level":"INFO","msg":"api: retrying HTTP error","status":500,"url":"https://api.wandb.ai/graphql","body":"{\"errors\":[{\"message\":\"context deadline exceeded\",\"path\":[\"project\",\"run\"]}],\"data\":{\"project\":{\"run\":null}}}"}

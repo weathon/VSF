@@ -1,0 +1,913 @@
+2025-07-22 21:54:44,734 INFO    MainThread:1921883 [wandb_setup.py:_flush():80] Current SDK version is 0.21.0
+2025-07-22 21:54:44,734 INFO    MainThread:1921883 [wandb_setup.py:_flush():80] Configure stats pid to 1921883
+2025-07-22 21:54:44,734 INFO    MainThread:1921883 [wandb_setup.py:_flush():80] Loading settings from /home/wg25r/.config/wandb/settings
+2025-07-22 21:54:44,734 INFO    MainThread:1921883 [wandb_setup.py:_flush():80] Loading settings from /home/wg25r/turbo/VSF/scripts/wandb/settings
+2025-07-22 21:54:44,734 INFO    MainThread:1921883 [wandb_setup.py:_flush():80] Loading settings from environment variables
+2025-07-22 21:54:44,734 INFO    MainThread:1921883 [wandb_init.py:setup_run_log_directory():703] Logging user logs to /home/wg25r/turbo/VSF/scripts/wandb/run-20250722_215444-om463etq/logs/debug.log
+2025-07-22 21:54:44,734 INFO    MainThread:1921883 [wandb_init.py:setup_run_log_directory():704] Logging internal logs to /home/wg25r/turbo/VSF/scripts/wandb/run-20250722_215444-om463etq/logs/debug-internal.log
+2025-07-22 21:54:44,734 INFO    MainThread:1921883 [wandb_init.py:init():830] calling init triggers
+2025-07-22 21:54:44,734 INFO    MainThread:1921883 [wandb_init.py:init():835] wandb.init called with sweep_config: {}
+config: {'_wandb': {}}
+2025-07-22 21:54:44,734 INFO    MainThread:1921883 [wandb_init.py:init():871] starting backend
+2025-07-22 21:54:44,944 INFO    MainThread:1921883 [wandb_init.py:init():874] sending inform_init request
+2025-07-22 21:54:44,950 INFO    MainThread:1921883 [wandb_init.py:init():882] backend started and connected
+2025-07-22 21:54:44,951 INFO    MainThread:1921883 [wandb_init.py:init():953] updated telemetry
+2025-07-22 21:54:44,958 INFO    MainThread:1921883 [wandb_init.py:init():977] communicating run to backend with 90.0 second timeout
+2025-07-22 21:54:45,485 INFO    MainThread:1921883 [wandb_init.py:init():1029] starting run threads in backend
+2025-07-22 21:54:45,892 INFO    MainThread:1921883 [wandb_run.py:_console_start():2458] atexit reg
+2025-07-22 21:54:45,893 INFO    MainThread:1921883 [wandb_run.py:_redirect():2306] redirect: wrap_raw
+2025-07-22 21:54:45,893 INFO    MainThread:1921883 [wandb_run.py:_redirect():2375] Wrapping output streams.
+2025-07-22 21:54:45,893 INFO    MainThread:1921883 [wandb_run.py:_redirect():2398] Redirects installed.
+2025-07-22 21:54:45,894 INFO    MainThread:1921883 [wandb_init.py:init():1075] run started, returning control to user process
+2025-07-22 21:57:31,059 INFO    MsgRouterThr:1921883 [mailbox.py:close():129] [no run ID] Closing mailbox, abandoning 1 handles.
+2025-07-22 21:57:31,637 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,642 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,643 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,643 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,644 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,645 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,646 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,647 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,648 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,649 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,650 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,651 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,652 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,653 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,654 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,655 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,656 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,656 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,658 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,659 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,660 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,661 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,662 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,663 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,664 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,665 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,667 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,668 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,669 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,669 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,670 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,671 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 21:57:31,672 ERROR   MainThread:1921883 [redirect.py:_on_write():664] [all runs] error in stderr callback
+Traceback (most recent call last):
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/redirect.py", line 662, in _on_write
+    cb(written_data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 2385, in <lambda>
+    lambda data: self._console_raw_callback("stderr", data),
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 398, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 456, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/wandb_run.py", line 1566, in _console_raw_callback
+    self._backend.interface.publish_output_raw(name, data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface.py", line 771, in publish_output_raw
+    self._publish_output_raw(o)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_shared.py", line 38, in _publish_output_raw
+    self._publish(rec)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/interface/interface_sock.py", line 39, in _publish
+    self._sock_client.send_record_publish(record)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 170, in send_record_publish
+    self.send_server_request(server_req)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 150, in send_server_request
+    self._send_message(msg)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 147, in _send_message
+    self._sendall_with_error_handle(header + data)
+  File "/home/wg25r/miniconda/envs/neg/lib/python3.10/site-packages/wandb/sdk/lib/sock_client.py", line 126, in _sendall_with_error_handle
+    sent = self._sock.send(data)
+BrokenPipeError: [Errno 32] Broken pipe
