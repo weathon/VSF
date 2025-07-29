@@ -24,7 +24,7 @@ with open("../prompts/test_prompts.json.new", "r") as f:
 
 def run(nag_scale, nag_alpha, nag_tau):
     wandb.init(project="nag-sweep")
-    score = np.array([0, 0], dtype=int)
+    score = np.array([0, 0, 0], dtype=float)
     total = 0
     for seed in range(5):
         for i in dev_prompts:
@@ -44,15 +44,9 @@ def run(nag_scale, nag_alpha, nag_tau):
                 total += 1
                 # show the score as text on the image using PIL
                 from PIL import ImageDraw, ImageFont
-                draw = ImageDraw.Draw(image)
-                font = ImageFont.truetype("DejaVuSans.ttf", 50)
-                text = f"{delta}, -: {i['missing_element']}"
-                draw.text((10, 10), text, fill="white", font=font)
-                text = f"{delta[0]}, {delta[1]}, -: {i['missing_element']}"
-                draw.text((10, 10), text, fill="white")
-                wandb.log({"pos_score":score[0]/total, "neg_score":score[1]/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
+                wandb.log({"pos_score":score[0]/total, "neg_score":score[1]/total, "quality_score": score[2]/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
-run(10, 0.5, 5)
+run(11, 0.5, 5)
 # run(4, 0.125, 2.5)
