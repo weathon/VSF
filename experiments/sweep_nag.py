@@ -19,17 +19,14 @@ pipe = NAGStableDiffusion3Pipeline.from_pretrained(
 )
 pipe.to("cuda")
 
-with open("../prompts/dev_prompts.json", "r") as f:
+with open("../prompts/test_prompts.json.new", "r") as f:
     dev_prompts = json.load(f)
 
-def run():
+def run(nag_scale, nag_alpha, nag_tau):
     wandb.init(project="nag-sweep")
-    nag_scale = wandb.config.nag_scale
-    nag_alpha = wandb.config.nag_alpha
-    nag_tau = wandb.config.nag_tau
-    scores = np.zeros(2)
+    score = np.array([0, 0], dtype=int)
     total = 0
-    for seed in range(2):
+    for seed in range(1):
         for i in dev_prompts:
             image = pipe(
                 i["prompt"],
@@ -42,24 +39,20 @@ def run():
                 generator=torch.Generator("cuda").manual_seed(seed),
             ).images[0]
             if not args.eval_later:
-                scores += judge.ask_gpt(image, i["prompt"], i["missing_element"])
-                wandb.log({"pos_score": scores[0]/total, "neg_score": scores[1]/total, "total_score": (scores[0] * 0.4 + scores[1] * 0.6)/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
+                delta = judge.vqa(image, i["question_1"], i["question_2"])
+                score += delta
                 total += 1
+                # show the score as text on the image using PIL
+                from PIL import ImageDraw, ImageFont
+                draw = ImageDraw.Draw(image)
+                font = ImageFont.truetype("DejaVuSans.ttf", 50)
+                text = f"{delta}, -: {i['missing_element']}"
+                draw.text((10, 10), text, fill="white", font=font)
+                text = f"{delta[0]}, {delta[1]}, -: {i['missing_element']}"
+                draw.text((10, 10), text, fill="white")
+                wandb.log({"pos_score":score[0]/total, "neg_score":score[1]/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
-        
-sweep_configuration = {
-    "method": "random", 
-    "metric": {"goal": "maximize", "name": "total_score"},
-    "parameters": {
-        "nag_scale": {"min": 4.0, "max": 8.0},
-        "nag_alpha": {"min": 0.0, "max": 1.0},
-        "nag_tau": {"min": 1.0, "max": 8.0},
-    },
-}
-
-# 3: Start the sweep
-sweep_id = wandb.sweep(sweep=sweep_configuration, project="nag-sweep")
-
-wandb.agent(sweep_id, function=run, count=64)
+run(10, 0.5, 5)
+# run(4, 0.125, 2.5)
