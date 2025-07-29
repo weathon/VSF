@@ -11,7 +11,15 @@ import dotenv
 
 dotenv.load_dotenv()
 
-client = OpenAI()
+openai_api_key = os.environ["key"]
+openai_api_base = "https://api.lambda.ai/v1"
+
+client = OpenAI(
+    api_key=openai_api_key,
+    base_url=openai_api_base,
+)
+
+# client = OpenAI()
 # client = OpenAI(
 #     api_key=os.getenv("GOOGLE_API_KEY"),
 #     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
@@ -56,30 +64,29 @@ def ask_gpt(image1: Image.Image, pos: str, neg: str) -> list[Score]:
 
 
 class Ans(BaseModel):
+    reasoning: str
     answer_1: bool
     answer_2: bool
     quality: float
 
 def vqa(image1: Image.Image, question1: str, question2: str) -> np.ndarray:
     buf1 = io.BytesIO()
-    image1 = image1.resize((448, 448))
     image1.save(buf1, format="PNG")
     b64_1 = base64.b64encode(buf1.getvalue()).decode("utf-8")
 
-    prompt = f"Answer the following questions, only answer with boolean, only answer True if it follow all the conditions, otherwise answer False. Question 1 is: {question1}, Question 2 is: {question2}. Answer only with True or False. For first question, you should answer if the main object is there, no matter if a key element described in second question is missing from it. For second question asking if something is missing, answer True if it is missing or invisible, otherwise False. You should also rate the quality of the image from 0 to 1, where 0 is bad and 1 is good, fine grained to 0.1. Following negative prompt should not decrease the quality score, (e.g. removing wheels from a car should not decrease quality score if it is what the negative prompt asked)."
+    prompt = f"Answer the following questions, only answer with boolean, only answer True if it follow all the conditions, otherwise answer False. Answer only with True or False. For first question, you should answer if the main object is there, no matter if a key element described in second question is missing from it. For second question asking if something is missing, answer True if it is missing or invisible, otherwise False. That means, if you cannot see it, label it as missing, do not presume from other elements. Give a reasoning process before you response. Also, rate the quality of the image from 0-1, if the image is missing the key element mentioned in the second question, do NOT use that as a reason to decrease the quality score. "
 
     completion = client.beta.chat.completions.parse(
-        model="o3",
-        messages=[
+        model="llama-4-maverick-17b-128e-instruct-fp8",
+        messages=[ 
+            {"role": "system", "content": prompt}, 
             {"role": "user", "content": [
-                {"type": "text", "text": prompt},
+                {"type": "text", "text": f"Question 1 is: {question1}, Question 2 is: {question2}."},
                 {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{b64_1}"}},
             ]},
         ], 
         response_format=Ans,
-        store=True
     )
 
     answer = completion.choices[0].message.parsed
-
     return np.array([answer.answer_1, answer.answer_2, answer.quality], dtype=float)
