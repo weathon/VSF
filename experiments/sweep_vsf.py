@@ -56,7 +56,7 @@ sweep_configuration = {
     "method": "random", 
     "metric": {"goal": "maximize", "name": "total_score"},
     "parameters": {
-        "scale": {"min": 0.0, "max": 5.0},
+        "scale": {"min": 0.0, "max": 6.0},
         "offset": {"min": 0.0, "max": 0.5}
     },
 }
