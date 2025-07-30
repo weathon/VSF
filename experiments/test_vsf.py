@@ -28,7 +28,7 @@ def run(scale, offset):
     wandb.init(project="vsf-sweep")
     score = np.array([0, 0, 0], dtype=float)
     total = 0
-    for seed in range(5):
+    for seed in range(2):
         for i in dev_prompts:
             image = pipe(
                 i["prompt"],
@@ -48,4 +48,4 @@ def run(scale, offset):
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
-run(3.8, 0.2)
+run(4.5, 0.2)
