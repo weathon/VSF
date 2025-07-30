@@ -1,3 +1,4 @@
+
 import torch
 import sys
 sys.path.append("..")
@@ -15,7 +16,10 @@ parser.add_argument("--eval_later", action="store_true", help="Run evaluation la
 args = parser.parse_args()
 
 model_id = "stabilityai/stable-diffusion-3.5-large-turbo"
-pipe = VSFStableDiffusion3Pipeline.from_pretrained(
+from nasa.pipeline import NASAStableDiffusion3Pipeline
+
+model_id = "stabilityai/stable-diffusion-3.5-large-turbo"
+pipe = NASAStableDiffusion3Pipeline.from_pretrained(
     model_id,
     torch_dtype=torch.bfloat16,
 )
@@ -32,13 +36,12 @@ def run(scale, offset):
         for i in dev_prompts:
             image = pipe(
                 i["prompt"],
-                negative_prompt=i["missing_element"],
+                nag_negative_prompt=i["missing_element"],
                 guidance_scale=0.,
-                scale=scale,
-                offset=offset,
+                nag_scale=0.22,
                 num_inference_steps=8,
-                generator=torch.Generator("cuda").manual_seed(seed),
             ).images[0]
+
             if not args.eval_later:
                 delta = judge.vqa(image, i["question_1"], i["question_2"])
                 score += delta
