@@ -3,3 +3,4 @@ experiments/wandb
 experiments/wandb
 comfyui/models
 experiments/video_reward/videos
+**/.env
