@@ -59,14 +59,14 @@ def process_image(args):
     idx, image, run, prompts = args
     question1 = prompts[int(image.replace(".png",""))]["question_1"]
     question2 = prompts[int(image.replace(".png",""))]["question_2"]
-    image_path = f"results_vsf/{run}/{image}"
+    image_path = f"results_nasa/{run}/{image}"
     image1 = Image.open(image_path).convert("RGB")
     answer, reasoning = vqa(image1, question1, question2.replace("missing", "missing or not visible"))
     return int(image.replace(".png","")), answer, reasoning
 import tqdm
-for run in tqdm.tqdm(os.listdir("results_vsf")):
-    images = os.listdir(f"results_vsf/{run}")
-    
+
+for run in tqdm.tqdm(os.listdir("results_nasa")):
+    images = os.listdir(f"results_nasa/{run}")
     # Prepare arguments for parallel processing
     args_list = [(idx, image, run, prompts) for idx, image in enumerate(images) if image.endswith(".png")]
     
@@ -78,7 +78,8 @@ for run in tqdm.tqdm(os.listdir("results_vsf")):
     results.sort(key=lambda x: x[0])
     data = [{"ans": result[1], "reasoning": result[2]} for result in results]
     
-    with open("results_vsf/" + run + "/vqa.json", "w") as f:
+
+    with open("results_nasa/" + run + "/vqa.json", "w") as f:
         json.dump(data, f)
     print("Finished processing run: ", run)
 
