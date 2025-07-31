@@ -51,4 +51,6 @@ def run(scale):
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
+
 run(0.28)
+

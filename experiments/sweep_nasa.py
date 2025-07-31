@@ -51,6 +51,7 @@ def run():
         else:
             # wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
             image.save(f"results_nasa/{wandb.run.id}/{idx:03d}.png")
+
 import numpy as np
 sweep_configuration = {
     "method": "grid", 
