@@ -28,10 +28,11 @@ pipe.to("cuda")
 with open("../prompts/test_prompts.json.new", "r") as f:
     dev_prompts = json.load(f)
 
-def run(scale):
+def run():
     wandb.init(project="nasa-sweep")
     score = np.array([0, 0, 0], dtype=float)
     total = 0
+    scale = wandb.config.scale
     for seed in range(2):
         for i in dev_prompts:
             image = pipe(
@@ -50,4 +51,15 @@ def run(scale):
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
-run(0.25)
+sweep_configuration = {
+    "method": "random", 
+    "metric": {"goal": "maximize", "name": "total_score"},
+    "parameters": {
+        "scale": {"min": 0.0, "max": 0.5},
+    },
+}
+
+# 3: Start the sweep
+sweep_id = wandb.sweep(sweep=sweep_configuration, project="vsf-sweep")
+
+wandb.agent(sweep_id, function=run, count=66) 
