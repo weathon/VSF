@@ -51,12 +51,12 @@ def run():
         else:
             # wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
             image.save(f"results_nasa/{wandb.run.id}/{idx:03d}.png")
-            
+import numpy as np
 sweep_configuration = {
-    "method": "random", 
+    "method": "grid", 
     "metric": {"goal": "maximize", "name": "total_score"},
     "parameters": {
-        "scale": {"min": 0.0, "max": 0.5},
+        "scale": {"values": list(np.arange(0.03, 0.3, 0.03))},
     },
 }
 
