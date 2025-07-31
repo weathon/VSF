@@ -36,8 +36,7 @@ for i in dev_prompts[:25]:
         i["prompt"],
         negative_prompt=i["missing_element"],
         guidance_scale=0.,
-        scale=3.8,
-        offset=0.1,
+        nag_scale=0.25,
         num_inference_steps=8,
         generator=torch.Generator("cuda").manual_seed(0),
     ).images[0]
