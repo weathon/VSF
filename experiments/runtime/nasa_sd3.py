@@ -1,5 +1,4 @@
 
-pipe.to("cuda")
 import torch
 import sys
 sys.path.append("../../")
