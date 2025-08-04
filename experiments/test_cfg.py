@@ -66,4 +66,4 @@ def run():
 # sweep_id = wandb.sweep(sweep=sweep_configuration, project="vsf-sweep")
 
 # wandb.agent(sweep_id, function=run)
-fun(15)
+run(15)
