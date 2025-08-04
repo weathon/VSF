@@ -31,7 +31,7 @@ def run():
     wandb.init(project="vsf-sweep")
     scale = wandb.config.scale
     offset = wandb.config.offset
-    scores = np.zeros(2)
+    scores = np.zeros(5)
     os.makedirs(f"results_vsf/{wandb.run.id}")
     total = 0
     for idx, i in enumerate(dev_prompts):
@@ -55,7 +55,7 @@ def run():
 sweep_configuration = {
     "method": "random", 
     "metric": {"goal": "maximize", "name": "total_score"},
-    "parameters": {
+    "parameters": { 
         "scale": {"min": 0.0, "max": 6.0},
         "offset": {"min": 0.0, "max": 0.5}
     },

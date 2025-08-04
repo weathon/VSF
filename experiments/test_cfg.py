@@ -27,7 +27,7 @@ pipe = StableDiffusion3Pipeline.from_pretrained(
 ).to("cuda")
 pipe.to("cuda")
 
-with open("../../prompts/test_prompts.json.new", "r") as f:
+with open("../prompts/test_prompts.json.new", "r") as f:
     dev_prompts = json.load(f)
 
 seed = 1999
@@ -66,4 +66,4 @@ def run():
 # sweep_id = wandb.sweep(sweep=sweep_configuration, project="vsf-sweep")
 
 # wandb.agent(sweep_id, function=run)
-fun(10)
+fun(15)

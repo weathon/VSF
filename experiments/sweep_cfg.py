@@ -27,7 +27,7 @@ pipe = StableDiffusion3Pipeline.from_pretrained(
 ).to("cuda")
 pipe.to("cuda")
 
-with open("../../prompts/test_prompts.json.new", "r") as f:
+with open("../prompts/test_prompts.json.new", "r") as f:
     dev_prompts = json.load(f)
 
 seed = 1999
@@ -62,7 +62,7 @@ sweep_configuration = {
     "method": "grid", 
     "metric": {"goal": "maximize", "name": "total_score"},
     "parameters": {
-        "scale": {"values": list(np.arange(2.0, 20, 1))},
+        "scale": {"values": list(np.arange(2.0, 30, 1))},
     },
 }
 
