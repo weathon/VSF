@@ -42,6 +42,7 @@ def run():
             guidance_scale=0.,
             nag_scale=scale,
             num_inference_steps=8,
+            generator=torch.Generator("cuda").manual_seed(1999),
         ).images[0]
 
         if not args.eval_later:
