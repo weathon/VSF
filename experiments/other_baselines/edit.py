@@ -22,7 +22,7 @@ pipe = NAGStableDiffusion3Pipeline.from_pretrained(
 )
 pipe.to("cuda")
 
-with open("../prompts/test_prompts.json.new", "r") as f:
+with open("../../prompts/test_prompts.json.new", "r") as f:
     dev_prompts = json.load(f)
 
 
