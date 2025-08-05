@@ -107,7 +107,7 @@ def run():
     wandb.init(project="nag-sweep")
     score = np.array([0, 0, 0], dtype=float)
     total = 0
-    os.makeidrs("./output", exist_ok=True)
+    os.makedirs("./output", exist_ok=True)
     for seed in range(2):
         for idx, i in enumerate(dev_prompts):
             prompt = i["prompt"] + ", but with no " + i["missing_element"]
