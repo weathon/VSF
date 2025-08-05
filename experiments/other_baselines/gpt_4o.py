@@ -26,7 +26,7 @@ from openai import OpenAI
 import base64   
 client = OpenAI()
 def generate(prompt, missing_element):
-    prompt="" + prompt + ", but with no " + missing_element,
+    prompt= prompt + ", but with no " + missing_element
     result = client.images.generate(
         model="gpt-image-1",
         prompt=prompt
