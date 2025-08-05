@@ -88,14 +88,8 @@ def text_to_image_generate(input_prompt, output_path, vl_chat_processor, vl_gpt,
         visual_img = np.zeros((parallel_size, img_size, img_size, 3), dtype=np.uint8)
         visual_img[:, :, :] = dec
 
-        os.makedirs(output_path, exist_ok=True)
-        output_images = []
-        for i in range(parallel_size):
-            save_path = output_path.replace('.png','') + f'_{i}.png'
-            PIL.Image.fromarray(visual_img[i]).save(save_path)
-            output_images.append(save_path)
-        return output_images
-    
+
+        return PIL.Image.fromarray(visual_img[0])
 
 import json
 import wandb
@@ -112,8 +106,7 @@ def run():
         for idx, i in enumerate(dev_prompts):
             prompt = i["prompt"] + ", but with no " + i["missing_element"]
             image_output_path = f"./output/{idx}_{seed}.png"
-            text_to_image_generate(prompt, image_output_path, vl_chat_processor, vl_gpt, parallel_size = 1)
-            image = PIL.Image.open(image_output_path) 
+            image = text_to_image_generate(prompt, image_output_path, vl_chat_processor, vl_gpt, parallel_size = 1)
             if not args.eval_later:
                 delta = judge.vqa(image, i["question_1"], i["question_2"])
                 score += delta
