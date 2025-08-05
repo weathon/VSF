@@ -1,5 +1,8 @@
 import torch
 import sys
+sys.path.append("..")
+sys.path.append("../..")
+import sys
 from nag import NAGStableDiffusion3Pipeline
 import json
 import judge
