@@ -43,7 +43,7 @@ def run():
     score = np.array([0, 0, 0], dtype=float)
     total = 0
     for seed in range(2):
-        for i in dev_prompts:
+        for i in tqdm.tqdm(dev_prompts):
             # pipe = pipe.to("cuda")
             image = generate(i["prompt"], i["missing_element"])
             if not args.eval_later:
