@@ -15,11 +15,7 @@ parser = argparse.ArgumentParser(description="Run NAG sweep")
 parser.add_argument("--eval_later", action="store_true", help="Run evaluation later")
 args = parser.parse_args()
         
-model_id = "stabilityai/stable-diffusion-3.5-large-turbo"
-pipe = StableDiffusion3Pipeline.from_pretrained(
-    model_id,
-    torch_dtype=torch.bfloat16,
-)
+
 
 with open("../../prompts/test_prompts.json.new", "r") as f:
     dev_prompts = json.load(f)
