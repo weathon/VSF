@@ -29,10 +29,10 @@ with open("../../prompts/test_prompts.json.new", "r") as f:
 import torch
 from diffusers import FluxKontextPipeline
 from diffusers.utils import load_image
-pipe = FluxKontextPipeline.from_pretrained("black-forest-labs/FLUX.1-Kontext-dev", torch_dtype=torch.bfloat16)
-pipe.to("cuda")
+edit_pipe = FluxKontextPipeline.from_pretrained("black-forest-labs/FLUX.1-Kontext-dev", torch_dtype=torch.bfloat16)
+edit_pipe.to("cuda")
 def remove(image, element):
-    image = pipe(
+    image = edit_pipe(
         image=image,
         prompt=f"remove {element} from the image",
         guidance_scale=5
