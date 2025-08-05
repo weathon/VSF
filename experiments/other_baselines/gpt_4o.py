@@ -21,7 +21,7 @@ with open("../../prompts/test_prompts.json.new", "r") as f:
 
 import torch
 from diffusers.utils import load_image
-
+import io
 from openai import OpenAI
 import base64   
 client = OpenAI()
@@ -33,7 +33,9 @@ def generate(prompt, missing_element):
     )
 
     image_base64 = result.data[0].b64_json
-    return load_image(base64.b64decode(image_base64))
+    buffer = io.BytesIO(base64.b64decode(image_base64))
+    image = load_image(buffer)
+    return image
 
 
 def run():
