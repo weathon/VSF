@@ -20,10 +20,10 @@ with open("../../prompts/test_prompts.json.new", "r") as f:
 
 
 import torch
-from diffusers.utils import load_image
 import io
 from openai import OpenAI
 import base64   
+from PIL import Image
 client = OpenAI()
 def generate(prompt, missing_element):
     prompt= prompt + ", but with no " + missing_element
@@ -34,7 +34,7 @@ def generate(prompt, missing_element):
 
     image_base64 = result.data[0].b64_json
     buffer = io.BytesIO(base64.b64decode(image_base64))
-    image = load_image(buffer)
+    image = Image.open(buffer)
     return image
 
 
