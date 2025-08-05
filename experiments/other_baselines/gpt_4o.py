@@ -1,9 +1,7 @@
-import torch
 import sys
 sys.path.append("..")
 sys.path.append("../..")
 import sys
-from diffusers import StableDiffusion3Pipeline
 import json
 import judge
 import wandb
