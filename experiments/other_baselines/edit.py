@@ -47,7 +47,7 @@ def run(nag_scale, nag_alpha, nag_tau):
     total = 0
     for seed in range(2):
         for i in dev_prompts:
-            image = pipe(
+            image_0 = pipe(
                 i["prompt"],
                 guidance_scale=0.,
                 nag_scale=0.0, 
@@ -55,14 +55,15 @@ def run(nag_scale, nag_alpha, nag_tau):
                 generator=torch.Generator("cuda").manual_seed(seed),
             ).images[0]
 
-            image = remove(image, i["missing_element"])
+            image = remove(image_0, i["missing_element"])
             if not args.eval_later:
                 delta = judge.vqa(image, i["question_1"], i["question_2"])
                 score += delta
                 total += 1
                 from PIL import ImageDraw, ImageFont
                 wandb.log({"pos_score_overall":score[0]/total, "neg_score_overall":score[1]/total, "quality_score_overall": score[2]/total,"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}"), 
-                          "pos_score": delta[0], "neg_score": delta[1], "quality_score": delta[2]})
+                          "pos_score": delta[0], "neg_score": delta[1], "quality_score": delta[2],
+                          "img0": wandb.Image(image_0, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
