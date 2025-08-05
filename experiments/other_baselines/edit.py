@@ -20,7 +20,6 @@ pipe = StableDiffusion3Pipeline.from_pretrained(
     model_id,
     torch_dtype=torch.bfloat16,
 )
-pipe.to("cuda")
 
 with open("../../prompts/test_prompts.json.new", "r") as f:
     dev_prompts = json.load(f)
@@ -30,16 +29,18 @@ import torch
 from diffusers import FluxKontextPipeline
 from diffusers.utils import load_image
 edit_pipe = FluxKontextPipeline.from_pretrained("black-forest-labs/FLUX.1-Kontext-dev", torch_dtype=torch.bfloat16)
-edit_pipe.to("cuda")
 def remove(image, element):
+    # edit_pipe.to("cuda")
     image = edit_pipe(
         image=image,
         prompt=f"remove {element} from the image",
         guidance_scale=5
     ).images[0]
+    # edit_pipe.to("cpu")
     return image
 
-
+pipe.enable_model_cpu_offload()
+edit_pipe.enable_model_cpu_offload()
 
 def run(nag_scale, nag_alpha, nag_tau):
     wandb.init(project="nag-sweep")
@@ -47,13 +48,14 @@ def run(nag_scale, nag_alpha, nag_tau):
     total = 0
     for seed in range(2):
         for i in dev_prompts:
+            # pipe = pipe.to("cuda")
             image_0 = pipe(
                 i["prompt"],
                 guidance_scale=0.,
                 num_inference_steps=8,
                 generator=torch.Generator("cuda").manual_seed(seed),
             ).images[0]
-
+            # pipe = pipe.to("cpu")
             image = remove(image_0, i["missing_element"])
             if not args.eval_later:
                 delta = judge.vqa(image, i["question_1"], i["question_2"])
