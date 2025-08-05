@@ -31,10 +31,9 @@ with open("../prompts/test_prompts.json.new", "r") as f:
     dev_prompts = json.load(f)
 
 seed = 1999
-def run():
+def run(scale):
     wandb.init(project="vsf-sweep")
-    scale = wandb.config.scale
-    scores = np.zeros(2)
+    scores = np.zeros(3)
     os.makedirs(f"results_cfg/{wandb.run.id}")
     total = 0
     for seed in range(2):
@@ -52,11 +51,11 @@ def run():
 
             if not args.eval_later:
                 delta = judge.vqa(image, i["question_1"], i["question_2"])
-                score += delta
+                scores += delta
                 total += 1
                 # show the score as text on the image using PIL
                 from PIL import ImageDraw, ImageFont
-                wandb.log({"pos_score":score[0]/total, "neg_score":score[1]/total, "quality_score": score[2]/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
+                wandb.log({"pos_score":scores[0]/total, "neg_score":scores[1]/total, "quality_score": scores[2]/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
@@ -66,4 +65,4 @@ def run():
 # sweep_id = wandb.sweep(sweep=sweep_configuration, project="vsf-sweep")
 
 # wandb.agent(sweep_id, function=run)
-run(15)
+run(11)
