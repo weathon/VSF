@@ -3,7 +3,7 @@ import sys
 sys.path.append("..")
 sys.path.append("../..")
 import sys
-from nag import NAGStableDiffusion3Pipeline
+from diffusers import StableDiffusion3Pipeline
 import json
 import judge
 import wandb
@@ -16,7 +16,7 @@ parser.add_argument("--eval_later", action="store_true", help="Run evaluation la
 args = parser.parse_args()
         
 model_id = "stabilityai/stable-diffusion-3.5-large-turbo"
-pipe = NAGStableDiffusion3Pipeline.from_pretrained(
+pipe = StableDiffusion3Pipeline.from_pretrained(
     model_id,
     torch_dtype=torch.bfloat16,
 )
@@ -50,7 +50,6 @@ def run(nag_scale, nag_alpha, nag_tau):
             image_0 = pipe(
                 i["prompt"],
                 guidance_scale=0.,
-                nag_scale=0.0, 
                 num_inference_steps=8,
                 generator=torch.Generator("cuda").manual_seed(seed),
             ).images[0]
