@@ -20,7 +20,6 @@ with open("../../prompts/test_prompts.json.new", "r") as f:
 
 
 import torch
-from diffusers import FluxKontextPipeline
 from diffusers.utils import load_image
 
 from openai import OpenAI
