@@ -97,13 +97,14 @@ with open("../../prompts/test_prompts.json.new", "r") as f:
     dev_prompts = json.load(f)
 
 import judge
+import tqdm
 def run():
     wandb.init(project="nag-sweep")
     score = np.array([0, 0, 0], dtype=float)
     total = 0
     os.makedirs("./output", exist_ok=True)
     for seed in range(2):
-        for idx, i in enumerate(dev_prompts):
+        for idx, i in enumerate(tqdm.tqdm(dev_prompts)):
             prompt = i["prompt"] + ", but with no " + i["missing_element"]
             image_output_path = f"./output/{idx}_{seed}.png"
             image = text_to_image_generate(prompt, image_output_path, vl_chat_processor, vl_gpt, parallel_size = 1)
