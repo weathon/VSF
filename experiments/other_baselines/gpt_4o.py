@@ -37,7 +37,7 @@ def generate(prompt, missing_element):
     image = Image.open(buffer)
     return image
 
-
+import tqdm
 def run():
     wandb.init(project="nag-sweep")
     score = np.array([0, 0, 0], dtype=float)
