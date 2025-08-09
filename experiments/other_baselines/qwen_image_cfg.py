@@ -53,7 +53,7 @@ pipe = DiffusionPipeline.from_pretrained(
 )
 pipe.enable_model_cpu_offload()
 
-pipe = pipe.to("cuda")
+# pipe = pipe.to("cuda")
 def generate(prompt, missing_element):
     width, height = 1328, 1328
     image = pipe(
