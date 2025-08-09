@@ -13,6 +13,7 @@ import threading
 
 parser = argparse.ArgumentParser(description="Run NAG sweep")
 parser.add_argument("--eval_later", action="store_true", help="Run evaluation later")
+parser.add_argument("--seed", type=int, default=0, help="Random seed for generation")
 args = parser.parse_args()
         
 
@@ -63,7 +64,7 @@ def generate(prompt, missing_element):
         height=height,
         num_inference_steps=50,
         true_cfg_scale=7,
-        generator=torch.Generator(device="cuda").manual_seed(0)
+        generator=torch.Generator(device="cuda").manual_seed(seed)
     ).images[0]
 
     return image
@@ -87,17 +88,17 @@ def run():
     total = 0
     score_lock = threading.Lock()
     
-    for seed in range(2):
-        for idx, i in enumerate(tqdm.tqdm(dev_prompts)):
-            image = generate(i["prompt"], i["missing_element"])
-            if not args.eval_later:
-                delta = judge.vqa(image, i["question_1"], i["question_2"])
-                score += delta
-                total += 1
-                from PIL import ImageDraw, ImageFont
-                wandb.log({"pos_score_overall":score[0]/total, "neg_score_overall":score[1]/total, "quality_score_overall": score[2]/total,"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}"), 
-                          "pos_score": delta[0], "neg_score": delta[1], "quality_score": delta[2]}) 
-            else:
-                wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
+
+    for idx, i in enumerate(tqdm.tqdm(dev_prompts)):
+        image = generate(i["prompt"], i["missing_element"])
+        if not args.eval_later:
+            delta = judge.vqa(image, i["question_1"], i["question_2"])
+            score += delta
+            total += 1
+            from PIL import ImageDraw, ImageFont
+            wandb.log({"pos_score_overall":score[0]/total, "neg_score_overall":score[1]/total, "quality_score_overall": score[2]/total,"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}"), 
+                        "pos_score": delta[0], "neg_score": delta[1], "quality_score": delta[2]}) 
+        else:
+            wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
 run()
