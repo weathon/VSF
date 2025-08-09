@@ -17,7 +17,7 @@ parser.add_argument("--seed", type=int, default=0, help="Random seed for generat
 args = parser.parse_args()
         
 
-
+seed = args.seed
 with open("../../prompts/test_prompts.json.new", "r") as f:
     dev_prompts = json.load(f)
 
