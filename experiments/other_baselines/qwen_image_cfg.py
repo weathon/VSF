@@ -88,29 +88,16 @@ def run():
     score_lock = threading.Lock()
     
     for seed in range(2):
-        # Create tasks for thread pool
-        tasks = [(prompt_data, seed) for prompt_data in dev_prompts]
-        
-        with ThreadPoolExecutor(max_workers=20) as executor:
-            # Submit all tasks
-            futures = [executor.submit(process_prompt, prompt_data, seed) for prompt_data, seed in tasks]
-            
-            # Process results as they complete
-            for future in tqdm.tqdm(futures, desc=f"Seed {seed}"):
-                result = future.result()
-                image = result["image"]
-                prompt_data = result["prompt_data"]
-                
-                if not args.eval_later:
-                    delta = result["delta"]
-                    with score_lock:
-                        score += delta
-                        total += 1
-                    
-                    from PIL import ImageDraw, ImageFont
-                    wandb.log({"pos_score_overall":score[0]/total, "neg_score_overall":score[1]/total, "quality_score_overall": score[2]/total,"img": wandb.Image(image, caption=f"+: {prompt_data['prompt']}\n -: {prompt_data['missing_element']}"), 
-                              "pos_score": delta[0], "neg_score": delta[1], "quality_score": delta[2]})
-                else:
-                    wandb.log({"img": wandb.Image(image, caption=f"+: {prompt_data['prompt']}\n -: {prompt_data['missing_element']}")})
+        for idx, i in enumerate(tqdm.tqdm(dev_prompts)):
+            image = generate(i["prompt"], i["missing_element"])
+            if not args.eval_later:
+                delta = judge.vqa(image, i["question_1"], i["question_2"])
+                score += delta
+                total += 1
+                from PIL import ImageDraw, ImageFont
+                wandb.log({"pos_score_overall":score[0]/total, "neg_score_overall":score[1]/total, "quality_score_overall": score[2]/total,"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}"), 
+                          "pos_score": delta[0], "neg_score": delta[1], "quality_score": delta[2]}) 
+            else:
+                wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
 run()
