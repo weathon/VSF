@@ -13,10 +13,11 @@ import threading
 
 parser = argparse.ArgumentParser(description="Run NAG sweep")
 parser.add_argument("--eval_later", action="store_true", help="Run evaluation later")
+parser.add_argument("--seed", type=int, default=0, help="Random seed for generation")
 args = parser.parse_args()
         
 
-
+seed = args.seed
 with open("../../prompts/test_prompts.json.new", "r") as f:
     dev_prompts = json.load(f)
 
@@ -53,18 +54,17 @@ pipe = DiffusionPipeline.from_pretrained(
 )
 pipe.enable_model_cpu_offload()
 
-pipe = pipe.to("cuda")
+# pipe = pipe.to("cuda")
 def generate(prompt, missing_element):
     width, height = 1328, 1328
-    prompt = prompt + ", but with no " + missing_element
     image = pipe(
-        prompt=f"{prompt}; Ultra HD, 4K, cinematic composition.",
+        prompt=f"{prompt}, but with no {missing_element}; Ultra HD, 4K, cinematic composition.",
         negative_prompt="",
         width=width,
         height=height,
         num_inference_steps=50,
         true_cfg_scale=7,
-        generator=torch.Generator(device="cuda").manual_seed(0)
+        generator=torch.Generator(device="cuda").manual_seed(seed)
     ).images[0]
 
     return image
@@ -88,30 +88,17 @@ def run():
     total = 0
     score_lock = threading.Lock()
     
-    for seed in range(2):
-        # Create tasks for thread pool
-        tasks = [(prompt_data, seed) for prompt_data in dev_prompts]
-        
-        with ThreadPoolExecutor(max_workers=20) as executor:
-            # Submit all tasks
-            futures = [executor.submit(process_prompt, prompt_data, seed) for prompt_data, seed in tasks]
-            
-            # Process results as they complete
-            for future in tqdm.tqdm(futures, desc=f"Seed {seed}"):
-                result = future.result()
-                image = result["image"]
-                prompt_data = result["prompt_data"]
-                
-                if not args.eval_later:
-                    delta = result["delta"]
-                    with score_lock:
-                        score += delta
-                        total += 1
-                    
-                    from PIL import ImageDraw, ImageFont
-                    wandb.log({"pos_score_overall":score[0]/total, "neg_score_overall":score[1]/total, "quality_score_overall": score[2]/total,"img": wandb.Image(image, caption=f"+: {prompt_data['prompt']}\n -: {prompt_data['missing_element']}"), 
-                              "pos_score": delta[0], "neg_score": delta[1], "quality_score": delta[2]})
-                else:
-                    wandb.log({"img": wandb.Image(image, caption=f"+: {prompt_data['prompt']}\n -: {prompt_data['missing_element']}")})
+
+    for idx, i in enumerate(tqdm.tqdm(dev_prompts)):
+        image = generate(i["prompt"], i["missing_element"])
+        if not args.eval_later:
+            delta = judge.vqa(image, i["question_1"], i["question_2"])
+            score += delta
+            total += 1
+            from PIL import ImageDraw, ImageFont
+            wandb.log({"pos_score_overall":score[0]/total, "neg_score_overall":score[1]/total, "quality_score_overall": score[2]/total,"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}"), 
+                        "pos_score": delta[0], "neg_score": delta[1], "quality_score": delta[2]}) 
+        else:
+            wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
 run()
