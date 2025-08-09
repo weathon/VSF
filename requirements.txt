@@ -11,3 +11,4 @@ accelerate
 ftfy
 imageio
 peft
+dfloat11
