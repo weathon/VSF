@@ -20,7 +20,7 @@ logger = logging.get_logger(__name__)  # pylint: disable=invalid-name
 
 import numpy as np
 import PIL.Image
-
+from .processor import VSFQwenDoubleStreamAttnProcessor2_0
 from diffusers.utils import BaseOutput
 
 EXAMPLE_DOC_STRING = """
@@ -38,7 +38,95 @@ EXAMPLE_DOC_STRING = """
         >>> image.save("qwenimage.png")
         ```
 """
+
+
+def calculate_shift(
+    image_seq_len,
+    base_seq_len: int = 256,
+    max_seq_len: int = 4096,
+    base_shift: float = 0.5,
+    max_shift: float = 1.15,
+):
+    m = (max_shift - base_shift) / (max_seq_len - base_seq_len)
+    b = base_shift - m * base_seq_len
+    mu = image_seq_len * m + b
+    return mu
+
+
+# Copied from diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion.retrieve_timesteps
+def retrieve_timesteps(
+    scheduler,
+    num_inference_steps: Optional[int] = None,
+    device: Optional[Union[str, torch.device]] = None,
+    timesteps: Optional[List[int]] = None,
+    sigmas: Optional[List[float]] = None,
+    **kwargs,
+):
+    r"""
+    Calls the scheduler's `set_timesteps` method and retrieves timesteps from the scheduler after the call. Handles
+    custom timesteps. Any kwargs will be supplied to `scheduler.set_timesteps`.
+
+    Args:
+        scheduler (`SchedulerMixin`):
+            The scheduler to get timesteps from.
+        num_inference_steps (`int`):
+            The number of diffusion steps used when generating samples with a pre-trained model. If used, `timesteps`
+            must be `None`.
+        device (`str` or `torch.device`, *optional*):
+            The device to which the timesteps should be moved to. If `None`, the timesteps are not moved.
+        timesteps (`List[int]`, *optional*):
+            Custom timesteps used to override the timestep spacing strategy of the scheduler. If `timesteps` is passed,
+            `num_inference_steps` and `sigmas` must be `None`.
+        sigmas (`List[float]`, *optional*):
+            Custom sigmas used to override the timestep spacing strategy of the scheduler. If `sigmas` is passed,
+            `num_inference_steps` and `timesteps` must be `None`.
+
+    Returns:
+        `Tuple[torch.Tensor, int]`: A tuple where the first element is the timestep schedule from the scheduler and the
+        second element is the number of inference steps.
+    """
+    if timesteps is not None and sigmas is not None:
+        raise ValueError("Only one of `timesteps` or `sigmas` can be passed. Please choose one to set custom values")
+    if timesteps is not None:
+        accepts_timesteps = "timesteps" in set(inspect.signature(scheduler.set_timesteps).parameters.keys())
+        if not accepts_timesteps:
+            raise ValueError(
+                f"The current scheduler class {scheduler.__class__}'s `set_timesteps` does not support custom"
+                f" timestep schedules. Please check whether you are using the correct scheduler."
+            )
+        scheduler.set_timesteps(timesteps=timesteps, device=device, **kwargs)
+        timesteps = scheduler.timesteps
+        num_inference_steps = len(timesteps)
+    elif sigmas is not None:
+        accept_sigmas = "sigmas" in set(inspect.signature(scheduler.set_timesteps).parameters.keys())
+        if not accept_sigmas:
+            raise ValueError(
+                f"The current scheduler class {scheduler.__class__}'s `set_timesteps` does not support custom"
+                f" sigmas schedules. Please check whether you are using the correct scheduler."
+            )
+        scheduler.set_timesteps(sigmas=sigmas, device=device, **kwargs)
+        timesteps = scheduler.timesteps
+        num_inference_steps = len(timesteps)
+    else:
+        scheduler.set_timesteps(num_inference_steps, device=device, **kwargs)
+        timesteps = scheduler.timesteps
+    return timesteps, num_inference_steps
+
+
+
 class VSFQwenImagePipeline(QwenImagePipeline):
+
+    def get_vanilla_embedding(self, prompt):
+        tokens = self.tokenizer(prompt, return_tensors="pt").to("cuda")
+        encoder_hidden_states = self.text_encoder(
+                    input_ids=tokens.input_ids,
+                    attention_mask=tokens.attention_mask,
+                    output_hidden_states=True,
+                )
+        hidden_states = encoder_hidden_states.hidden_states[-1]
+        attn_mask = tokens.attention_mask.to(device=hidden_states.device, dtype=int)
+        return hidden_states, attn_mask
+
     @torch.no_grad()
     @replace_example_docstring(EXAMPLE_DOC_STRING)
     def __call__(
@@ -64,6 +152,9 @@ class VSFQwenImagePipeline(QwenImagePipeline):
         callback_on_step_end: Optional[Callable[[int, int, Dict], None]] = None,
         callback_on_step_end_tensor_inputs: List[str] = ["latents"],
         max_sequence_length: int = 512,
+        offset: float = 0.08,
+        scale: float = 1.0,
+        vsf_negative_prompt = "",
     ):
         r"""
         Function invoked when calling the pipeline for generation.
@@ -183,15 +274,45 @@ class VSFQwenImagePipeline(QwenImagePipeline):
             num_images_per_prompt=num_images_per_prompt,
             max_sequence_length=max_sequence_length,
         )
-        if do_true_cfg:
-            negative_prompt_embeds, negative_prompt_embeds_mask = self.encode_prompt(
-                prompt=negative_prompt,
-                prompt_embeds=negative_prompt_embeds,
-                prompt_embeds_mask=negative_prompt_embeds_mask,
-                device=device,
-                num_images_per_prompt=num_images_per_prompt,
-                max_sequence_length=max_sequence_length,
-            )
+        negative_prompt_embeds, negative_prompt_embeds_mask = self.encode_prompt(
+            prompt=negative_prompt,
+            prompt_embeds=negative_prompt_embeds,
+            prompt_embeds_mask=negative_prompt_embeds_mask,
+            device=device,
+            num_images_per_prompt=num_images_per_prompt,
+            max_sequence_length=max_sequence_length,
+        )
+        vsf_negative_prompt_embeds, vsf_negative_prompt_embeds_mask = self.get_vanilla_embedding(
+            vsf_negative_prompt,
+        )
+
+        vsf_negative_prompt_embeds = vsf_negative_prompt_embeds#[:,:-4]
+        vsf_negative_prompt_embeds_mask = vsf_negative_prompt_embeds_mask#[:,:-4]
+        # prompt_embeds = prompt_embeds[:,:-3] #cannot remote the last 5 tokens, but we can only flip the selected tokens
+        # prompt_embeds_mask = prompt_embeds_mask[:,:-3]
+
+        print(vsf_negative_prompt_embeds.shape)
+        print(vsf_negative_prompt_embeds_mask)
+        pos_len = prompt_embeds.shape[1]
+        prompt_embeds = torch.cat([prompt_embeds, vsf_negative_prompt_embeds], dim=1)
+        prompt_embeds_mask = torch.cat([prompt_embeds_mask, vsf_negative_prompt_embeds_mask], dim=1)
+        img_len = width // self.vae_scale_factor // 2 * height // self.vae_scale_factor // 2
+        neg_len = vsf_negative_prompt_embeds.shape[1]
+        print(prompt_embeds.shape) 
+        attn_mask = torch.zeros((1, img_len + prompt_embeds.shape[1], img_len + prompt_embeds.shape[1] + neg_len))
+        attn_mask[:,-neg_len-pos_len:,-neg_len:] = -torch.inf #prompts cannot see -neg 
+        attn_mask[:,:-neg_len,-2*neg_len:-neg_len] = -torch.inf # image and positive prompt cannot see neg
+        attn_mask[:,-neg_len:,img_len:img_len+pos_len] = -torch.inf # neg cannot see positive prompt
+        attn_mask[:,:img_len,-neg_len:] -= offset # 0.08 image seeing less -neg
+        
+        attn_mask = attn_mask.to(device=device, dtype=prompt_embeds.dtype)
+        processors_backup = []
+        for block in self.transformer.transformer_blocks:
+            processors_backup.append(block.attn.processor)
+            block.attn.processor = VSFQwenDoubleStreamAttnProcessor2_0(scale=scale,
+                                                         attn_mask=attn_mask,
+                                                         neg_prompt_length=neg_len)
+ 
 
         # 4. Prepare latent variables
         num_channels_latents = self.transformer.config.in_channels // 4
@@ -266,6 +387,10 @@ class VSFQwenImagePipeline(QwenImagePipeline):
                     )[0]
 
                 if do_true_cfg:
+                    for i, block in enumerate(self.transformer.transformer_blocks):
+                        block.attn.processor = processors_backup[i]
+ 
+
                     with self.transformer.cache_context("uncond"):
                         neg_noise_pred = self.transformer(
                             hidden_states=latents,
@@ -277,12 +402,18 @@ class VSFQwenImagePipeline(QwenImagePipeline):
                             txt_seq_lens=negative_txt_seq_lens,
                             attention_kwargs=self.attention_kwargs,
                             return_dict=False,
-                        )[0]
+                        )[0] 
                     comb_pred = neg_noise_pred + true_cfg_scale * (noise_pred - neg_noise_pred)
 
                     cond_norm = torch.norm(noise_pred, dim=-1, keepdim=True)
                     noise_norm = torch.norm(comb_pred, dim=-1, keepdim=True)
                     noise_pred = comb_pred * (cond_norm / noise_norm)
+                    for i, block in enumerate(self.transformer.transformer_blocks):
+                        block.attn.processor = VSFQwenDoubleStreamAttnProcessor2_0(
+                            scale=scale,
+                            attn_mask=attn_mask,
+                            neg_prompt_length=neg_len,
+                        )
 
                 # compute the previous noisy sample x_t -> x_t-1
                 latents_dtype = latents.dtype
@@ -330,5 +461,7 @@ class VSFQwenImagePipeline(QwenImagePipeline):
 
         if not return_dict:
             return (image,)
+        for i, blocks in enumerate(self.transformer.transformer_blocks):
+            blocks.attn.processor = processors_backup[i]
 
         return QwenImagePipelineOutput(images=image)

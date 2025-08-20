@@ -19,7 +19,53 @@ from diffusers.models.modeling_outputs import Transformer2DModelOutput
 from diffusers.models.modeling_utils import ModelMixin
 from diffusers.models.normalization import AdaLayerNormContinuous, RMSNorm
 
-class QwenDoubleStreamAttnProcessor2_0:
+def apply_rotary_emb_qwen(
+    x: torch.Tensor,
+    freqs_cis: Union[torch.Tensor, Tuple[torch.Tensor]],
+    use_real: bool = True,
+    use_real_unbind_dim: int = -1,
+) -> Tuple[torch.Tensor, torch.Tensor]:
+    """
+    Apply rotary embeddings to input tensors using the given frequency tensor. This function applies rotary embeddings
+    to the given query or key 'x' tensors using the provided frequency tensor 'freqs_cis'. The input tensors are
+    reshaped as complex numbers, and the frequency tensor is reshaped for broadcasting compatibility. The resulting
+    tensors contain rotary embeddings and are returned as real tensors.
+
+    Args:
+        x (`torch.Tensor`):
+            Query or key tensor to apply rotary embeddings. [B, S, H, D] xk (torch.Tensor): Key tensor to apply
+        freqs_cis (`Tuple[torch.Tensor]`): Precomputed frequency tensor for complex exponentials. ([S, D], [S, D],)
+
+    Returns:
+        Tuple[torch.Tensor, torch.Tensor]: Tuple of modified query tensor and key tensor with rotary embeddings.
+    """
+    if use_real:
+        cos, sin = freqs_cis  # [S, D]
+        cos = cos[None, None]
+        sin = sin[None, None]
+        cos, sin = cos.to(x.device), sin.to(x.device)
+
+        if use_real_unbind_dim == -1:
+            # Used for flux, cogvideox, hunyuan-dit
+            x_real, x_imag = x.reshape(*x.shape[:-1], -1, 2).unbind(-1)  # [B, S, H, D//2]
+            x_rotated = torch.stack([-x_imag, x_real], dim=-1).flatten(3)
+        elif use_real_unbind_dim == -2:
+            # Used for Stable Audio, OmniGen, CogView4 and Cosmos
+            x_real, x_imag = x.reshape(*x.shape[:-1], 2, -1).unbind(-2)  # [B, S, H, D//2]
+            x_rotated = torch.cat([-x_imag, x_real], dim=-1)
+        else:
+            raise ValueError(f"`use_real_unbind_dim={use_real_unbind_dim}` but should be -1 or -2.")
+
+        out = (x.float() * cos + x_rotated.float() * sin).to(x.dtype)
+
+        return out
+    else:
+        x_rotated = torch.view_as_complex(x.float().reshape(*x.shape[:-1], -1, 2))
+        freqs_cis = freqs_cis.unsqueeze(1)
+        x_out = torch.view_as_real(x_rotated * freqs_cis).flatten(3)
+
+        return x_out.type_as(x)
+class VSFQwenDoubleStreamAttnProcessor2_0:
     """
     Attention processor for Qwen double-stream architecture, matching DoubleStreamLayerMegatron logic. This processor
     implements joint attention computation where text and image streams are processed together.
@@ -27,11 +73,14 @@ class QwenDoubleStreamAttnProcessor2_0:
 
     _attention_backend = None
 
-    def __init__(self):
+    def __init__(self, scale, attn_mask, neg_prompt_length):
         if not hasattr(F, "scaled_dot_product_attention"):
             raise ImportError(
                 "QwenDoubleStreamAttnProcessor2_0 requires PyTorch 2.0, to use it, please upgrade PyTorch to 2.0."
             )
+        self.scale = scale
+        self.attn_mask = attn_mask
+        self.neg_prompt_length = neg_prompt_length
 
     def __call__(
         self,
@@ -85,29 +134,31 @@ class QwenDoubleStreamAttnProcessor2_0:
             txt_key = apply_rotary_emb_qwen(txt_key, txt_freqs, use_real=False)
 
         # Concatenate for joint attention
-        # Order: [text, image]
-        joint_query = torch.cat([txt_query, img_query], dim=1)
-        joint_key = torch.cat([txt_key, img_key], dim=1)
-        joint_value = torch.cat([txt_value, img_value], dim=1)
-
+        joint_query = torch.cat([img_query, txt_query], dim=1)
+        joint_key = torch.cat([img_key, txt_key, txt_key[:,-self.neg_prompt_length:]], dim=1)
+        # print(self.scale)
+        joint_value = torch.cat([img_value, txt_value, txt_value[:,-self.neg_prompt_length:]], dim=1)
+        joint_value[:,-self.neg_prompt_length:] *= -self.scale 
+        # why is this differentnt than * when concate  
+        
         # Compute joint attention
+        # print(joint_query.shape)
         joint_hidden_states = dispatch_attention_fn(
             joint_query,
             joint_key,
             joint_value,
-            attn_mask=attention_mask,
+            attn_mask=self.attn_mask,
             dropout_p=0.0,
             is_causal=False,
             backend=self._attention_backend,
         )
-
+        # print(joint_hidden_states.shape)
         # Reshape back
         joint_hidden_states = joint_hidden_states.flatten(2, 3)
         joint_hidden_states = joint_hidden_states.to(joint_query.dtype)
-
-        # Split attention outputs back
-        txt_attn_output = joint_hidden_states[:, :seq_txt, :]  # Text part
-        img_attn_output = joint_hidden_states[:, seq_txt:, :]  # Image part
+        # Split attention outputs back 
+        txt_attn_output = joint_hidden_states[:, -seq_txt:, :]  # Text part
+        img_attn_output = joint_hidden_states[:, :-seq_txt, :]  # Image part
 
         # Apply output projections
         img_attn_output = attn.to_out[0](img_attn_output)
