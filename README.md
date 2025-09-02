@@ -4,7 +4,8 @@ Email: email@weasoft.com
 
 [Web Page](https://vsf.weasoft.com/)
 ## Preprint
-[ResearchGate](https://www.researchgate.net/publication/394032960)
+[![arXiv](https://img.shields.io/badge/arXiv-2508.10931-b31b1b.svg)](https://arxiv.org/abs/2508.10931)
+
 
 ## Web Demo for Wan 2.1 VSF
 Wan 2.1 web demo [https://huggingface.co/spaces/weathon/VSF](https://huggingface.co/spaces/weathon/VSF)
