@@ -3,4 +3,5 @@ experiments/wandb
 experiments/wandb
 comfyui/models
 experiments/video_reward/videos
+experiments/results_nasa
 **/.env
