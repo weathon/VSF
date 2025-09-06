@@ -12,7 +12,7 @@ import dotenv
 dotenv.load_dotenv()
 
 openai_api_key = os.environ["key"]
-openai_api_base = "https://api.lambda.ai/v1"
+openai_api_base = "https://openrouter.ai/api/v1"
 
 client = OpenAI(
     api_key=openai_api_key,
@@ -73,7 +73,7 @@ def vqa(image1: Image.Image, question1: str, question2: str) -> np.ndarray:
     prompt = f"Answer the following questions, only answer with boolean, only answer True if it follow all the conditions, otherwise answer False. Answer only with True or False. For first question, you should answer if the main object is there, no matter if a key element described in second question is missing from it. For second question asking if something is missing, answer True if it is missing or invisible, otherwise False. That means, if you cannot see it, label it as missing, do not presume from other elements. Give a reasoning process before you response. Also, rate the quality of the image from 0-1, if the image is missing the key element mentioned in the second question, do NOT use that as a reason to decrease the quality score. "
 
     completion = client.beta.chat.completions.parse(
-        model="llama-4-maverick-17b-128e-instruct-fp8",
+        model="meta-llama/llama-4-maverick",
         messages=[ 
             {"role": "system", "content": prompt}, 
             {"role": "user", "content": [
@@ -82,6 +82,7 @@ def vqa(image1: Image.Image, question1: str, question2: str) -> np.ndarray:
             ]},
         ], 
         response_format=Ans,
+        max_tokens=10240,
     )
     print(question2, completion.choices[0].message.parsed.reasoning)
     answer = completion.choices[0].message.parsed
