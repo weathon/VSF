@@ -499,9 +499,9 @@ class VSFFluxPipeline(FluxPipeline):
         neg_len = neg_prompt_embeds.shape[1]
         pos_len = pos_prompt_embeds.shape[1]
         # pos_len = prompt_embeds.shape[1]kdaolbzheliyouwent
-        norm = pos_pooled_prompt_embeds.norm(p=2, dim=-1, keepdim=True)
-        pos_pooled_prompt_embeds = neg_pooled_prompt_embeds + 1.1 * (pos_pooled_prompt_embeds - neg_pooled_prompt_embeds) 
-        pos_pooled_prompt_embeds = pos_pooled_prompt_embeds * (norm / pos_pooled_prompt_embeds.norm(p=2, dim=-1, keepdim=True))
+        # norm = pos_pooled_prompt_embeds.norm(p=2, dim=-1, keepdim=True)
+        # pos_pooled_prompt_embeds = neg_pooled_prompt_embeds + 1.1 * (pos_pooled_prompt_embeds - neg_pooled_prompt_embeds) 
+        # pos_pooled_prompt_embeds = pos_pooled_prompt_embeds * (norm / pos_pooled_prompt_embeds.norm(p=2, dim=-1, keepdim=True))
 
 
         # processors_backup = []
