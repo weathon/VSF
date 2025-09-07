@@ -5,17 +5,19 @@ import imageio
 
 pipe = VSFFluxPipeline.from_pretrained("black-forest-labs/FLUX.1-schnell", torch_dtype=torch.bfloat16).to("cuda")
 
-prompt = "a canadian winter landscape in the style of a 19th century painting"
+# prompt = "a canadian winter landscape in the style of a 19th century painting"
+prompt = "a bike leaning on a broken wall in the style of a 19th century painting"
 images = []
-for scale in np.arange(1, 9, 0.1):
+for scale in np.arange(2.0, 3.0, 0.1):
     image = pipe(
         prompt,
-        negative_prompt="snow on the ground",
+        negative_prompt="wheels",
         guidance_scale=0.0,
-        num_inference_steps=8,
+        num_inference_steps=8, 
         max_sequence_length=256,
-        scale=scale,
-        generator=torch.Generator("cpu").manual_seed(19)
+        offset=0.2,
+        scale=scale, 
+        generator=torch.Generator("cpu").manual_seed(93)
     ).images[0]
     images.append(image)
 

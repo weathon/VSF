@@ -181,7 +181,7 @@ class FluxAttnProcessor:
         query, key, value, encoder_query, encoder_key, encoder_value = _get_qkv_projections(
             attn, hidden_states, encoder_hidden_states
         )
-
+        # print(encoder_hidden_states is None, attn.added_kv_proj_dim is None)
         query = query.unflatten(-1, (attn.heads, -1))
         key = key.unflatten(-1, (attn.heads, -1))
         value = value.unflatten(-1, (attn.heads, -1))
@@ -201,6 +201,7 @@ class FluxAttnProcessor:
             key = torch.cat([encoder_key, key], dim=1)
             value = torch.cat([encoder_value, value], dim=1)
 
+
         if image_rotary_emb is not None:
             query = apply_rotary_emb(query, image_rotary_emb, sequence_dim=1)
             key = apply_rotary_emb(key, image_rotary_emb, sequence_dim=1)
@@ -209,12 +210,19 @@ class FluxAttnProcessor:
         neg_end = self.total_length
         # print(neg_start, neg_end)
         key = torch.cat([key, key[:,neg_start:neg_end]], dim=1)
-        # print(self.scale)
+        # print(self.scale) 
+        norm = value.norm()
         value = torch.cat([value, -self.scale * value[:,neg_start:neg_end]], dim=1)
-        # print(key.shape, value.shape)
-        hidden_states = dispatch_attention_fn( 
-            query, key, value, attn_mask=self.attn_mask, backend=self._attention_backend
+        value = value * (norm / value.norm()) 
+        # print(key.shape, value.shape, query.shape)
+        hidden_states = F.scaled_dot_product_attention(
+            query.permute(0, 2, 1, 3), key.permute(0, 2, 1, 3), value.permute(0, 2, 1, 3), dropout_p=0.0, is_causal=False, attn_mask=self.attn_mask.to(query.dtype)
         )
+        hidden_states = hidden_states.permute(0, 2, 1, 3)
+        # hidden_states = dispatch_attention_fn( 
+        #     query, key, value, attn_mask=self.attn_mask, backend=self._attention_backend
+
+        # )
         # print(value.shape)  
         # query = query.permute(0, 2, 1, 3)
         # key = key.permute(0, 2, 1, 3)

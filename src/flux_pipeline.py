@@ -15,6 +15,7 @@
 
 import inspect
 from typing import Any, Callable, Dict, List, Optional, Union
+from compel import Compel
 
 import numpy as np
 import torch
@@ -224,7 +225,6 @@ class VSFFluxPipeline(FluxPipeline):
                 A lora scale that will be applied to all LoRA layers of the text encoder if LoRA layers are loaded.
         """
         device = device or self._execution_device
-
         # set lora scale so that monkey patched LoRA
         # function of text encoder can correctly access it
         if lora_scale is not None and isinstance(self, FluxLoraLoaderMixin):
@@ -462,6 +462,21 @@ class VSFFluxPipeline(FluxPipeline):
         )
 
         (
+            padding_prompt_embeds,
+            padding_pooled_prompt_embeds,
+            padding_text_ids,
+        ) = self.encode_prompt(
+            prompt="",
+            prompt_2="",
+            device=device,
+            num_images_per_prompt=num_images_per_prompt,
+            max_sequence_length=max_sequence_length,
+            lora_scale=lora_scale,
+            padding=False,
+        )
+        print(padding_prompt_embeds.shape, neg_prompt_embeds.shape)
+        neg_prompt_embeds = neg_prompt_embeds + 8 * (neg_prompt_embeds - padding_prompt_embeds.mean(1)[:,None])
+        (
             pos_prompt_embeds,
             pos_pooled_prompt_embeds,
             pos_text_ids,
@@ -482,8 +497,11 @@ class VSFFluxPipeline(FluxPipeline):
         prompt_embeds = torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
         # print(prompt_embeds.shape) 
         neg_len = neg_prompt_embeds.shape[1]
-        pos_len = prompt_embeds.shape[1]
-        pos_pooled_prompt_embeds = neg_pooled_prompt_embeds# + 1.1 * (pos_pooled_prompt_embeds - neg_pooled_prompt_embeds) 
+        pos_len = pos_prompt_embeds.shape[1]
+        # pos_len = prompt_embeds.shape[1]kdaolbzheliyouwent
+        norm = pos_pooled_prompt_embeds.norm(p=2, dim=-1, keepdim=True)
+        pos_pooled_prompt_embeds = neg_pooled_prompt_embeds + 1.1 * (pos_pooled_prompt_embeds - neg_pooled_prompt_embeds) 
+        pos_pooled_prompt_embeds = pos_pooled_prompt_embeds * (norm / pos_pooled_prompt_embeds.norm(p=2, dim=-1, keepdim=True))
 
 
         # processors_backup = []
@@ -529,7 +547,7 @@ class VSFFluxPipeline(FluxPipeline):
         attn_mask[:,pos_len:pos_len+neg_len,-neg_len:] = -torch.inf
         attn_mask[:,pos_len:pos_len+neg_len,:pos_len] = -torch.inf
         attn_mask[:,-img_len:,pos_len:pos_len+neg_len] = -torch.inf
-        attn_mask[:,-img_len:,-neg_len:] = -offset
+        attn_mask[:,-img_len:,-neg_len:] = -offset   
         
         attn_mask = attn_mask.to(device=device, dtype=prompt_embeds.dtype)
         # attn_mask = None
@@ -538,13 +556,13 @@ class VSFFluxPipeline(FluxPipeline):
         for block in self.transformer.transformer_blocks:
             processors_backup.append(block.attn.processor)
             block.attn.processor = FluxAttnProcessor(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len, total_length=pos_len + neg_len)
-            # block.attn.processor.image_rotary_emb = self.transformer.pos_embed(torch.cat([latent_image_ids, pos_text_ids, neg_text_ids, neg_text_ids], dim=0))
+            block.attn.processor.image_rotary_emb = self.transformer.pos_embed(torch.cat([latent_image_ids, pos_text_ids, neg_text_ids, neg_text_ids], dim=0))
         
         single_processors_backup = []
         for block in self.transformer.single_transformer_blocks:
             single_processors_backup.append(block.attn.processor)
             block.attn.processor = FluxAttnProcessor(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len, total_length=pos_len + neg_len)
-            # block.attn.processor.image_rotary_emb = self.transformer.pos_embed(torch.cat([latent_image_ids, pos_text_ids, neg_text_ids, neg_text_ids], dim=0))
+            block.attn.processor.image_rotary_emb = self.transformer.pos_embed(torch.cat([latent_image_ids, pos_text_ids, neg_text_ids, neg_text_ids], dim=0))
 
         print("processor counts", len(processors_backup), len(single_processors_backup))
         # 5. Prepare timesteps
