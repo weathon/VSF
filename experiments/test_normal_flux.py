@@ -1,7 +1,7 @@
 import torch
 import sys
 sys.path.append("..")
-from src.flux_pipeline import VSFFluxPipeline
+from diffusers import FluxPipeline
 import json
 import judge
 import wandb
@@ -15,7 +15,7 @@ parser.add_argument("--eval_later", action="store_true", help="Run evaluation la
 args = parser.parse_args()
 
 model_id = "black-forest-labs/FLUX.1-schnell"
-pipe = VSFFluxPipeline.from_pretrained(
+pipe = FluxPipeline.from_pretrained(
     model_id,
     torch_dtype=torch.bfloat16,
 )
@@ -28,14 +28,12 @@ def run(scale, offset):
     wandb.init(project="vsf-sweep")
     score = np.array([0, 0, 0], dtype=float)
     total = 0
-    for seed in range(2):
-        for i in dev_prompts:
+    for seed in range(1,2):
+        for i in dev_prompts[107:]:
             image = pipe(
                 i["prompt"],
                 negative_prompt=i["missing_element"],
                 guidance_scale=0.,
-                scale=scale,
-                offset=offset,
                 num_inference_steps=8,
                 generator=torch.Generator("cuda").manual_seed(seed),
             ).images[0]
@@ -47,4 +45,4 @@ def run(scale, offset):
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
-run(3.4, 0.2)
+run(3.5, 0.3)
