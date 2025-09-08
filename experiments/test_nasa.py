@@ -13,7 +13,6 @@ import argparse
 
 parser = argparse.ArgumentParser(description="Run NAG sweep")
 parser.add_argument("--eval_later", action="store_true", help="Run evaluation later")
-parser.add_argument("--max_num", action="store_true")
 args = parser.parse_args()
 
 model_id = "stabilityai/stable-diffusion-3.5-large-turbo"
@@ -34,7 +33,7 @@ def run(scale):
     score = np.array([0, 0, 0], dtype=float)
     total = 0
     for seed in range(2): 
-        for i in dev_prompts[:max_num]:
+        for i in dev_prompts[:5]:
             image = pipe(
                 i["prompt"],
                 nag_negative_prompt=i["missing_element"],
