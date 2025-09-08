@@ -26,8 +26,8 @@ def run(nag_scale, nag_alpha, nag_tau):
     wandb.init(project="nag-sweep")
     score = np.array([0, 0, 0], dtype=float)
     total = 0
-    for seed in range(5):
-        for i in dev_prompts:
+    for seed in range(2):
+        for i in dev_prompts[:5]:
             image = pipe(
                 i["prompt"],
                 nag_negative_prompt=i["missing_element"],
