@@ -29,7 +29,7 @@ def run(scale, offset):
     score = np.array([0, 0, 0], dtype=float)
     total = 0
     for seed in range(2):
-        for i in dev_prompts:
+        for i in dev_prompts[:5]:
             image = pipe(
                 i["prompt"],
                 negative_prompt=i["missing_element"],
