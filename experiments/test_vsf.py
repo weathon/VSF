@@ -43,7 +43,8 @@ def run(scale, offset):
                 delta = judge.vqa(image, i["question_1"], i["question_2"])
                 score += delta
                 total += 1
-                wandb.log({"pos_score": scores[0]/total, "neg_score": scores[1]/total, "total_score": (scores[0] * 0.4 + scores[1] * 0.6)/total, "img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
+                wandb.log({"pos_score_overall":score[0]/total, "neg_score_overall":score[1]/total, "quality_score_overall": score[2]/total,"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}"), 
+                          "pos_score": delta[0], "neg_score": delta[1], "quality_score": delta[2]})
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}")})
 
