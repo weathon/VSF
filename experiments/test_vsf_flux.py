@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser(description="Run NAG sweep")
 parser.add_argument("--eval_later", action="store_true", help="Run evaluation later")
 args = parser.parse_args()
 
-model_id = "black-forest-labs/FLUX.1-schnell"
+model_id = "black-forest-labs/FLUX.1-Krea-dev"
 pipe = VSFFluxPipeline.from_pretrained(
     model_id,
     torch_dtype=torch.bfloat16,
@@ -33,10 +33,10 @@ def run(scale, offset):
             image = pipe(
                 i["prompt"],
                 negative_prompt=i["missing_element"],
-                guidance_scale=0.,
+                guidance_scale=4.,
                 scale=scale,
                 offset=offset,
-                num_inference_steps=8,
+                num_inference_steps=32,
                 generator=torch.Generator("cuda").manual_seed(seed),
             ).images[0]
             if not args.eval_later:
