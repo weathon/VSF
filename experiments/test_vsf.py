@@ -693,7 +693,8 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
             generator,
             latents,
         )
-
+        if collect_steps is not None:
+          collect_steps.append(latents)
         # 5. Prepare timesteps
         scheduler_kwargs = {}
         if self.scheduler.config.get("use_dynamic_shifting", None) and mu is None:
