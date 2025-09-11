@@ -469,6 +469,7 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
         mu: Optional[float] = None,
         scale: float = 3.0,
         offset: float = 0.08,
+        collect_steps: List = None
     ):
         r"""
         Function invoked when calling the pipeline for generation.
@@ -669,11 +670,9 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
         attn_mask = attn_mask.to(device=device, dtype=prompt_embeds.dtype)
 
         processors_backup = []
-        self.maps = []
-        self.images = []
         for block in self.transformer.transformer_blocks:
             processors_backup.append(block.attn.processor)
-            block.attn.processor = JointAttnProcessor2_0(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len, maps=self.maps)
+            block.attn.processor = JointAttnProcessor2_0(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len)
 
         if self.do_classifier_free_guidance:
             if skip_guidance_layers is not None:
@@ -694,7 +693,8 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
             generator,
             latents,
         )
-
+        if collect_steps is not None:
+          collect_steps.append(latents)
         # 5. Prepare timesteps
         scheduler_kwargs = {}
         if self.scheduler.config.get("use_dynamic_shifting", None) and mu is None:
@@ -791,7 +791,8 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
                     if torch.backends.mps.is_available():
                         # some platforms (eg. apple mps) misbehave due to a pytorch bug: https://github.com/pytorch/pytorch/pull/99272
                         latents = latents.to(latents_dtype)
-
+                if collect_steps is not None:
+                  collect_steps.append(latents)
                 if callback_on_step_end is not None:
                     callback_kwargs = {}
                     for k in callback_on_step_end_tensor_inputs:
@@ -801,13 +802,7 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
                     latents = callback_outputs.pop("latents", latents)
                     prompt_embeds = callback_outputs.pop("prompt_embeds", prompt_embeds)
                     pooled_prompt_embeds = callback_outputs.pop("pooled_prompt_embeds", pooled_prompt_embeds)
-                    
-                    
-                # latents_ = (latents / self.vae.config.scaling_factor) + self.vae.config.shift_factor
 
-                # image = self.vae.decode(latents_, return_dict=False)[0]
-                # image = self.image_processor.postprocess(image, output_type=output_type)
-                # self.images.append(image)
                 # call the callback, if provided
                 if i == len(timesteps) - 1 or ((i + 1) > num_warmup_steps and (i + 1) % self.scheduler.order == 0):
                     progress_bar.update()
@@ -834,5 +829,3 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
             blocks.attn.processor = processors_backup[i]
             
         return StableDiffusion3PipelineOutput(images=image)
-
-
