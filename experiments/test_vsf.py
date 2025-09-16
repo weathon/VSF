@@ -46,6 +46,6 @@ def run(scale, offset):
                 wandb.log({"pos_score_overall":score[0]/total, "neg_score_overall":score[1]/total, "quality_score_overall": score[2]/total,"img": wandb.Image(image, caption=f"+: {i['prompt']}\n -: {i['missing_element']}"), 
                           "pos_score": delta[0], "neg_score": delta[1], "quality_score": delta[2]})
             else:
-                wandb.log({"img": wandb.Image(image, caption=f"{i['question_1']}****{i['quesion_2']}")})
+                wandb.log({"img": wandb.Image(image, caption=f"{i['question_1']}****{i['question_2']}")})
 
 run(3.3, 0.2)
