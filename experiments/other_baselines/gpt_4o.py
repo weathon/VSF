@@ -83,6 +83,6 @@ def run():
                     wandb.log({"pos_score_overall":score[0]/total, "neg_score_overall":score[1]/total, "quality_score_overall": score[2]/total,"img": wandb.Image(image, caption=f"+: {prompt_data['prompt']}\n -: {prompt_data['missing_element']}"), 
                               "pos_score": delta[0], "neg_score": delta[1], "quality_score": delta[2]})
                 else:
-                    wandb.log({"img": wandb.Image(image, caption=f"+: {prompt_data['prompt']}\n -: {prompt_data['missing_element']}")})
+                    wandb.log({"img": wandb.Image(image, caption=f"{prompt_data['prompt']}****{prompt_data['missing_element']}")})
 
 run()
