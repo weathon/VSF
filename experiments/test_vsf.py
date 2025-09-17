@@ -48,4 +48,4 @@ def run(scale, offset):
             else:
                 wandb.log({"img": wandb.Image(image, caption=f"{i['question_1']}****{i['question_2']}")})
 
-run(3.3, 0.2)
+run(3.8, 0.2)
