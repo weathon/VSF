@@ -10,6 +10,8 @@ import os
 import argparse
 from concurrent.futures import ThreadPoolExecutor
 import threading
+import dotenv
+dotenv.load_dotenv()
 
 parser = argparse.ArgumentParser(description="Run NAG sweep")
 parser.add_argument("--eval_later", action="store_true", help="Run evaluation later")
