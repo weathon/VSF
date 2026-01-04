@@ -37,6 +37,7 @@ def run(scale, offset):
                 scale=scale,
                 offset=offset,
                 num_inference_steps=8,
+                debug_duplicate=False,
                 generator=torch.Generator("cuda").manual_seed(seed),
             ).images[0]
             if not args.eval_later:
