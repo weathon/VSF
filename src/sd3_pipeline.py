@@ -469,7 +469,8 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
         mu: Optional[float] = None,
         scale: float = 3.0,
         offset: float = 0.08,
-        collect_steps: List = None
+        collect_steps: List = None,
+        debug_duplicate = False
     ):
         r"""
         Function invoked when calling the pipeline for generation.
@@ -653,8 +654,11 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
             do_classifier_free_guidance=False,
             padding=False
         )
-        prompt_embeds = torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
-        
+        if debug_duplicate:
+            prompt_embeds = torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
+        else:
+            prompt_embeds = pos_prompt_embeds
+         
         neg_len = neg_prompt_embeds.shape[1]
         pos_len = prompt_embeds.shape[1]
         
