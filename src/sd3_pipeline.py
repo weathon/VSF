@@ -22,7 +22,7 @@ import torch
  
 from diffusers.callbacks import MultiPipelineCallbacks, PipelineCallback
 from diffusers.image_processor import PipelineImageInput, VaeImageProcessor
-from diffusers.loaders import FromSingleFileMixin, SD3IPAdapterMixin, SD3LoraLoaderMixin
+from diffusers.loaders import SD3LoraLoaderMixin
 from diffusers.models.autoencoders import AutoencoderKL
 from diffusers.models.transformers import SD3Transformer2DModel
 from diffusers.schedulers import FlowMatchEulerDiscreteScheduler
@@ -470,7 +470,8 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
         scale: float = 3.0,
         offset: float = 0.08,
         collect_steps: List = None,
-        debug_duplicate = False
+        debug_duplicate = False,
+        temp: float = 1.0,
     ):
         r"""
         Function invoked when calling the pipeline for generation.
@@ -674,16 +675,18 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
         attn_mask = attn_mask.to(device=device, dtype=prompt_embeds.dtype)
 
         processors_backup = []
+        processors_used = []
         for block in self.transformer.transformer_blocks:
             processors_backup.append(block.attn.processor)
-            block.attn.processor = JointAttnProcessor2_0(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len)
+            block.attn.processor = JointAttnProcessor2_0(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len, temp=temp)
+            processors_used .append(block.attn.processor)
 
-        if self.do_classifier_free_guidance:
-            if skip_guidance_layers is not None:
-                original_prompt_embeds = prompt_embeds
-                original_pooled_prompt_embeds = pooled_prompt_embeds
-            prompt_embeds = torch.cat([negative_prompt_embeds, prompt_embeds], dim=0)
-            pooled_prompt_embeds = torch.cat([negative_pooled_prompt_embeds, pooled_prompt_embeds], dim=0)
+        # if self.do_classifier_free_guidance:
+        #     if skip_guidance_layers is not None: 
+        #         original_prompt_embeds = prompt_embeds
+        #         original_pooled_prompt_embeds = pooled_prompt_embeds
+        #     prompt_embeds = torch.cat([neg_prompt_embeds, prompt_embeds], dim=0)
+        #     pooled_prompt_embeds = torch.cat([neg_pooled_prompt_embeds, pooled_prompt_embeds], dim=0)
 
         # 4. Prepare latent variables
         num_channels_latents = self.transformer.config.in_channels
@@ -748,44 +751,44 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
                     continue
 
                 # expand the latents if we are doing classifier free guidance
-                latent_model_input = torch.cat([latents] * 2) if self.do_classifier_free_guidance else latents
+                latent_model_input = latents #if self.do_classifier_free_guidance else latents
                 # broadcast to batch dimension in a way that's compatible with ONNX/Core ML
-                timestep = t.expand(latent_model_input.shape[0])
+                timestep = t.expand(1)
 
-                noise_pred = self.transformer(
-                    hidden_states=latent_model_input,
-                    timestep=timestep,
-                    encoder_hidden_states=prompt_embeds,
-                    pooled_projections=pooled_prompt_embeds,
-                    joint_attention_kwargs=self.joint_attention_kwargs,
-                    return_dict=False,
-                )[0]
+                if not self.do_classifier_free_guidance:
+                    noise_pred = self.transformer(
+                        hidden_states=latent_model_input,
+                        timestep=timestep,
+                        encoder_hidden_states=prompt_embeds,
+                        pooled_projections=pooled_prompt_embeds,
+                        joint_attention_kwargs=self.joint_attention_kwargs,
+                        return_dict=False,
+                    )[0]
+                else:
+                    noise_pred_text = self.transformer(
+                        hidden_states=latent_model_input,
+                        timestep=timestep,
+                        encoder_hidden_states=prompt_embeds,
+                        pooled_projections=pooled_prompt_embeds,
+                        joint_attention_kwargs=self.joint_attention_kwargs,
+                        return_dict=False,
+                    )[0]
+                    for i, blocks in enumerate(self.transformer.transformer_blocks):
+                        blocks.attn.processor = processors_backup[i]
 
-                # perform guidance
-                if self.do_classifier_free_guidance:
-                    noise_pred_uncond, noise_pred_text = noise_pred.chunk(2)
+                    noise_pred_uncond = self.transformer(
+                        hidden_states=latent_model_input,
+                        timestep=timestep,
+                        encoder_hidden_states=neg_prompt_embeds,
+                        pooled_projections=neg_pooled_prompt_embeds,
+                        joint_attention_kwargs=self.joint_attention_kwargs,
+                        return_dict=False,
+                    )[0]
+
+                    for i, blocks in enumerate(self.transformer.transformer_blocks):
+                        blocks.attn.processor = processors_used[i]
+                        
                     noise_pred = noise_pred_uncond + self.guidance_scale * (noise_pred_text - noise_pred_uncond)
-                    should_skip_layers = (
-                        True
-                        if i > num_inference_steps * skip_layer_guidance_start
-                        and i < num_inference_steps * skip_layer_guidance_stop
-                        else False
-                    )
-                    if skip_guidance_layers is not None and should_skip_layers:
-                        timestep = t.expand(latents.shape[0])
-                        latent_model_input = latents
-                        noise_pred_skip_layers = self.transformer(
-                            hidden_states=latent_model_input,
-                            timestep=timestep,
-                            encoder_hidden_states=original_prompt_embeds,
-                            pooled_projections=original_pooled_prompt_embeds,
-                            joint_attention_kwargs=self.joint_attention_kwargs,
-                            return_dict=False,
-                            skip_layers=skip_guidance_layers,
-                        )[0]
-                        noise_pred = (
-                            noise_pred + (noise_pred_text - noise_pred_skip_layers) * self._skip_layer_guidance_scale
-                        )
 
                 # compute the previous noisy sample x_t -> x_t-1
                 latents_dtype = latents.dtype

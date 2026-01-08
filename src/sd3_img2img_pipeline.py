@@ -623,11 +623,13 @@ class VSFStableDiffusion3Img2ImgPipeline(VSFStableDiffusion3Pipeline):
         attn_mask = attn_mask.to(device=device, dtype=prompt_embeds.dtype)
 
         processors_backup = []
+        processors_used = []
         self.maps = []
         self.images = []
         for block in self.transformer.transformer_blocks:
             processors_backup.append(block.attn.processor)
-            block.attn.processor = JointAttnProcessor2_0(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len, maps=self.maps)
+            processors_used.append(JointAttnProcessor2_0(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len, maps=self.maps))
+            block.attn.processor = processors_used[-1]
 
 
         if self.do_classifier_free_guidance:
@@ -698,19 +700,38 @@ class VSFStableDiffusion3Img2ImgPipeline(VSFStableDiffusion3Pipeline):
                 latent_model_input = torch.cat([latents] * 2) if self.do_classifier_free_guidance else latents
                 # broadcast to batch dimension in a way that's compatible with ONNX/Core ML
                 timestep = t.expand(latent_model_input.shape[0])
+                if not self.do_classifier_free_guidance:
+                    noise_pred = self.transformer(
+                        hidden_states=latent_model_input,
+                        timestep=timestep,
+                        encoder_hidden_states=prompt_embeds,
+                        pooled_projections=pooled_prompt_embeds,
+                        joint_attention_kwargs=self.joint_attention_kwargs,
+                        return_dict=False,
+                    )[0]
+                else:
+                    noise_pred_text = self.transformer(
+                        hidden_states=latent_model_input[:1],
+                        timestep=timestep,
+                        encoder_hidden_states=prompt_embeds[:1],
+                        pooled_projections=pooled_prompt_embeds[:1],
+                        joint_attention_kwargs=self.joint_attention_kwargs,
+                        return_dict=False,
+                    )[0]
+                    for i, blocks in enumerate(self.transformer.transformer_blocks):
+                        blocks.attn.processor = processors_backup[i]
 
-                noise_pred = self.transformer(
-                    hidden_states=latent_model_input,
-                    timestep=timestep,
-                    encoder_hidden_states=prompt_embeds,
-                    pooled_projections=pooled_prompt_embeds,
-                    joint_attention_kwargs=self.joint_attention_kwargs,
-                    return_dict=False,
-                )[0]
-
-                # perform guidance
-                if self.do_classifier_free_guidance:
-                    noise_pred_uncond, noise_pred_text = noise_pred.chunk(2)
+                    noise_pred_uncond = self.transformer(
+                        hidden_states=latent_model_input[1:],
+                        timestep=timestep,
+                        encoder_hidden_states=prompt_embeds[1:],
+                        pooled_projections=pooled_prompt_embeds[1:],
+                        joint_attention_kwargs=self.joint_attention_kwargs,
+                        return_dict=False,
+                    )[0]
+                    for i, blocks in enumerate(self.transformer.transformer_blocks):
+                        blocks.attn.processor = processors_used[i]
+                        
                     noise_pred = noise_pred_uncond + self.guidance_scale * (noise_pred_text - noise_pred_uncond)
 
                 # compute the previous noisy sample x_t -> x_t-1

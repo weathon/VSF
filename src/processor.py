@@ -8,7 +8,7 @@ from torch import nn
 
 from diffusers.image_processor import IPAdapterMaskProcessor
 from diffusers.utils import deprecate, is_torch_xla_available, logging
-from diffusers.utils.import_utils import is_torch_npu_available, is_torch_xla_version, is_xformers_available
+from diffusers.utils.import_utils import is_torch_npu_available, is_xformers_available
 from diffusers.utils.torch_utils import is_torch_version, maybe_allow_in_graph
 from diffusers.models.attention_processor import (
     Attention
@@ -27,23 +27,33 @@ else:
 
 if is_torch_xla_available():
     # flash attention pallas kernel is introduced in the torch_xla 2.3 release.
-    if is_torch_xla_version(">", "2.2"):
-        from torch_xla.experimental.custom_kernel import flash_attention
-        from torch_xla.runtime import is_spmd
+
     XLA_AVAILABLE = True
 else:
     XLA_AVAILABLE = False
 
+def project(
+    v0: torch.Tensor, # [B, L, E]
+    v1: torch.Tensor, # [B, L, E]
+    ):
+    dtype = v0.dtype
+    v0, v1 = v0.double(), v1.double()
+    v1 = torch.nn.functional.normalize(v1, dim=[-1])
+    v0_parallel = (v0 * v1).sum(dim=[-1], keepdim=True) * v1
+    v0_orthogonal = v0 - v0_parallel
+    return v0_parallel.to(dtype), v0_orthogonal.to(dtype)
+                                                
 class JointAttnProcessor2_0:
     """Attention processor used typically in processing the SD3-like self-attention projections."""
 
-    def __init__(self, scale=4, attn_mask=None, neg_prompt_length=0, maps=None):
+    def __init__(self, scale=4, attn_mask=None, neg_prompt_length=0, maps=None, temp=1.0):
         if not hasattr(F, "scaled_dot_product_attention"):
             raise ImportError("JointAttnProcessor2_0 requires PyTorch 2.0, to use it, please upgrade PyTorch to 2.0.")
         self.attn_mask = attn_mask
         self.neg_prompt_length = neg_prompt_length
         self.scale = scale
         self.maps = maps
+        self.temp = temp
 
     def __call__(
         self,
@@ -93,7 +103,7 @@ class JointAttnProcessor2_0:
                 encoder_hidden_states_query_proj = attn.norm_added_q(encoder_hidden_states_query_proj)
             if attn.norm_added_k is not None:
                 encoder_hidden_states_key_proj = attn.norm_added_k(encoder_hidden_states_key_proj)
-
+            
             query = torch.cat([query, encoder_hidden_states_query_proj], dim=2)
             key = torch.cat([key, encoder_hidden_states_key_proj, encoder_hidden_states_key_proj[:,:,-self.neg_prompt_length:]], dim=2)
             value = torch.cat([value, encoder_hidden_states_value_proj, encoder_hidden_states_value_proj[:,:,-self.neg_prompt_length:]], dim=2)
@@ -103,8 +113,23 @@ class JointAttnProcessor2_0:
             # neg_map = torch.einsum('bhqd,bhkd->bhqk', query[:,:,:-encoder_hidden_states.shape[1]], key[:,:,-self.neg_prompt_length:])
             
             # self.maps.append([pos_map.detach().cpu(), neg_map.detach().cpu()])
-            
+
         hidden_states = F.scaled_dot_product_attention(query, key, value, dropout_p=0.0, is_causal=False, attn_mask=self.attn_mask.to(query.dtype))
+        # hidden_states_orig = F.scaled_dot_product_attention(query[:,:,:-self.neg_prompt_length], key[:,:,:-self.neg_prompt_length * 2], value[:,:,:-self.neg_prompt_length * 2], dropout_p=0.0, is_causal=False)
+        # print(hidden_states.shape)
+        # p, o = project(hidden_states[:,:,:4096], hidden_states_orig[:,:,:4096])
+
+        # norms = o.norm(dim=-1, keepdim=True) 
+        # norms = norms.clip(min=1e-6, max=6)
+        # o = o / (o.norm(dim=-1, keepdim=True) + 1e-8) * norms 
+
+        # # print(norms.mean())
+        # v = hidden_states[:,:,:4096] - hidden_states_orig[:,:,:4096]
+        # hidden_states[:,:,:4096] = self.temp * v + hidden_states[:,:,:4096]
+        # diff = torch.abs(hidden_states[:,:,:4096] - hidden_states_orig[:,:,:4096]) / (hidden_states_orig[:,:,:4096].norm(dim=-1, keepdim=True) + 1e-8)
+        # gate = torch.sigmoid((diff - 0.1) / 2)
+        # hidden_states[:,:,:4096] = gate * hidden_states[:,:,:4096] + (1 - gate) * hidden_states_orig[:,:,:4096]
+
         hidden_states = hidden_states.transpose(1, 2).reshape(batch_size, -1, attn.heads * head_dim)
         hidden_states = hidden_states.to(query.dtype)
 
