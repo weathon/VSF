@@ -2,6 +2,8 @@
 This project is experimental; please leave your feedback in issues or contact us. 
 Email: email@weasoft.com
 
+We’d like to note that after finishing our project and submitting the paper, we came across [NegPiP](https://github.com/hako-mikan/sd-webui-negpip/tree/main/scripts). It’s a great community project that uses an approach very similar to ours. Although our work was developed entirely independently, we want to acknowledge their work and point readers toward it as a similar resource.
+
 [Web Page](https://vsf.weasoft.com/)
 ## Preprint
 [![arXiv](https://img.shields.io/badge/arXiv-2508.10931-b31b1b.svg)](https://arxiv.org/abs/2508.10931)
