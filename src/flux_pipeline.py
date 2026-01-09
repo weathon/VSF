@@ -15,6 +15,8 @@
 
 import inspect
 from typing import Any, Callable, Dict, List, Optional, Union
+from .processor import FluxAttnProcessor
+
 from compel import Compel
 
 import numpy as np
@@ -35,7 +37,6 @@ from diffusers.utils import (
 from diffusers.utils.torch_utils import randn_tensor
 from diffusers.pipelines.pipeline_utils import DiffusionPipeline
 from diffusers.pipelines.flux.pipeline_output import FluxPipelineOutput
-from .processor import FluxAttnProcessor
 from diffusers.pipelines.flux import FluxPipeline
 
 if is_torch_xla_available():
@@ -458,7 +459,7 @@ class VSFFluxPipeline(FluxPipeline):
             num_images_per_prompt=num_images_per_prompt,
             max_sequence_length=max_sequence_length,
             lora_scale=lora_scale,
-            padding=False,
+            padding=True,
         )
 
         (
@@ -472,10 +473,10 @@ class VSFFluxPipeline(FluxPipeline):
             num_images_per_prompt=num_images_per_prompt,
             max_sequence_length=max_sequence_length,
             lora_scale=lora_scale,
-            padding=False,
+            padding=True,
         )
         print(padding_prompt_embeds.shape, neg_prompt_embeds.shape)
-        neg_prompt_embeds = neg_prompt_embeds + 8 * (neg_prompt_embeds - padding_prompt_embeds.mean(1)[:,None])
+        neg_prompt_embeds = neg_prompt_embeds + 3 * (neg_prompt_embeds - padding_prompt_embeds.mean(1)[:,None])
         (
             pos_prompt_embeds,
             pos_pooled_prompt_embeds,
@@ -487,7 +488,7 @@ class VSFFluxPipeline(FluxPipeline):
             pooled_prompt_embeds=pooled_prompt_embeds,
             device=device,
             num_images_per_prompt=num_images_per_prompt,
-            max_sequence_length=max_sequence_length-neg_prompt_embeds.shape[1],
+            max_sequence_length=max_sequence_length,
             lora_scale=lora_scale,
             padding=True,
         )
@@ -498,6 +499,7 @@ class VSFFluxPipeline(FluxPipeline):
         # print(prompt_embeds.shape) 
         neg_len = neg_prompt_embeds.shape[1]
         pos_len = pos_prompt_embeds.shape[1]
+        print("prompt lengths", pos_len, neg_len)
         # pos_len = prompt_embeds.shape[1]kdaolbzheliyouwent
         # norm = pos_pooled_prompt_embeds.norm(p=2, dim=-1, keepdim=True)
         # pos_pooled_prompt_embeds = neg_pooled_prompt_embeds + 1.1 * (pos_pooled_prompt_embeds - neg_pooled_prompt_embeds) 
@@ -541,28 +543,21 @@ class VSFFluxPipeline(FluxPipeline):
         # attn_mask[:,:pos_len, pos_len:pos_len+neg_len] = -torch.inf
         # attn_mask[:,:-img_len:, pos_len:pos_len+neg_len] = -torch.inf
         # attn_mask[:,:pos_len+neg_len,pos_len+neg_len:pos_len+neg_len+neg_len] = -torch.inf
-        attn_mask = torch.zeros((1, img_len + prompt_embeds.shape[1], img_len + prompt_embeds.shape[1] + neg_len))
-        attn_mask[:,:pos_len,pos_len:pos_len+neg_len] = -torch.inf
-        attn_mask[:,:pos_len,-neg_len:] = -torch.inf
-        attn_mask[:,pos_len:pos_len+neg_len,-neg_len:] = -torch.inf
-        attn_mask[:,pos_len:pos_len+neg_len,:pos_len] = -torch.inf
-        attn_mask[:,-img_len:,pos_len:pos_len+neg_len] = -torch.inf
-        attn_mask[:,-img_len:,-neg_len:] = -offset   
-        
-        attn_mask = attn_mask.to(device=device, dtype=prompt_embeds.dtype)
+
+        attn_mask = None
         # attn_mask = None
         
         processors_backup = []
         for block in self.transformer.transformer_blocks:
             processors_backup.append(block.attn.processor)
             block.attn.processor = FluxAttnProcessor(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len, total_length=pos_len + neg_len)
-            block.attn.processor.image_rotary_emb = self.transformer.pos_embed(torch.cat([latent_image_ids, pos_text_ids, neg_text_ids, neg_text_ids], dim=0))
-        
+            block.attn.processor.image_rotary_emb = self.transformer.pos_embed(torch.cat([latent_image_ids, pos_text_ids], dim=0))
+            
         single_processors_backup = []
         for block in self.transformer.single_transformer_blocks:
             single_processors_backup.append(block.attn.processor)
             block.attn.processor = FluxAttnProcessor(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len, total_length=pos_len + neg_len)
-            block.attn.processor.image_rotary_emb = self.transformer.pos_embed(torch.cat([latent_image_ids, pos_text_ids, neg_text_ids, neg_text_ids], dim=0))
+            block.attn.processor.image_rotary_emb = self.transformer.pos_embed(torch.cat([latent_image_ids, pos_text_ids], dim=0))
 
         print("processor counts", len(processors_backup), len(single_processors_backup))
         # 5. Prepare timesteps

@@ -650,28 +650,28 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
             prompt_2=negative_prompt,
             prompt_3=negative_prompt,
             do_classifier_free_guidance=False,
-            padding=False
+            # padding=False
         )
-        prompt_embeds = torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
+        prompt_embeds = pos_prompt_embeds#torch.cat([pos_prompt_embeds, neg_prompt_embeds], dim=1)
         
         neg_len = neg_prompt_embeds.shape[1]
         pos_len = prompt_embeds.shape[1]
-        
+        print("pos_len:", pos_len, " neg_len:", neg_len)
         img_len = (height // 8 // self.transformer.config.patch_size) * (width // 8 //self.transformer.config.patch_size)
         
         prompt_embeds = torch.cat([prompt_embeds, neg_prompt_embeds], dim=1)
-        attn_mask = torch.zeros((1, img_len + prompt_embeds.shape[1], img_len + prompt_embeds.shape[1] + neg_len))
-        attn_mask[:,-neg_len-pos_len:,-neg_len:] = -torch.inf #prompts cannot see -neg 
-        attn_mask[:,:-neg_len,-2*neg_len:-neg_len] = -torch.inf # image and positive prompt cannot see neg
-        attn_mask[:,-neg_len:,img_len:img_len+pos_len] = -torch.inf # neg cannot see positive prompt
-        attn_mask[:,:img_len,-neg_len:] -= offset # 0.08 image seeing less -neg
+        # attn_mask = torch.zeros((1, img_len + prompt_embeds.shape[1], img_len + prompt_embeds.shape[1] + neg_len))
+        # attn_mask[:,-neg_len-pos_len:,-neg_len:] = -torch.inf #prompts cannot see -neg 
+        # attn_mask[:,:-neg_len,-2*neg_len:-neg_len] = -torch.inf # image and positive prompt cannot see neg
+        # attn_mask[:,-neg_len:,img_len:img_len+pos_len] = -torch.inf # neg cannot see positive prompt
+        # attn_mask[:,:img_len,-neg_len:] -= offset # 0.08 image seeing less -neg
         
-        attn_mask = attn_mask.to(device=device, dtype=prompt_embeds.dtype)
+        # attn_mask = attn_mask.to(device=device, dtype=prompt_embeds.dtype)
 
         processors_backup = []
         for block in self.transformer.transformer_blocks:
             processors_backup.append(block.attn.processor)
-            block.attn.processor = JointAttnProcessor2_0(scale=scale, attn_mask=attn_mask, neg_prompt_length=neg_len)
+            block.attn.processor = JointAttnProcessor2_0(scale=scale, attn_mask=None, neg_prompt_length=neg_len, pos_prompt_length=pos_len)
 
         if self.do_classifier_free_guidance:
             if skip_guidance_layers is not None:
@@ -822,7 +822,7 @@ class VSFStableDiffusion3Pipeline(StableDiffusion3Pipeline):
         if not return_dict:
             return (image,)
 
-        for i, blocks in enumerate(self.transformer.transformer_blocks):
-            blocks.attn.processor = processors_backup[i]
+        # for i, blocks in enumerate(self.transformer.transformer_blocks):
+        #     blocks.attn.processor = processors_backup[i]
             
         return StableDiffusion3PipelineOutput(images=image)
