@@ -172,7 +172,7 @@ class FluxAttnProcessor:
         
     def __call__(
         self,
-        attn: "FluxAttention",
+        attn: "FluxAttention", 
         hidden_states: torch.Tensor,
         encoder_hidden_states: torch.Tensor = None,
         attention_mask: Optional[torch.Tensor] = None,
@@ -208,16 +208,16 @@ class FluxAttnProcessor:
 
         neg_start = self.total_length-self.neg_prompt_length
         neg_end = self.total_length
-        # print(neg_start, neg_end)
+        # print(neg_start, neg_end) 
         key = torch.cat([key, key[:,neg_start:neg_end]], dim=1)
         # print(self.scale) 
-        norm = value.norm()
+        # norm = value.norm() 
         value = torch.cat([value, -self.scale * value[:,neg_start:neg_end]], dim=1)
-        value = value * (norm / value.norm()) 
+        # value = value * (norm / value.norm()) 
         # print(key.shape, value.shape, query.shape)
         hidden_states = F.scaled_dot_product_attention(
             query.permute(0, 2, 1, 3), key.permute(0, 2, 1, 3), value.permute(0, 2, 1, 3), dropout_p=0.0, is_causal=False, attn_mask=self.attn_mask.to(query.dtype)
-        )
+        ) 
         hidden_states = hidden_states.permute(0, 2, 1, 3)
         # hidden_states = dispatch_attention_fn( 
         #     query, key, value, attn_mask=self.attn_mask, backend=self._attention_backend

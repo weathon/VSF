@@ -14,6 +14,8 @@
 # limitations under the License.
 
 import inspect
+from .processor import FluxAttnProcessor
+
 from typing import Any, Callable, Dict, List, Optional, Union
 from compel import Compel
 
@@ -35,7 +37,6 @@ from diffusers.utils import (
 from diffusers.utils.torch_utils import randn_tensor
 from diffusers.pipelines.pipeline_utils import DiffusionPipeline
 from diffusers.pipelines.flux.pipeline_output import FluxPipelineOutput
-from .processor import FluxAttnProcessor
 from diffusers.pipelines.flux import FluxPipeline
 
 if is_torch_xla_available():
@@ -304,6 +305,7 @@ class VSFFluxPipeline(FluxPipeline):
         max_sequence_length: int = 512,
         offset: float = 0.0,
         scale: float = 1.0,
+        prompt_cfg: float = 4.0,
     ):
         r"""
         Function invoked when calling the pipeline for generation.
@@ -475,7 +477,7 @@ class VSFFluxPipeline(FluxPipeline):
             padding=False,
         )
         print(padding_prompt_embeds.shape, neg_prompt_embeds.shape)
-        neg_prompt_embeds = neg_prompt_embeds + 8 * (neg_prompt_embeds - padding_prompt_embeds.mean(1)[:,None])
+        neg_prompt_embeds = neg_prompt_embeds + prompt_cfg * (neg_prompt_embeds - padding_prompt_embeds.mean(1)[:,None])
         (
             pos_prompt_embeds,
             pos_pooled_prompt_embeds,
@@ -526,7 +528,7 @@ class VSFFluxPipeline(FluxPipeline):
         num_channels_latents = self.transformer.config.in_channels // 4
         latents, latent_image_ids = self.prepare_latents(
             batch_size * num_images_per_prompt,
-            num_channels_latents,
+            num_channels_latents, 
             height,
             width,
             prompt_embeds.dtype,
