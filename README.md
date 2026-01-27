@@ -76,7 +76,7 @@ You can clone this repo into your working folder, and execute the following code
 
 **Note: the CFG scale has to be set to 0 to use our method. **
 
-### Wan WEb Demo
+### Wan Web Demo
 Clone the repo, and run `python3 app.py` will start a gradio interface for Wan.
 
 
@@ -125,7 +125,8 @@ image = pipe(
 ```
 
 ### Flux Dev
-(Our method doesn't seem to work on Flux Dev)
+~(Our method doesn't seem to work on Flux Dev)~
+Flux version is in the fix_flux branch
 ```python
 import torch
 from src.flux_pipeline import VSFFluxPipeline
