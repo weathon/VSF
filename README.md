@@ -32,6 +32,7 @@ Key Advantages:
 ComfyUI custom node is available at [comfyui](comfyui/), make sure you have the diffusers installed in your Comfy envirement
 
 ## News
+- 🎉 Jan 27, 2026: Our paper is accepted at ICLR 2026! See you in Brazil!
 - 📄 July 26, 2025: Preprint uploaded
 - 🎇 July 26, 2025: First version of ComfyUI node added
 - 🤗 July 19, 2025: HuggingFace Space demo for Wan added
