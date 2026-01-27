@@ -34,6 +34,7 @@ ComfyUI custom node is available at [comfyui](comfyui/), make sure you have the 
 ## News
 - 🎉 Jan 27, 2026: Our paper is accepted at ICLR 2026! See you in Brazil!
 - 📽️ Dec 6, 2025: Presented at NeurIPS GenProCC Workshop
+- 🤗 Dec 5, 2025: HuggingFace Demo for VSF SD3.5 with comparison with NAG
 - 📄 July 26, 2025: Preprint uploaded
 - 🎇 July 26, 2025: First version of ComfyUI node added
 - 🤗 July 19, 2025: HuggingFace Space demo for Wan added
